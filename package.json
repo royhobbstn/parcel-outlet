@@ -1,0 +1,23 @@
+{
+  "name": "parcel-outlet",
+  "version": "0.0.1",
+  "description": "Master List : CSV of all Parcel Sources",
+  "main": "inventoryCSVtoJSON.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd src && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royhobbstn/parcel-outlet.git"
+  },
+  "author": "Daniel Trone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/royhobbstn/parcel-outlet/issues"
+  },
+  "homepage": "https://github.com/royhobbstn/parcel-outlet#readme",
+  "dependencies": {
+    "papaparse": "^5.2.0"
+  }
+}
