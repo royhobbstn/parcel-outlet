@@ -4,9 +4,11 @@ import App from './App';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
+  {/*<React.StrictMode>*/}
     <CssBaseline />
     <App />
-  </React.StrictMode>,
+  {/*</React.StrictMode>*/}
+  </React.Fragment>,
   document.getElementById('root')
 );
