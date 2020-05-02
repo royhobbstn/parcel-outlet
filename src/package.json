@@ -1,8 +1,8 @@
 {
   "name": "parcel-outlet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
-  "homepage": "https://parcel-outlet.com",
+  "homepage": "https://www.parcel-outlet.com",
   "dependencies": {
     "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
@@ -12,12 +12,12 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "react-spring": "^8.0.27"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "aws s3 sync build/ s3://parcel-outlet-web --delete --profile parcel-outlet",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id=E67DBASEL41AZ --paths / --profile=parcel-outlet",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
