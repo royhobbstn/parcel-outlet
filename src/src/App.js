@@ -42,9 +42,10 @@ function crunchInventory(inventory) {
   const state = {};
 
   inventory.forEach(d=> {
-    if(d.GeoType !== 'County') {
-      return;
-    }
+    // todo borough, municipality, etc
+    // if(d.GeoType !== 'County') {
+    //   return;
+    // }
 
     const stfips = d.FIPS.slice(0,2);
     if(!state[stfips]) {

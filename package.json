@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/royhobbstn/parcel-outlet#readme",
   "dependencies": {
+    "axios": "^0.19.2",
+    "featureservice": "^1.6.2",
+    "gh-pages": "^2.2.0",
     "papaparse": "^5.2.0"
   }
 }

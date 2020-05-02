@@ -1,10 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import TreeView from '@material-ui/lab/TreeView';
+import TreeItem from "@material-ui/lab/TreeItem";
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties.js';
 import Chip from '@material-ui/core/Chip';
 import { MinusSquare, PlusSquare, CloseSquare} from '../style/svgComponents.js';
-import { StyledTreeItem, treeStyles } from '../style/treeStyle.js';
+import { makeStyles } from "@material-ui/core/styles";
+import '../style/treeEntry.css';
+
+const treeStyles = makeStyles({
+  root: {
+    height: 'auto',
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
 
 export function Tree(props) {
 
@@ -12,11 +22,7 @@ export function Tree(props) {
 
   const crunched = props.crunched;
 
-  const [mouseHoverItem, setMouseHoverItem] = useState('');
-
-  const isMouseover = (id) => {
-    return mouseHoverItem === id;
-  };
+  console.log('render tree');
 
   return (
 
@@ -28,19 +34,21 @@ export function Tree(props) {
         defaultExpandIcon={<PlusSquare />}
         defaultEndIcon={<CloseSquare />}
       >
-        {Object.keys(crunched).map(d=> {
+        {Object.keys(crunched).sort((a, b) => {
+          return stateLookup(a) > stateLookup(b) ? 1 : -1;
+        }).map(d=> {
           return (
-            <StyledTreeItem nodeId={d} label={stateLookup(d)} key={d}>
-              {Object.keys(crunched[d]).map(e => {
+            <TreeItem nodeId={d} label={stateLookup(d)} key={d}>
+              {Object.keys(crunched[d]).sort((a, b) => {
+                return countyLookup(d + a) > countyLookup(d + b) ? 1 : -1;
+              }).map(e => {
                 return (
-                  <StyledTreeItem nodeId={e} label={countyLookup(d + e)} key={e}>
+                  <TreeItem nodeId={d + e} label={countyLookup(d + e)} key={d + e}>
 
                     {Object.keys(crunched[d][e]).map(f=> {
                       return (
                         <div key={f}
-                             style={{width: '100%', borderRadius: '6px', padding: '3px 6px 7px 6px', margin: '4px, 0 0 0', cursor: 'pointer', backgroundColor: isMouseover(d + e + f) ? 'cornflowerblue' : ''}}
-                             onMouseOver={() => setMouseHoverItem(d + e + f)}
-                             onMouseOut={() => setMouseHoverItem('')}
+                             className="treeEntry"
                              onClick={()=> window.open(f, "_blank")}>
                               <span style={{}}>
                                 {new URL(f).hostname}
@@ -54,10 +62,10 @@ export function Tree(props) {
                       )
                     })}
 
-                  </StyledTreeItem>
+                  </TreeItem>
                 )
               })}
-            </StyledTreeItem>
+            </TreeItem>
           )
         })}
       </TreeView>

@@ -9,6 +9,7 @@ export function stateLookup(fips) {
     '08': 'Colorado',
     '09': 'Connecticut',
     '10': 'Delaware',
+    '11': 'District of Columbia',
     '12': 'Florida',
     '13': 'Georgia',
     '15': 'Hawaii',
