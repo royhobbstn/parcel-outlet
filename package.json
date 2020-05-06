@@ -22,5 +22,8 @@
     "featureservice": "^1.6.2",
     "gh-pages": "^2.2.0",
     "papaparse": "^5.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }
