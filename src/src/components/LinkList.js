@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MapIcon from "@material-ui/icons/Map";
-import ExploreIcon from "@material-ui/icons/Explore";
+// import ExploreIcon from "@material-ui/icons/Explore";
 
 export function LinkList() {
   return (
@@ -19,12 +19,12 @@ export function LinkList() {
           <MapIcon style={{ marginLeft: "5px", verticalAlign: "bottom" }} />
         </Link>
       </li>
-      <li>
-        <Link to={"/parcel-explorer"}>
-          Parcel Explorer{" "}
-          <ExploreIcon style={{ marginLeft: "5px", verticalAlign: "bottom" }} />
-        </Link>
-      </li>
+      {/*<li>*/}
+      {/*<Link to={"/parcel-explorer"}>*/}
+      {/*Parcel Explorer{" "}*/}
+      {/*<ExploreIcon style={{ marginLeft: "5px", verticalAlign: "bottom" }} />*/}
+      {/*</Link>*/}
+      {/*</li>*/}
     </ul>
   );
 }

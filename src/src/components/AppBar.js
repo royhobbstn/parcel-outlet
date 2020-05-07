@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    zIndex: 1000,
     flexGrow: 1,
   },
   menuButton: {

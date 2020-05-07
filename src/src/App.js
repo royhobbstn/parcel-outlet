@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ButtonAppBar from "./components/AppBar.js";
+import AppBar from "./components/AppBar.js";
 import { Tree } from "./components/Tree.js";
 import { LinkList } from "./components/LinkList.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -25,10 +25,10 @@ function App() {
 
   return (
     <Router>
-      <ButtonAppBar />
+      <AppBar />
       <Switch>
         <Route path="/coverage-map">
-          <CoverageMap />
+          <CoverageMap inventory={inventory} />
         </Route>
 
         <Route exact path="/">

@@ -25,8 +25,6 @@ export function Tree(props) {
 
   const crunched = props.crunched;
 
-  console.log("render tree");
-
   return (
     <TreeView
       style={{
