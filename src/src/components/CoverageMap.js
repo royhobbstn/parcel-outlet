@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
 import { style } from "../style/mapStyle.js";
+import { stateLookup } from "../lookups/states";
+import { countyLookup } from "../lookups/counties.js";
 
 export class CoverageMap extends Component {
   componentDidMount() {
@@ -11,7 +13,7 @@ export class CoverageMap extends Component {
       container: "map",
       style,
       center: [-104.9, 39.75],
-      zoom: 3,
+      zoom: 4,
       maxZoom: 13,
       minZoom: 3,
     });
@@ -84,10 +86,25 @@ export class CoverageMap extends Component {
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
     window.map.on("click", "counties", function (e) {
-      new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(JSON.stringify(e.features[0].properties))
-        .addTo(window.map);
+      const feature = e.features[0].properties;
+
+      const geoid = feature.GEOID;
+      const state = geoid.slice(0, 2);
+      const county = geoid.slice(2);
+
+      let html = `${countyLookup(state + county)}, ${stateLookup(state)}`;
+
+      if (feature.covered) {
+        JSON.parse(feature.links).forEach((link) => {
+          html += `<br /><a href="${link}" target="_blank">${
+            new URL(link).hostname
+          }</a>`;
+        });
+      } else {
+        html += `<br /><span style="color:maroon;">No coverage.</span>`;
+      }
+
+      new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(html).addTo(window.map);
     });
 
     // Change the cursor to a pointer when the mouse is over the states layer.
@@ -144,13 +161,21 @@ export class CoverageMap extends Component {
 
 function enrichGeometry(geo, inventory) {
   const hash = {};
+  const links = {};
 
   inventory.forEach((i) => {
     hash[i.FIPS] = true;
+
+    if (!links[i.FIPS]) {
+      links[i.FIPS] = [];
+    }
+
+    links[i.FIPS].push(i.LandingPageLink);
   });
 
   geo.features.forEach((feature) => {
     feature.properties.covered = !!hash[feature.properties.GEOID];
+    feature.properties.links = links[feature.properties.GEOID];
   });
 
   return geo;

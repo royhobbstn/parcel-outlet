@@ -9,21 +9,11 @@ import {
   PlusSquare,
   CloseSquare,
 } from "../style/svgComponents.js";
-import { makeStyles } from "@material-ui/core/styles";
 import "../style/treeEntry.css";
 
-const treeStyles = makeStyles({
-  root: {
-    height: "auto",
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
-
 export function Tree(props) {
-  const classes = treeStyles();
-
   const crunched = props.crunched;
+  console.log({ crunched });
 
   return (
     <TreeView
@@ -31,12 +21,14 @@ export function Tree(props) {
         width: "85%",
         maxWidth: "800px",
         margin: "auto",
+        marginBottom: "40px",
         padding: "20px",
         backgroundColor: "antiquewhite",
         marginTop: "30px",
         borderRadius: "6px",
+        height: "auto",
+        flexGrow: "1",
       }}
-      className={classes.root}
       defaultExpanded={["1"]}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
