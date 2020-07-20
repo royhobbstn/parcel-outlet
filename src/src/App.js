@@ -10,7 +10,7 @@ function App() {
   const [inventory, setInventory] = useState([]);
 
   async function fetchData() {
-    const res = await fetch("/data/ParcelInventory.json");
+    const res = await fetch("/data/database_data.json");
     res
       .json()
       .then((res) => {
@@ -33,7 +33,7 @@ function App() {
 
         <Route exact path="/">
           <LinkList />
-          <Tree crunched={crunchInventory(inventory)} />
+          <Tree inventory={crunchInventory(inventory)} />
           {hasError ? (
             <p
               style={{
@@ -59,27 +59,22 @@ function crunchInventory(inventory) {
 
   const state = {};
 
-  inventory.forEach((d) => {
+  Object.keys(inventory).forEach((key) => {
     // todo borough, municipality, etc
     // if(d.GeoType !== 'County') {
     //   return;
     // }
 
-    const stfips = d.FIPS.slice(0, 2);
+    const stfips = key.slice(0, 2);
     if (!state[stfips]) {
       state[stfips] = {};
     }
 
-    const cntyfips = d.FIPS.slice(2);
-    if (!state[stfips][cntyfips]) {
-      state[stfips][cntyfips] = {};
+    const cntyplcfips = key.slice(2);
+    if (!state[stfips][cntyplcfips]) {
+      state[stfips][cntyplcfips] = inventory[key];
     }
 
-    if (!state[stfips][cntyfips][d.LandingPageLink]) {
-      state[stfips][cntyfips][d.LandingPageLink] = {};
-    }
-
-    state[stfips][cntyfips][d.LandingPageLink][d.FileFormat] = true;
   });
 
   return state;

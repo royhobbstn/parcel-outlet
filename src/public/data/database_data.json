@@ -1,0 +1,4097 @@
+{
+ "15001": {
+  "geoid": "15001",
+  "geoname": "Hawaii County",
+  "sumlev": "050",
+  "sources": {
+   "2": {
+    "source_id": 2,
+    "source_name": "http://planning.hawaii.gov/gis/download-gis-data/",
+    "last_checked": "2020-07-17 18:41:13",
+    "downloads": {
+     "2": {
+      "download_id": 2,
+      "created": "2020-07-17 18:41:13",
+      "download_ref": "c6fb75be",
+      "raw_key": "15-Hawaii/000-Hawaii/c6fb75be-15-Hawaii.zip",
+      "products": [
+       {
+        "product_ref": "842489b3",
+        "product_origin": "derived",
+        "product_id": 5,
+        "product_individual_ref": "11068c71",
+        "product_type": "ndgeojson",
+        "product_key": "15-Hawaii/001-Hawaii-County/c6fb75be-842489b3-11068c71-15001-Hawaii-County-Hawaii.ndgeojson"
+       },
+       {
+        "product_ref": "842489b3",
+        "product_origin": "derived",
+        "product_id": 19,
+        "product_individual_ref": "f9e4c655",
+        "product_type": "geojson",
+        "product_key": "15-Hawaii/001-Hawaii-County/c6fb75be-842489b3-f9e4c655-15001-Hawaii-County-Hawaii.geojson"
+       },
+       {
+        "product_ref": "842489b3",
+        "product_origin": "derived",
+        "product_id": 20,
+        "product_individual_ref": "6317b04d",
+        "product_type": "gpkg",
+        "product_key": "15-Hawaii/001-Hawaii-County/c6fb75be-842489b3-6317b04d-15001-Hawaii-County-Hawaii.gpkg"
+       },
+       {
+        "product_ref": "842489b3",
+        "product_origin": "derived",
+        "product_id": 21,
+        "product_individual_ref": "5eb2b586",
+        "product_type": "shp",
+        "product_key": "15-Hawaii/001-Hawaii-County/c6fb75be-842489b3-5eb2b586-15001-Hawaii-County-Hawaii-shp.zip"
+       },
+       {
+        "product_ref": "842489b3",
+        "product_origin": "original",
+        "product_id": 22,
+        "product_individual_ref": "c20f5a69",
+        "product_type": "pbf",
+        "product_key": "c6fb75be-842489b3-c20f5a69"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 18:41:13"
+   }
+  }
+ },
+ "15003": {
+  "geoid": "15003",
+  "geoname": "Honolulu County",
+  "sumlev": "050",
+  "sources": {
+   "2": {
+    "source_id": 2,
+    "source_name": "http://planning.hawaii.gov/gis/download-gis-data/",
+    "last_checked": "2020-07-17 18:41:13",
+    "downloads": {
+     "2": {
+      "download_id": 2,
+      "created": "2020-07-17 18:41:13",
+      "download_ref": "c6fb75be",
+      "raw_key": "15-Hawaii/000-Hawaii/c6fb75be-15-Hawaii.zip",
+      "products": [
+       {
+        "product_ref": "91b9be19",
+        "product_origin": "derived",
+        "product_id": 6,
+        "product_individual_ref": "0202767c",
+        "product_type": "ndgeojson",
+        "product_key": "15-Hawaii/003-Honolulu-County/c6fb75be-91b9be19-0202767c-15003-Honolulu-County-Hawaii.ndgeojson"
+       },
+       {
+        "product_ref": "91b9be19",
+        "product_origin": "derived",
+        "product_id": 13,
+        "product_individual_ref": "ffe62024",
+        "product_type": "geojson",
+        "product_key": "15-Hawaii/003-Honolulu-County/c6fb75be-91b9be19-ffe62024-15003-Honolulu-County-Hawaii.geojson"
+       },
+       {
+        "product_ref": "91b9be19",
+        "product_origin": "derived",
+        "product_id": 14,
+        "product_individual_ref": "6be059fd",
+        "product_type": "gpkg",
+        "product_key": "15-Hawaii/003-Honolulu-County/c6fb75be-91b9be19-6be059fd-15003-Honolulu-County-Hawaii.gpkg"
+       },
+       {
+        "product_ref": "91b9be19",
+        "product_origin": "derived",
+        "product_id": 15,
+        "product_individual_ref": "348bc1c4",
+        "product_type": "shp",
+        "product_key": "15-Hawaii/003-Honolulu-County/c6fb75be-91b9be19-348bc1c4-15003-Honolulu-County-Hawaii-shp.zip"
+       },
+       {
+        "product_ref": "91b9be19",
+        "product_origin": "original",
+        "product_id": 28,
+        "product_individual_ref": "65e7f2c2",
+        "product_type": "pbf",
+        "product_key": "c6fb75be-91b9be19-65e7f2c2"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 18:41:13"
+   }
+  }
+ },
+ "15007": {
+  "geoid": "15007",
+  "geoname": "Kauai County",
+  "sumlev": "050",
+  "sources": {
+   "2": {
+    "source_id": 2,
+    "source_name": "http://planning.hawaii.gov/gis/download-gis-data/",
+    "last_checked": "2020-07-17 18:41:13",
+    "downloads": {
+     "2": {
+      "download_id": 2,
+      "created": "2020-07-17 18:41:13",
+      "download_ref": "c6fb75be",
+      "raw_key": "15-Hawaii/000-Hawaii/c6fb75be-15-Hawaii.zip",
+      "products": [
+       {
+        "product_ref": "eb6b06ac",
+        "product_origin": "derived",
+        "product_id": 7,
+        "product_individual_ref": "3cda2b94",
+        "product_type": "ndgeojson",
+        "product_key": "15-Hawaii/007-Kauai-County/c6fb75be-eb6b06ac-3cda2b94-15007-Kauai-County-Hawaii.ndgeojson"
+       },
+       {
+        "product_ref": "eb6b06ac",
+        "product_origin": "derived",
+        "product_id": 9,
+        "product_individual_ref": "54313977",
+        "product_type": "geojson",
+        "product_key": "15-Hawaii/007-Kauai-County/c6fb75be-eb6b06ac-54313977-15007-Kauai-County-Hawaii.geojson"
+       },
+       {
+        "product_ref": "eb6b06ac",
+        "product_origin": "derived",
+        "product_id": 10,
+        "product_individual_ref": "16ba6357",
+        "product_type": "gpkg",
+        "product_key": "15-Hawaii/007-Kauai-County/c6fb75be-eb6b06ac-16ba6357-15007-Kauai-County-Hawaii.gpkg"
+       },
+       {
+        "product_ref": "eb6b06ac",
+        "product_origin": "derived",
+        "product_id": 11,
+        "product_individual_ref": "a55cb8f8",
+        "product_type": "shp",
+        "product_key": "15-Hawaii/007-Kauai-County/c6fb75be-eb6b06ac-a55cb8f8-15007-Kauai-County-Hawaii-shp.zip"
+       },
+       {
+        "product_ref": "eb6b06ac",
+        "product_origin": "original",
+        "product_id": 12,
+        "product_individual_ref": "01ef0cdb",
+        "product_type": "pbf",
+        "product_key": "c6fb75be-eb6b06ac-01ef0cdb"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 18:41:13"
+   }
+  }
+ },
+ "15009": {
+  "geoid": "15009",
+  "geoname": "Maui County",
+  "sumlev": "050",
+  "sources": {
+   "2": {
+    "source_id": 2,
+    "source_name": "http://planning.hawaii.gov/gis/download-gis-data/",
+    "last_checked": "2020-07-17 18:41:13",
+    "downloads": {
+     "2": {
+      "download_id": 2,
+      "created": "2020-07-17 18:41:13",
+      "download_ref": "c6fb75be",
+      "raw_key": "15-Hawaii/000-Hawaii/c6fb75be-15-Hawaii.zip",
+      "products": [
+       {
+        "product_ref": "3bf5a160",
+        "product_origin": "derived",
+        "product_id": 8,
+        "product_individual_ref": "53f24dbe",
+        "product_type": "ndgeojson",
+        "product_key": "15-Hawaii/009-Maui-County/c6fb75be-3bf5a160-53f24dbe-15009-Maui-County-Hawaii.ndgeojson"
+       },
+       {
+        "product_ref": "3bf5a160",
+        "product_origin": "derived",
+        "product_id": 16,
+        "product_individual_ref": "d9e14590",
+        "product_type": "geojson",
+        "product_key": "15-Hawaii/009-Maui-County/c6fb75be-3bf5a160-d9e14590-15009-Maui-County-Hawaii.geojson"
+       },
+       {
+        "product_ref": "3bf5a160",
+        "product_origin": "derived",
+        "product_id": 17,
+        "product_individual_ref": "e8949bc6",
+        "product_type": "gpkg",
+        "product_key": "15-Hawaii/009-Maui-County/c6fb75be-3bf5a160-e8949bc6-15009-Maui-County-Hawaii.gpkg"
+       },
+       {
+        "product_ref": "3bf5a160",
+        "product_origin": "derived",
+        "product_id": 18,
+        "product_individual_ref": "2d646769",
+        "product_type": "shp",
+        "product_key": "15-Hawaii/009-Maui-County/c6fb75be-3bf5a160-2d646769-15009-Maui-County-Hawaii-shp.zip"
+       },
+       {
+        "product_ref": "3bf5a160",
+        "product_origin": "original",
+        "product_id": 31,
+        "product_individual_ref": "3f999412",
+        "product_type": "pbf",
+        "product_key": "c6fb75be-3bf5a160-3f999412"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 18:41:13"
+   }
+  }
+ },
+ "48017": {
+  "geoid": "48017",
+  "geoname": "Bailey County",
+  "sumlev": "050",
+  "sources": {
+   "4": {
+    "source_id": 4,
+    "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
+    "last_checked": "2020-07-18 02:53:15",
+    "downloads": {
+     "6": {
+      "download_id": 6,
+      "created": "2020-07-18 02:45:12",
+      "download_ref": "85eae62c",
+      "raw_key": "48-Texas/017-Bailey-County/85eae62c-48017-Bailey-County-Texas.zip",
+      "products": [
+       {
+        "product_ref": "22759b63",
+        "product_origin": "original",
+        "product_id": 37,
+        "product_individual_ref": "b34ace1f",
+        "product_type": "ndgeojson",
+        "product_key": "48-Texas/017-Bailey-County/85eae62c-22759b63-b34ace1f-48017-Bailey-County-Texas.ndgeojson"
+       },
+       {
+        "product_ref": "22759b63",
+        "product_origin": "original",
+        "product_id": 38,
+        "product_individual_ref": "e7d62ce6",
+        "product_type": "geojson",
+        "product_key": "48-Texas/017-Bailey-County/85eae62c-22759b63-e7d62ce6-48017-Bailey-County-Texas.geojson"
+       },
+       {
+        "product_ref": "22759b63",
+        "product_origin": "original",
+        "product_id": 39,
+        "product_individual_ref": "d09693cc",
+        "product_type": "gpkg",
+        "product_key": "48-Texas/017-Bailey-County/85eae62c-22759b63-d09693cc-48017-Bailey-County-Texas.gpkg"
+       },
+       {
+        "product_ref": "22759b63",
+        "product_origin": "original",
+        "product_id": 40,
+        "product_individual_ref": "69aa01a5",
+        "product_type": "shp",
+        "product_key": "48-Texas/017-Bailey-County/85eae62c-22759b63-69aa01a5-48017-Bailey-County-Texas-shp.zip"
+       },
+       {
+        "product_ref": "22759b63",
+        "product_origin": "original",
+        "product_id": 41,
+        "product_individual_ref": "7fda23ef",
+        "product_type": "pbf",
+        "product_key": "85eae62c-22759b63-7fda23ef"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-18 02:45:12"
+   }
+  }
+ },
+ "48223": {
+  "geoid": "48223",
+  "geoname": "Hopkins County",
+  "sumlev": "050",
+  "sources": {
+   "4": {
+    "source_id": 4,
+    "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
+    "last_checked": "2020-07-18 02:53:15",
+    "downloads": {
+     "7": {
+      "download_id": 7,
+      "created": "2020-07-18 02:48:42",
+      "download_ref": "6f7f4f1f",
+      "raw_key": "48-Texas/223-Hopkins-County/6f7f4f1f-48223-Hopkins-County-Texas.zip",
+      "products": [
+       {
+        "product_ref": "f382f976",
+        "product_origin": "original",
+        "product_id": 42,
+        "product_individual_ref": "988f0db6",
+        "product_type": "ndgeojson",
+        "product_key": "48-Texas/223-Hopkins-County/6f7f4f1f-f382f976-988f0db6-48223-Hopkins-County-Texas.ndgeojson"
+       },
+       {
+        "product_ref": "f382f976",
+        "product_origin": "original",
+        "product_id": 43,
+        "product_individual_ref": "322ecf4f",
+        "product_type": "geojson",
+        "product_key": "48-Texas/223-Hopkins-County/6f7f4f1f-f382f976-322ecf4f-48223-Hopkins-County-Texas.geojson"
+       },
+       {
+        "product_ref": "f382f976",
+        "product_origin": "original",
+        "product_id": 44,
+        "product_individual_ref": "4727a02c",
+        "product_type": "gpkg",
+        "product_key": "48-Texas/223-Hopkins-County/6f7f4f1f-f382f976-4727a02c-48223-Hopkins-County-Texas.gpkg"
+       },
+       {
+        "product_ref": "f382f976",
+        "product_origin": "original",
+        "product_id": 45,
+        "product_individual_ref": "615fb5a0",
+        "product_type": "shp",
+        "product_key": "48-Texas/223-Hopkins-County/6f7f4f1f-f382f976-615fb5a0-48223-Hopkins-County-Texas-shp.zip"
+       },
+       {
+        "product_ref": "f382f976",
+        "product_origin": "original",
+        "product_id": 46,
+        "product_individual_ref": "e4e70743",
+        "product_type": "pbf",
+        "product_key": "6f7f4f1f-f382f976-e4e70743"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-18 02:48:42"
+   }
+  }
+ },
+ "48275": {
+  "geoid": "48275",
+  "geoname": "Knox County",
+  "sumlev": "050",
+  "sources": {
+   "4": {
+    "source_id": 4,
+    "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
+    "last_checked": "2020-07-18 02:53:15",
+    "downloads": {
+     "5": {
+      "download_id": 5,
+      "created": "2020-07-18 02:33:12",
+      "download_ref": "ea92ac02",
+      "raw_key": "48-Texas/275-Knox-County/ea92ac02-48275-Knox-County-Texas.zip",
+      "products": [
+       {
+        "product_ref": "2d0e6198",
+        "product_origin": "original",
+        "product_id": 32,
+        "product_individual_ref": "7548b34d",
+        "product_type": "ndgeojson",
+        "product_key": "48-Texas/275-Knox-County/ea92ac02-2d0e6198-7548b34d-48275-Knox-County-Texas.ndgeojson"
+       },
+       {
+        "product_ref": "2d0e6198",
+        "product_origin": "original",
+        "product_id": 33,
+        "product_individual_ref": "d5996b9c",
+        "product_type": "geojson",
+        "product_key": "48-Texas/275-Knox-County/ea92ac02-2d0e6198-d5996b9c-48275-Knox-County-Texas.geojson"
+       },
+       {
+        "product_ref": "2d0e6198",
+        "product_origin": "original",
+        "product_id": 34,
+        "product_individual_ref": "fd6ff87f",
+        "product_type": "gpkg",
+        "product_key": "48-Texas/275-Knox-County/ea92ac02-2d0e6198-fd6ff87f-48275-Knox-County-Texas.gpkg"
+       },
+       {
+        "product_ref": "2d0e6198",
+        "product_origin": "original",
+        "product_id": 35,
+        "product_individual_ref": "2eaa653c",
+        "product_type": "shp",
+        "product_key": "48-Texas/275-Knox-County/ea92ac02-2d0e6198-2eaa653c-48275-Knox-County-Texas-shp.zip"
+       },
+       {
+        "product_ref": "2d0e6198",
+        "product_origin": "original",
+        "product_id": 36,
+        "product_individual_ref": "5ac4a541",
+        "product_type": "pbf",
+        "product_key": "ea92ac02-2d0e6198-5ac4a541"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-18 02:33:12"
+   }
+  }
+ },
+ "48503": {
+  "geoid": "48503",
+  "geoname": "Young County",
+  "sumlev": "050",
+  "sources": {
+   "4": {
+    "source_id": 4,
+    "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
+    "last_checked": "2020-07-18 02:53:15",
+    "downloads": {
+     "8": {
+      "download_id": 8,
+      "created": "2020-07-18 02:53:15",
+      "download_ref": "9250ef6a",
+      "raw_key": "48-Texas/503-Young-County/9250ef6a-48503-Young-County-Texas.zip",
+      "products": [
+       {
+        "product_ref": "f41e336f",
+        "product_origin": "original",
+        "product_id": 47,
+        "product_individual_ref": "ca879792",
+        "product_type": "ndgeojson",
+        "product_key": "48-Texas/503-Young-County/9250ef6a-f41e336f-ca879792-48503-Young-County-Texas.ndgeojson"
+       },
+       {
+        "product_ref": "f41e336f",
+        "product_origin": "original",
+        "product_id": 48,
+        "product_individual_ref": "da4e6802",
+        "product_type": "geojson",
+        "product_key": "48-Texas/503-Young-County/9250ef6a-f41e336f-da4e6802-48503-Young-County-Texas.geojson"
+       },
+       {
+        "product_ref": "f41e336f",
+        "product_origin": "original",
+        "product_id": 49,
+        "product_individual_ref": "38b05c93",
+        "product_type": "gpkg",
+        "product_key": "48-Texas/503-Young-County/9250ef6a-f41e336f-38b05c93-48503-Young-County-Texas.gpkg"
+       },
+       {
+        "product_ref": "f41e336f",
+        "product_origin": "original",
+        "product_id": 50,
+        "product_individual_ref": "d9a2ab22",
+        "product_type": "shp",
+        "product_key": "48-Texas/503-Young-County/9250ef6a-f41e336f-d9a2ab22-48503-Young-County-Texas-shp.zip"
+       },
+       {
+        "product_ref": "f41e336f",
+        "product_origin": "original",
+        "product_id": 51,
+        "product_individual_ref": "6b668b20",
+        "product_type": "pbf",
+        "product_key": "9250ef6a-f41e336f-6b668b20"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-18 02:53:15"
+   }
+  }
+ },
+ "54001": {
+  "geoid": "54001",
+  "geoname": "Barbour County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "ad9e5825",
+        "product_origin": "derived",
+        "product_id": 99,
+        "product_individual_ref": "8ed4b983",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/001-Barbour-County/fee1c298-ad9e5825-8ed4b983-54001-Barbour-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "ad9e5825",
+        "product_origin": "derived",
+        "product_id": 217,
+        "product_individual_ref": "9fa65bb7",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/001-Barbour-County/fee1c298-ad9e5825-9fa65bb7-54001-Barbour-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "ad9e5825",
+        "product_origin": "derived",
+        "product_id": 220,
+        "product_individual_ref": "98206c61",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/001-Barbour-County/fee1c298-ad9e5825-98206c61-54001-Barbour-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "ad9e5825",
+        "product_origin": "derived",
+        "product_id": 227,
+        "product_individual_ref": "52b455e1",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/001-Barbour-County/fee1c298-ad9e5825-52b455e1-54001-Barbour-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "ad9e5825",
+        "product_origin": "original",
+        "product_id": 233,
+        "product_individual_ref": "d0297ee8",
+        "product_type": "pbf",
+        "product_key": "fee1c298-ad9e5825-d0297ee8"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54003": {
+  "geoid": "54003",
+  "geoname": "Berkeley County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "e3307fd1",
+        "product_origin": "derived",
+        "product_id": 100,
+        "product_individual_ref": "27fd0edb",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/003-Berkeley-County/fee1c298-e3307fd1-27fd0edb-54003-Berkeley-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "e3307fd1",
+        "product_origin": "derived",
+        "product_id": 272,
+        "product_individual_ref": "e6615b32",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/003-Berkeley-County/fee1c298-e3307fd1-e6615b32-54003-Berkeley-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "e3307fd1",
+        "product_origin": "derived",
+        "product_id": 281,
+        "product_individual_ref": "caec1e03",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/003-Berkeley-County/fee1c298-e3307fd1-caec1e03-54003-Berkeley-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "e3307fd1",
+        "product_origin": "derived",
+        "product_id": 289,
+        "product_individual_ref": "2e050784",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/003-Berkeley-County/fee1c298-e3307fd1-2e050784-54003-Berkeley-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "e3307fd1",
+        "product_origin": "original",
+        "product_id": 310,
+        "product_individual_ref": "dc243d2a",
+        "product_type": "pbf",
+        "product_key": "fee1c298-e3307fd1-dc243d2a"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54005": {
+  "geoid": "54005",
+  "geoname": "Boone County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "09612ea4",
+        "product_origin": "derived",
+        "product_id": 101,
+        "product_individual_ref": "427009de",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/005-Boone-County/fee1c298-09612ea4-427009de-54005-Boone-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "09612ea4",
+        "product_origin": "derived",
+        "product_id": 294,
+        "product_individual_ref": "4f4a32fb",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/005-Boone-County/fee1c298-09612ea4-4f4a32fb-54005-Boone-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "09612ea4",
+        "product_origin": "derived",
+        "product_id": 299,
+        "product_individual_ref": "42febea1",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/005-Boone-County/fee1c298-09612ea4-42febea1-54005-Boone-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "09612ea4",
+        "product_origin": "derived",
+        "product_id": 306,
+        "product_individual_ref": "7a79e667",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/005-Boone-County/fee1c298-09612ea4-7a79e667-54005-Boone-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "09612ea4",
+        "product_origin": "original",
+        "product_id": 312,
+        "product_individual_ref": "2f775a9c",
+        "product_type": "pbf",
+        "product_key": "fee1c298-09612ea4-2f775a9c"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54007": {
+  "geoid": "54007",
+  "geoname": "Braxton County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "02b33f5f",
+        "product_origin": "derived",
+        "product_id": 102,
+        "product_individual_ref": "e82ba9e5",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/007-Braxton-County/fee1c298-02b33f5f-e82ba9e5-54007-Braxton-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "02b33f5f",
+        "product_origin": "derived",
+        "product_id": 213,
+        "product_individual_ref": "2289ef35",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/007-Braxton-County/fee1c298-02b33f5f-2289ef35-54007-Braxton-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "02b33f5f",
+        "product_origin": "derived",
+        "product_id": 215,
+        "product_individual_ref": "b977c9c6",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/007-Braxton-County/fee1c298-02b33f5f-b977c9c6-54007-Braxton-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "02b33f5f",
+        "product_origin": "derived",
+        "product_id": 218,
+        "product_individual_ref": "57a71a93",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/007-Braxton-County/fee1c298-02b33f5f-57a71a93-54007-Braxton-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "02b33f5f",
+        "product_origin": "original",
+        "product_id": 223,
+        "product_individual_ref": "eaed29fa",
+        "product_type": "pbf",
+        "product_key": "fee1c298-02b33f5f-eaed29fa"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54009": {
+  "geoid": "54009",
+  "geoname": "Brooke County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "ca357146",
+        "product_origin": "derived",
+        "product_id": 103,
+        "product_individual_ref": "2bfaa304",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/009-Brooke-County/fee1c298-ca357146-2bfaa304-54009-Brooke-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "ca357146",
+        "product_origin": "derived",
+        "product_id": 293,
+        "product_individual_ref": "652b16c8",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/009-Brooke-County/fee1c298-ca357146-652b16c8-54009-Brooke-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "ca357146",
+        "product_origin": "derived",
+        "product_id": 297,
+        "product_individual_ref": "3bca9d5b",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/009-Brooke-County/fee1c298-ca357146-3bca9d5b-54009-Brooke-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "ca357146",
+        "product_origin": "derived",
+        "product_id": 302,
+        "product_individual_ref": "aaa34c97",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/009-Brooke-County/fee1c298-ca357146-aaa34c97-54009-Brooke-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "ca357146",
+        "product_origin": "original",
+        "product_id": 308,
+        "product_individual_ref": "6364faff",
+        "product_type": "pbf",
+        "product_key": "fee1c298-ca357146-6364faff"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54011": {
+  "geoid": "54011",
+  "geoname": "Cabell County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "0d2d5706",
+        "product_origin": "derived",
+        "product_id": 104,
+        "product_individual_ref": "a78126d3",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/011-Cabell-County/fee1c298-0d2d5706-a78126d3-54011-Cabell-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "0d2d5706",
+        "product_origin": "derived",
+        "product_id": 303,
+        "product_individual_ref": "ede010e2",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/011-Cabell-County/fee1c298-0d2d5706-ede010e2-54011-Cabell-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "0d2d5706",
+        "product_origin": "derived",
+        "product_id": 311,
+        "product_individual_ref": "64913627",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/011-Cabell-County/fee1c298-0d2d5706-64913627-54011-Cabell-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "0d2d5706",
+        "product_origin": "derived",
+        "product_id": 314,
+        "product_individual_ref": "e8059fa1",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/011-Cabell-County/fee1c298-0d2d5706-e8059fa1-54011-Cabell-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "0d2d5706",
+        "product_origin": "original",
+        "product_id": 323,
+        "product_individual_ref": "10d9c945",
+        "product_type": "pbf",
+        "product_key": "fee1c298-0d2d5706-10d9c945"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54013": {
+  "geoid": "54013",
+  "geoname": "Calhoun County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "ebb7b4b0",
+        "product_origin": "derived",
+        "product_id": 105,
+        "product_individual_ref": "c09d2752",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/013-Calhoun-County/fee1c298-ebb7b4b0-c09d2752-54013-Calhoun-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "ebb7b4b0",
+        "product_origin": "derived",
+        "product_id": 295,
+        "product_individual_ref": "e7462c14",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/013-Calhoun-County/fee1c298-ebb7b4b0-e7462c14-54013-Calhoun-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "ebb7b4b0",
+        "product_origin": "derived",
+        "product_id": 298,
+        "product_individual_ref": "c9e39bc5",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/013-Calhoun-County/fee1c298-ebb7b4b0-c9e39bc5-54013-Calhoun-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "ebb7b4b0",
+        "product_origin": "derived",
+        "product_id": 300,
+        "product_individual_ref": "24abd3e2",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/013-Calhoun-County/fee1c298-ebb7b4b0-24abd3e2-54013-Calhoun-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "ebb7b4b0",
+        "product_origin": "original",
+        "product_id": 304,
+        "product_individual_ref": "13825f09",
+        "product_type": "pbf",
+        "product_key": "fee1c298-ebb7b4b0-13825f09"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54015": {
+  "geoid": "54015",
+  "geoname": "Clay County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "ed530909",
+        "product_origin": "derived",
+        "product_id": 106,
+        "product_individual_ref": "cc107857",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/015-Clay-County/fee1c298-ed530909-cc107857-54015-Clay-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "ed530909",
+        "product_origin": "derived",
+        "product_id": 301,
+        "product_individual_ref": "51e6f9e2",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/015-Clay-County/fee1c298-ed530909-51e6f9e2-54015-Clay-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "ed530909",
+        "product_origin": "derived",
+        "product_id": 307,
+        "product_individual_ref": "c5f68d20",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/015-Clay-County/fee1c298-ed530909-c5f68d20-54015-Clay-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "ed530909",
+        "product_origin": "derived",
+        "product_id": 309,
+        "product_individual_ref": "c52a8f76",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/015-Clay-County/fee1c298-ed530909-c52a8f76-54015-Clay-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "ed530909",
+        "product_origin": "original",
+        "product_id": 313,
+        "product_individual_ref": "41ec11d2",
+        "product_type": "pbf",
+        "product_key": "fee1c298-ed530909-41ec11d2"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54017": {
+  "geoid": "54017",
+  "geoname": "Doddridge County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "e412a54d",
+        "product_origin": "derived",
+        "product_id": 107,
+        "product_individual_ref": "c4ee12f3",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/017-Doddridge-County/fee1c298-e412a54d-c4ee12f3-54017-Doddridge-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "e412a54d",
+        "product_origin": "derived",
+        "product_id": 229,
+        "product_individual_ref": "e59a4b04",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/017-Doddridge-County/fee1c298-e412a54d-e59a4b04-54017-Doddridge-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "e412a54d",
+        "product_origin": "derived",
+        "product_id": 230,
+        "product_individual_ref": "c34c075f",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/017-Doddridge-County/fee1c298-e412a54d-c34c075f-54017-Doddridge-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "e412a54d",
+        "product_origin": "derived",
+        "product_id": 231,
+        "product_individual_ref": "8a1ea8fd",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/017-Doddridge-County/fee1c298-e412a54d-8a1ea8fd-54017-Doddridge-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "e412a54d",
+        "product_origin": "original",
+        "product_id": 236,
+        "product_individual_ref": "7b898edb",
+        "product_type": "pbf",
+        "product_key": "fee1c298-e412a54d-7b898edb"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54019": {
+  "geoid": "54019",
+  "geoname": "Fayette County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "7026a304",
+        "product_origin": "derived",
+        "product_id": 53,
+        "product_individual_ref": "24f2ee97",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/019-Fayette-County/fee1c298-7026a304-24f2ee97-54019-Fayette-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "7026a304",
+        "product_origin": "derived",
+        "product_id": 112,
+        "product_individual_ref": "5d4b297d",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/019-Fayette-County/fee1c298-7026a304-5d4b297d-54019-Fayette-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "7026a304",
+        "product_origin": "derived",
+        "product_id": 113,
+        "product_individual_ref": "e06b0db9",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/019-Fayette-County/fee1c298-7026a304-e06b0db9-54019-Fayette-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "7026a304",
+        "product_origin": "derived",
+        "product_id": 114,
+        "product_individual_ref": "3280980d",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/019-Fayette-County/fee1c298-7026a304-3280980d-54019-Fayette-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "7026a304",
+        "product_origin": "original",
+        "product_id": 115,
+        "product_individual_ref": "7e293486",
+        "product_type": "pbf",
+        "product_key": "fee1c298-7026a304-7e293486"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54021": {
+  "geoid": "54021",
+  "geoname": "Gilmer County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "a4574fd0",
+        "product_origin": "derived",
+        "product_id": 54,
+        "product_individual_ref": "1f1030c7",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/021-Gilmer-County/fee1c298-a4574fd0-1f1030c7-54021-Gilmer-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "a4574fd0",
+        "product_origin": "derived",
+        "product_id": 315,
+        "product_individual_ref": "be585431",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/021-Gilmer-County/fee1c298-a4574fd0-be585431-54021-Gilmer-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "a4574fd0",
+        "product_origin": "derived",
+        "product_id": 316,
+        "product_individual_ref": "571d75b9",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/021-Gilmer-County/fee1c298-a4574fd0-571d75b9-54021-Gilmer-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "a4574fd0",
+        "product_origin": "derived",
+        "product_id": 317,
+        "product_individual_ref": "cb3635a9",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/021-Gilmer-County/fee1c298-a4574fd0-cb3635a9-54021-Gilmer-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "a4574fd0",
+        "product_origin": "original",
+        "product_id": 320,
+        "product_individual_ref": "d623a3be",
+        "product_type": "pbf",
+        "product_key": "fee1c298-a4574fd0-d623a3be"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54023": {
+  "geoid": "54023",
+  "geoname": "Grant County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "dd765b73",
+        "product_origin": "derived",
+        "product_id": 55,
+        "product_individual_ref": "68f1b4e4",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/023-Grant-County/fee1c298-dd765b73-68f1b4e4-54023-Grant-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "dd765b73",
+        "product_origin": "derived",
+        "product_id": 128,
+        "product_individual_ref": "86d363e4",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/023-Grant-County/fee1c298-dd765b73-86d363e4-54023-Grant-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "dd765b73",
+        "product_origin": "derived",
+        "product_id": 129,
+        "product_individual_ref": "f1ff215f",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/023-Grant-County/fee1c298-dd765b73-f1ff215f-54023-Grant-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "dd765b73",
+        "product_origin": "derived",
+        "product_id": 130,
+        "product_individual_ref": "9704440f",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/023-Grant-County/fee1c298-dd765b73-9704440f-54023-Grant-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "dd765b73",
+        "product_origin": "original",
+        "product_id": 131,
+        "product_individual_ref": "a345784c",
+        "product_type": "pbf",
+        "product_key": "fee1c298-dd765b73-a345784c"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54025": {
+  "geoid": "54025",
+  "geoname": "Greenbrier County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "8af46688",
+        "product_origin": "derived",
+        "product_id": 56,
+        "product_individual_ref": "eb5a6a81",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/025-Greenbrier-County/fee1c298-8af46688-eb5a6a81-54025-Greenbrier-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "8af46688",
+        "product_origin": "derived",
+        "product_id": 120,
+        "product_individual_ref": "b9170559",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/025-Greenbrier-County/fee1c298-8af46688-b9170559-54025-Greenbrier-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "8af46688",
+        "product_origin": "derived",
+        "product_id": 121,
+        "product_individual_ref": "63383623",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/025-Greenbrier-County/fee1c298-8af46688-63383623-54025-Greenbrier-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "8af46688",
+        "product_origin": "derived",
+        "product_id": 122,
+        "product_individual_ref": "7059eb02",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/025-Greenbrier-County/fee1c298-8af46688-7059eb02-54025-Greenbrier-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "8af46688",
+        "product_origin": "original",
+        "product_id": 123,
+        "product_individual_ref": "0a8e0d4f",
+        "product_type": "pbf",
+        "product_key": "fee1c298-8af46688-0a8e0d4f"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54027": {
+  "geoid": "54027",
+  "geoname": "Hampshire County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "e38dd706",
+        "product_origin": "derived",
+        "product_id": 57,
+        "product_individual_ref": "61d77f03",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/027-Hampshire-County/fee1c298-e38dd706-61d77f03-54027-Hampshire-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "e38dd706",
+        "product_origin": "derived",
+        "product_id": 318,
+        "product_individual_ref": "050e8ed5",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/027-Hampshire-County/fee1c298-e38dd706-050e8ed5-54027-Hampshire-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "e38dd706",
+        "product_origin": "derived",
+        "product_id": 321,
+        "product_individual_ref": "aa842427",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/027-Hampshire-County/fee1c298-e38dd706-aa842427-54027-Hampshire-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "e38dd706",
+        "product_origin": "derived",
+        "product_id": 324,
+        "product_individual_ref": "3264222c",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/027-Hampshire-County/fee1c298-e38dd706-3264222c-54027-Hampshire-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "e38dd706",
+        "product_origin": "original",
+        "product_id": 326,
+        "product_individual_ref": "aeed65b4",
+        "product_type": "pbf",
+        "product_key": "fee1c298-e38dd706-aeed65b4"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54029": {
+  "geoid": "54029",
+  "geoname": "Hancock County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "ea41a1fb",
+        "product_origin": "derived",
+        "product_id": 58,
+        "product_individual_ref": "9a7ef089",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/029-Hancock-County/fee1c298-ea41a1fb-9a7ef089-54029-Hancock-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "ea41a1fb",
+        "product_origin": "derived",
+        "product_id": 136,
+        "product_individual_ref": "07c4747b",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/029-Hancock-County/fee1c298-ea41a1fb-07c4747b-54029-Hancock-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "ea41a1fb",
+        "product_origin": "derived",
+        "product_id": 137,
+        "product_individual_ref": "9fb05fd6",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/029-Hancock-County/fee1c298-ea41a1fb-9fb05fd6-54029-Hancock-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "ea41a1fb",
+        "product_origin": "derived",
+        "product_id": 138,
+        "product_individual_ref": "91e1789f",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/029-Hancock-County/fee1c298-ea41a1fb-91e1789f-54029-Hancock-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "ea41a1fb",
+        "product_origin": "original",
+        "product_id": 139,
+        "product_individual_ref": "2f66771d",
+        "product_type": "pbf",
+        "product_key": "fee1c298-ea41a1fb-2f66771d"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54031": {
+  "geoid": "54031",
+  "geoname": "Hardy County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "559d5f74",
+        "product_origin": "derived",
+        "product_id": 59,
+        "product_individual_ref": "2151386d",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/031-Hardy-County/fee1c298-559d5f74-2151386d-54031-Hardy-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "559d5f74",
+        "product_origin": "derived",
+        "product_id": 108,
+        "product_individual_ref": "d1cacba9",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/031-Hardy-County/fee1c298-559d5f74-d1cacba9-54031-Hardy-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "559d5f74",
+        "product_origin": "derived",
+        "product_id": 109,
+        "product_individual_ref": "4b81ade8",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/031-Hardy-County/fee1c298-559d5f74-4b81ade8-54031-Hardy-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "559d5f74",
+        "product_origin": "derived",
+        "product_id": 110,
+        "product_individual_ref": "5198e37e",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/031-Hardy-County/fee1c298-559d5f74-5198e37e-54031-Hardy-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "559d5f74",
+        "product_origin": "original",
+        "product_id": 111,
+        "product_individual_ref": "d3b7d533",
+        "product_type": "pbf",
+        "product_key": "fee1c298-559d5f74-d3b7d533"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54033": {
+  "geoid": "54033",
+  "geoname": "Harrison County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "9ba7a21a",
+        "product_origin": "derived",
+        "product_id": 60,
+        "product_individual_ref": "14afc77f",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/033-Harrison-County/fee1c298-9ba7a21a-14afc77f-54033-Harrison-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "9ba7a21a",
+        "product_origin": "derived",
+        "product_id": 132,
+        "product_individual_ref": "a533c16a",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/033-Harrison-County/fee1c298-9ba7a21a-a533c16a-54033-Harrison-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "9ba7a21a",
+        "product_origin": "derived",
+        "product_id": 133,
+        "product_individual_ref": "689e2477",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/033-Harrison-County/fee1c298-9ba7a21a-689e2477-54033-Harrison-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "9ba7a21a",
+        "product_origin": "derived",
+        "product_id": 134,
+        "product_individual_ref": "d6b82df0",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/033-Harrison-County/fee1c298-9ba7a21a-d6b82df0-54033-Harrison-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "9ba7a21a",
+        "product_origin": "original",
+        "product_id": 135,
+        "product_individual_ref": "0cb702c0",
+        "product_type": "pbf",
+        "product_key": "fee1c298-9ba7a21a-0cb702c0"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54035": {
+  "geoid": "54035",
+  "geoname": "Jackson County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "f1a61a40",
+        "product_origin": "derived",
+        "product_id": 61,
+        "product_individual_ref": "9e3168f4",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/035-Jackson-County/fee1c298-f1a61a40-9e3168f4-54035-Jackson-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "f1a61a40",
+        "product_origin": "derived",
+        "product_id": 159,
+        "product_individual_ref": "a1b09647",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/035-Jackson-County/fee1c298-f1a61a40-a1b09647-54035-Jackson-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "f1a61a40",
+        "product_origin": "derived",
+        "product_id": 160,
+        "product_individual_ref": "650c0dce",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/035-Jackson-County/fee1c298-f1a61a40-650c0dce-54035-Jackson-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "f1a61a40",
+        "product_origin": "derived",
+        "product_id": 161,
+        "product_individual_ref": "ee616c98",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/035-Jackson-County/fee1c298-f1a61a40-ee616c98-54035-Jackson-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "f1a61a40",
+        "product_origin": "original",
+        "product_id": 167,
+        "product_individual_ref": "16041aa5",
+        "product_type": "pbf",
+        "product_key": "fee1c298-f1a61a40-16041aa5"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54037": {
+  "geoid": "54037",
+  "geoname": "Jefferson County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "03d27954",
+        "product_origin": "derived",
+        "product_id": 62,
+        "product_individual_ref": "8ffa90f6",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/037-Jefferson-County/fee1c298-03d27954-8ffa90f6-54037-Jefferson-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "03d27954",
+        "product_origin": "derived",
+        "product_id": 319,
+        "product_individual_ref": "f06b00da",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/037-Jefferson-County/fee1c298-03d27954-f06b00da-54037-Jefferson-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "03d27954",
+        "product_origin": "derived",
+        "product_id": 322,
+        "product_individual_ref": "08416971",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/037-Jefferson-County/fee1c298-03d27954-08416971-54037-Jefferson-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "03d27954",
+        "product_origin": "derived",
+        "product_id": 325,
+        "product_individual_ref": "5d70a488",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/037-Jefferson-County/fee1c298-03d27954-5d70a488-54037-Jefferson-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "03d27954",
+        "product_origin": "original",
+        "product_id": 327,
+        "product_individual_ref": "a2bc2c49",
+        "product_type": "pbf",
+        "product_key": "fee1c298-03d27954-a2bc2c49"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54039": {
+  "geoid": "54039",
+  "geoname": "Kanawha County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "94ef2d50",
+        "product_origin": "derived",
+        "product_id": 63,
+        "product_individual_ref": "e0c37e50",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/039-Kanawha-County/fee1c298-94ef2d50-e0c37e50-54039-Kanawha-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "94ef2d50",
+        "product_origin": "derived",
+        "product_id": 222,
+        "product_individual_ref": "4e7cdfbc",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/039-Kanawha-County/fee1c298-94ef2d50-4e7cdfbc-54039-Kanawha-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "94ef2d50",
+        "product_origin": "derived",
+        "product_id": 235,
+        "product_individual_ref": "e303b8d7",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/039-Kanawha-County/fee1c298-94ef2d50-e303b8d7-54039-Kanawha-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "94ef2d50",
+        "product_origin": "derived",
+        "product_id": 253,
+        "product_individual_ref": "a73935b8",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/039-Kanawha-County/fee1c298-94ef2d50-a73935b8-54039-Kanawha-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "94ef2d50",
+        "product_origin": "original",
+        "product_id": 287,
+        "product_individual_ref": "2507a095",
+        "product_type": "pbf",
+        "product_key": "fee1c298-94ef2d50-2507a095"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54041": {
+  "geoid": "54041",
+  "geoname": "Lewis County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "997cad40",
+        "product_origin": "derived",
+        "product_id": 64,
+        "product_individual_ref": "8a2376f4",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/041-Lewis-County/fee1c298-997cad40-8a2376f4-54041-Lewis-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "997cad40",
+        "product_origin": "derived",
+        "product_id": 211,
+        "product_individual_ref": "33806a96",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/041-Lewis-County/fee1c298-997cad40-33806a96-54041-Lewis-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "997cad40",
+        "product_origin": "derived",
+        "product_id": 216,
+        "product_individual_ref": "57eb6a48",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/041-Lewis-County/fee1c298-997cad40-57eb6a48-54041-Lewis-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "997cad40",
+        "product_origin": "derived",
+        "product_id": 224,
+        "product_individual_ref": "05688c79",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/041-Lewis-County/fee1c298-997cad40-05688c79-54041-Lewis-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "997cad40",
+        "product_origin": "original",
+        "product_id": 234,
+        "product_individual_ref": "d02b1ad8",
+        "product_type": "pbf",
+        "product_key": "fee1c298-997cad40-d02b1ad8"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54043": {
+  "geoid": "54043",
+  "geoname": "Lincoln County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "cb6b9d03",
+        "product_origin": "derived",
+        "product_id": 65,
+        "product_individual_ref": "ca39624a",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/043-Lincoln-County/fee1c298-cb6b9d03-ca39624a-54043-Lincoln-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "cb6b9d03",
+        "product_origin": "derived",
+        "product_id": 163,
+        "product_individual_ref": "0778d223",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/043-Lincoln-County/fee1c298-cb6b9d03-0778d223-54043-Lincoln-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "cb6b9d03",
+        "product_origin": "derived",
+        "product_id": 165,
+        "product_individual_ref": "5fb15c96",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/043-Lincoln-County/fee1c298-cb6b9d03-5fb15c96-54043-Lincoln-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "cb6b9d03",
+        "product_origin": "derived",
+        "product_id": 166,
+        "product_individual_ref": "0c943518",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/043-Lincoln-County/fee1c298-cb6b9d03-0c943518-54043-Lincoln-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "cb6b9d03",
+        "product_origin": "original",
+        "product_id": 171,
+        "product_individual_ref": "5a63a986",
+        "product_type": "pbf",
+        "product_key": "fee1c298-cb6b9d03-5a63a986"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54045": {
+  "geoid": "54045",
+  "geoname": "Logan County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "042f8d5f",
+        "product_origin": "derived",
+        "product_id": 66,
+        "product_individual_ref": "19d75b70",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/045-Logan-County/fee1c298-042f8d5f-19d75b70-54045-Logan-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "042f8d5f",
+        "product_origin": "derived",
+        "product_id": 174,
+        "product_individual_ref": "44c59c65",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/045-Logan-County/fee1c298-042f8d5f-44c59c65-54045-Logan-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "042f8d5f",
+        "product_origin": "derived",
+        "product_id": 176,
+        "product_individual_ref": "48de8b5d",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/045-Logan-County/fee1c298-042f8d5f-48de8b5d-54045-Logan-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "042f8d5f",
+        "product_origin": "derived",
+        "product_id": 177,
+        "product_individual_ref": "170f0aa4",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/045-Logan-County/fee1c298-042f8d5f-170f0aa4-54045-Logan-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "042f8d5f",
+        "product_origin": "original",
+        "product_id": 180,
+        "product_individual_ref": "914a41e0",
+        "product_type": "pbf",
+        "product_key": "fee1c298-042f8d5f-914a41e0"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54047": {
+  "geoid": "54047",
+  "geoname": "McDowell County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "15528111",
+        "product_origin": "derived",
+        "product_id": 70,
+        "product_individual_ref": "e2d1ac74",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/047-McDowell-County/fee1c298-15528111-e2d1ac74-54047-McDowell-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "15528111",
+        "product_origin": "derived",
+        "product_id": 146,
+        "product_individual_ref": "e9fd774f",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/047-McDowell-County/fee1c298-15528111-e9fd774f-54047-McDowell-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "15528111",
+        "product_origin": "derived",
+        "product_id": 147,
+        "product_individual_ref": "745b8fc9",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/047-McDowell-County/fee1c298-15528111-745b8fc9-54047-McDowell-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "15528111",
+        "product_origin": "derived",
+        "product_id": 151,
+        "product_individual_ref": "00094429",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/047-McDowell-County/fee1c298-15528111-00094429-54047-McDowell-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "15528111",
+        "product_origin": "original",
+        "product_id": 154,
+        "product_individual_ref": "da002454",
+        "product_type": "pbf",
+        "product_key": "fee1c298-15528111-da002454"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54049": {
+  "geoid": "54049",
+  "geoname": "Marion County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "9d1bdc3d",
+        "product_origin": "derived",
+        "product_id": 67,
+        "product_individual_ref": "cc135c12",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/049-Marion-County/fee1c298-9d1bdc3d-cc135c12-54049-Marion-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "9d1bdc3d",
+        "product_origin": "derived",
+        "product_id": 238,
+        "product_individual_ref": "ea96655d",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/049-Marion-County/fee1c298-9d1bdc3d-ea96655d-54049-Marion-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "9d1bdc3d",
+        "product_origin": "derived",
+        "product_id": 241,
+        "product_individual_ref": "6b5e4f31",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/049-Marion-County/fee1c298-9d1bdc3d-6b5e4f31-54049-Marion-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "9d1bdc3d",
+        "product_origin": "derived",
+        "product_id": 249,
+        "product_individual_ref": "c09c9542",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/049-Marion-County/fee1c298-9d1bdc3d-c09c9542-54049-Marion-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "9d1bdc3d",
+        "product_origin": "original",
+        "product_id": 260,
+        "product_individual_ref": "83fd1cfe",
+        "product_type": "pbf",
+        "product_key": "fee1c298-9d1bdc3d-83fd1cfe"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54051": {
+  "geoid": "54051",
+  "geoname": "Marshall County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "cbfcdb08",
+        "product_origin": "derived",
+        "product_id": 68,
+        "product_individual_ref": "1120e48f",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/051-Marshall-County/fee1c298-cbfcdb08-1120e48f-54051-Marshall-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "cbfcdb08",
+        "product_origin": "derived",
+        "product_id": 116,
+        "product_individual_ref": "aa860bc9",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/051-Marshall-County/fee1c298-cbfcdb08-aa860bc9-54051-Marshall-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "cbfcdb08",
+        "product_origin": "derived",
+        "product_id": 117,
+        "product_individual_ref": "8a84f3c0",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/051-Marshall-County/fee1c298-cbfcdb08-8a84f3c0-54051-Marshall-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "cbfcdb08",
+        "product_origin": "derived",
+        "product_id": 118,
+        "product_individual_ref": "fad18d5e",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/051-Marshall-County/fee1c298-cbfcdb08-fad18d5e-54051-Marshall-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "cbfcdb08",
+        "product_origin": "original",
+        "product_id": 119,
+        "product_individual_ref": "74e9377e",
+        "product_type": "pbf",
+        "product_key": "fee1c298-cbfcdb08-74e9377e"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54053": {
+  "geoid": "54053",
+  "geoname": "Mason County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "bac7d674",
+        "product_origin": "derived",
+        "product_id": 69,
+        "product_individual_ref": "6132d398",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/053-Mason-County/fee1c298-bac7d674-6132d398-54053-Mason-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "bac7d674",
+        "product_origin": "derived",
+        "product_id": 246,
+        "product_individual_ref": "55496748",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/053-Mason-County/fee1c298-bac7d674-55496748-54053-Mason-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "bac7d674",
+        "product_origin": "derived",
+        "product_id": 250,
+        "product_individual_ref": "e0cf9ded",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/053-Mason-County/fee1c298-bac7d674-e0cf9ded-54053-Mason-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "bac7d674",
+        "product_origin": "derived",
+        "product_id": 257,
+        "product_individual_ref": "43aa2790",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/053-Mason-County/fee1c298-bac7d674-43aa2790-54053-Mason-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "bac7d674",
+        "product_origin": "original",
+        "product_id": 265,
+        "product_individual_ref": "11c18ddd",
+        "product_type": "pbf",
+        "product_key": "fee1c298-bac7d674-11c18ddd"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54055": {
+  "geoid": "54055",
+  "geoname": "Mercer County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "f96433d2",
+        "product_origin": "derived",
+        "product_id": 71,
+        "product_individual_ref": "a3c85de4",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/055-Mercer-County/fee1c298-f96433d2-a3c85de4-54055-Mercer-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "f96433d2",
+        "product_origin": "derived",
+        "product_id": 164,
+        "product_individual_ref": "ba3be2f8",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/055-Mercer-County/fee1c298-f96433d2-ba3be2f8-54055-Mercer-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "f96433d2",
+        "product_origin": "derived",
+        "product_id": 168,
+        "product_individual_ref": "04ea931b",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/055-Mercer-County/fee1c298-f96433d2-04ea931b-54055-Mercer-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "f96433d2",
+        "product_origin": "derived",
+        "product_id": 172,
+        "product_individual_ref": "f339550c",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/055-Mercer-County/fee1c298-f96433d2-f339550c-54055-Mercer-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "f96433d2",
+        "product_origin": "original",
+        "product_id": 178,
+        "product_individual_ref": "1bae33e0",
+        "product_type": "pbf",
+        "product_key": "fee1c298-f96433d2-1bae33e0"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54057": {
+  "geoid": "54057",
+  "geoname": "Mineral County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "ad1d8af7",
+        "product_origin": "derived",
+        "product_id": 72,
+        "product_individual_ref": "5933783b",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/057-Mineral-County/fee1c298-ad1d8af7-5933783b-54057-Mineral-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "ad1d8af7",
+        "product_origin": "derived",
+        "product_id": 140,
+        "product_individual_ref": "a7cbe6a2",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/057-Mineral-County/fee1c298-ad1d8af7-a7cbe6a2-54057-Mineral-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "ad1d8af7",
+        "product_origin": "derived",
+        "product_id": 141,
+        "product_individual_ref": "8a600985",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/057-Mineral-County/fee1c298-ad1d8af7-8a600985-54057-Mineral-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "ad1d8af7",
+        "product_origin": "derived",
+        "product_id": 142,
+        "product_individual_ref": "7c7607bd",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/057-Mineral-County/fee1c298-ad1d8af7-7c7607bd-54057-Mineral-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "ad1d8af7",
+        "product_origin": "original",
+        "product_id": 143,
+        "product_individual_ref": "454b7d25",
+        "product_type": "pbf",
+        "product_key": "fee1c298-ad1d8af7-454b7d25"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54059": {
+  "geoid": "54059",
+  "geoname": "Mingo County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "04b1ca0f",
+        "product_origin": "derived",
+        "product_id": 73,
+        "product_individual_ref": "a5cd7e1d",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/059-Mingo-County/fee1c298-04b1ca0f-a5cd7e1d-54059-Mingo-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "04b1ca0f",
+        "product_origin": "derived",
+        "product_id": 124,
+        "product_individual_ref": "cb2469e4",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/059-Mingo-County/fee1c298-04b1ca0f-cb2469e4-54059-Mingo-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "04b1ca0f",
+        "product_origin": "derived",
+        "product_id": 125,
+        "product_individual_ref": "00ac4518",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/059-Mingo-County/fee1c298-04b1ca0f-00ac4518-54059-Mingo-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "04b1ca0f",
+        "product_origin": "derived",
+        "product_id": 126,
+        "product_individual_ref": "ea20310d",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/059-Mingo-County/fee1c298-04b1ca0f-ea20310d-54059-Mingo-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "04b1ca0f",
+        "product_origin": "original",
+        "product_id": 127,
+        "product_individual_ref": "7214d270",
+        "product_type": "pbf",
+        "product_key": "fee1c298-04b1ca0f-7214d270"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54061": {
+  "geoid": "54061",
+  "geoname": "Monongalia County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "2e4e1fbe",
+        "product_origin": "derived",
+        "product_id": 74,
+        "product_individual_ref": "b65a7f34",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/061-Monongalia-County/fee1c298-2e4e1fbe-b65a7f34-54061-Monongalia-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "2e4e1fbe",
+        "product_origin": "derived",
+        "product_id": 184,
+        "product_individual_ref": "6a8398ac",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/061-Monongalia-County/fee1c298-2e4e1fbe-6a8398ac-54061-Monongalia-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "2e4e1fbe",
+        "product_origin": "derived",
+        "product_id": 190,
+        "product_individual_ref": "2ca4fc78",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/061-Monongalia-County/fee1c298-2e4e1fbe-2ca4fc78-54061-Monongalia-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "2e4e1fbe",
+        "product_origin": "derived",
+        "product_id": 200,
+        "product_individual_ref": "99afe2fe",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/061-Monongalia-County/fee1c298-2e4e1fbe-99afe2fe-54061-Monongalia-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "2e4e1fbe",
+        "product_origin": "original",
+        "product_id": 219,
+        "product_individual_ref": "dabc40a0",
+        "product_type": "pbf",
+        "product_key": "fee1c298-2e4e1fbe-dabc40a0"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54063": {
+  "geoid": "54063",
+  "geoname": "Monroe County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "3a812303",
+        "product_origin": "derived",
+        "product_id": 75,
+        "product_individual_ref": "3b4a4757",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/063-Monroe-County/fee1c298-3a812303-3b4a4757-54063-Monroe-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "3a812303",
+        "product_origin": "derived",
+        "product_id": 221,
+        "product_individual_ref": "8eeef822",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/063-Monroe-County/fee1c298-3a812303-8eeef822-54063-Monroe-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "3a812303",
+        "product_origin": "derived",
+        "product_id": 225,
+        "product_individual_ref": "9e805ffc",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/063-Monroe-County/fee1c298-3a812303-9e805ffc-54063-Monroe-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "3a812303",
+        "product_origin": "derived",
+        "product_id": 228,
+        "product_individual_ref": "7d821bb4",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/063-Monroe-County/fee1c298-3a812303-7d821bb4-54063-Monroe-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "3a812303",
+        "product_origin": "original",
+        "product_id": 232,
+        "product_individual_ref": "0ea2779e",
+        "product_type": "pbf",
+        "product_key": "fee1c298-3a812303-0ea2779e"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54065": {
+  "geoid": "54065",
+  "geoname": "Morgan County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "bb243db6",
+        "product_origin": "derived",
+        "product_id": 76,
+        "product_individual_ref": "d30b17ca",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/065-Morgan-County/fee1c298-bb243db6-d30b17ca-54065-Morgan-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "bb243db6",
+        "product_origin": "derived",
+        "product_id": 247,
+        "product_individual_ref": "44fbf946",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/065-Morgan-County/fee1c298-bb243db6-44fbf946-54065-Morgan-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "bb243db6",
+        "product_origin": "derived",
+        "product_id": 251,
+        "product_individual_ref": "8c0ac606",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/065-Morgan-County/fee1c298-bb243db6-8c0ac606-54065-Morgan-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "bb243db6",
+        "product_origin": "derived",
+        "product_id": 254,
+        "product_individual_ref": "1c02e23c",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/065-Morgan-County/fee1c298-bb243db6-1c02e23c-54065-Morgan-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "bb243db6",
+        "product_origin": "original",
+        "product_id": 262,
+        "product_individual_ref": "dc5c90ac",
+        "product_type": "pbf",
+        "product_key": "fee1c298-bb243db6-dc5c90ac"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54067": {
+  "geoid": "54067",
+  "geoname": "Nicholas County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "c6903c13",
+        "product_origin": "derived",
+        "product_id": 77,
+        "product_individual_ref": "63628de4",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/067-Nicholas-County/fee1c298-c6903c13-63628de4-54067-Nicholas-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "c6903c13",
+        "product_origin": "derived",
+        "product_id": 237,
+        "product_individual_ref": "c269b137",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/067-Nicholas-County/fee1c298-c6903c13-c269b137-54067-Nicholas-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "c6903c13",
+        "product_origin": "derived",
+        "product_id": 239,
+        "product_individual_ref": "9f6ed028",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/067-Nicholas-County/fee1c298-c6903c13-9f6ed028-54067-Nicholas-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "c6903c13",
+        "product_origin": "derived",
+        "product_id": 243,
+        "product_individual_ref": "ab395483",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/067-Nicholas-County/fee1c298-c6903c13-ab395483-54067-Nicholas-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "c6903c13",
+        "product_origin": "original",
+        "product_id": 259,
+        "product_individual_ref": "b497a97a",
+        "product_type": "pbf",
+        "product_key": "fee1c298-c6903c13-b497a97a"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54069": {
+  "geoid": "54069",
+  "geoname": "Ohio County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "01f91049",
+        "product_origin": "derived",
+        "product_id": 78,
+        "product_individual_ref": "f1085f0f",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/069-Ohio-County/fee1c298-01f91049-f1085f0f-54069-Ohio-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "01f91049",
+        "product_origin": "derived",
+        "product_id": 269,
+        "product_individual_ref": "ef2f1911",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/069-Ohio-County/fee1c298-01f91049-ef2f1911-54069-Ohio-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "01f91049",
+        "product_origin": "derived",
+        "product_id": 273,
+        "product_individual_ref": "089382e5",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/069-Ohio-County/fee1c298-01f91049-089382e5-54069-Ohio-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "01f91049",
+        "product_origin": "derived",
+        "product_id": 279,
+        "product_individual_ref": "eede9e46",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/069-Ohio-County/fee1c298-01f91049-eede9e46-54069-Ohio-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "01f91049",
+        "product_origin": "original",
+        "product_id": 286,
+        "product_individual_ref": "6198d516",
+        "product_type": "pbf",
+        "product_key": "fee1c298-01f91049-6198d516"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54071": {
+  "geoid": "54071",
+  "geoname": "Pendleton County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "5ba8918e",
+        "product_origin": "derived",
+        "product_id": 79,
+        "product_individual_ref": "4ab3fdd8",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/071-Pendleton-County/fee1c298-5ba8918e-4ab3fdd8-54071-Pendleton-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "5ba8918e",
+        "product_origin": "derived",
+        "product_id": 169,
+        "product_individual_ref": "5e5cd516",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/071-Pendleton-County/fee1c298-5ba8918e-5e5cd516-54071-Pendleton-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "5ba8918e",
+        "product_origin": "derived",
+        "product_id": 170,
+        "product_individual_ref": "8bce9373",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/071-Pendleton-County/fee1c298-5ba8918e-8bce9373-54071-Pendleton-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "5ba8918e",
+        "product_origin": "derived",
+        "product_id": 173,
+        "product_individual_ref": "7c346935",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/071-Pendleton-County/fee1c298-5ba8918e-7c346935-54071-Pendleton-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "5ba8918e",
+        "product_origin": "original",
+        "product_id": 175,
+        "product_individual_ref": "afc6e5d4",
+        "product_type": "pbf",
+        "product_key": "fee1c298-5ba8918e-afc6e5d4"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54073": {
+  "geoid": "54073",
+  "geoname": "Pleasants County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "78d49bdc",
+        "product_origin": "derived",
+        "product_id": 80,
+        "product_individual_ref": "62784ae3",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/073-Pleasants-County/fee1c298-78d49bdc-62784ae3-54073-Pleasants-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "78d49bdc",
+        "product_origin": "derived",
+        "product_id": 242,
+        "product_individual_ref": "3ee061e1",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/073-Pleasants-County/fee1c298-78d49bdc-3ee061e1-54073-Pleasants-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "78d49bdc",
+        "product_origin": "derived",
+        "product_id": 244,
+        "product_individual_ref": "fd5231ed",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/073-Pleasants-County/fee1c298-78d49bdc-fd5231ed-54073-Pleasants-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "78d49bdc",
+        "product_origin": "derived",
+        "product_id": 245,
+        "product_individual_ref": "51318fb8",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/073-Pleasants-County/fee1c298-78d49bdc-51318fb8-54073-Pleasants-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "78d49bdc",
+        "product_origin": "original",
+        "product_id": 248,
+        "product_individual_ref": "f0fee720",
+        "product_type": "pbf",
+        "product_key": "fee1c298-78d49bdc-f0fee720"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54075": {
+  "geoid": "54075",
+  "geoname": "Pocahontas County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "f60c1664",
+        "product_origin": "derived",
+        "product_id": 81,
+        "product_individual_ref": "957accc5",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/075-Pocahontas-County/fee1c298-f60c1664-957accc5-54075-Pocahontas-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "f60c1664",
+        "product_origin": "derived",
+        "product_id": 271,
+        "product_individual_ref": "3430d2ab",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/075-Pocahontas-County/fee1c298-f60c1664-3430d2ab-54075-Pocahontas-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "f60c1664",
+        "product_origin": "derived",
+        "product_id": 275,
+        "product_individual_ref": "110a1972",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/075-Pocahontas-County/fee1c298-f60c1664-110a1972-54075-Pocahontas-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "f60c1664",
+        "product_origin": "derived",
+        "product_id": 277,
+        "product_individual_ref": "6bf84220",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/075-Pocahontas-County/fee1c298-f60c1664-6bf84220-54075-Pocahontas-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "f60c1664",
+        "product_origin": "original",
+        "product_id": 285,
+        "product_individual_ref": "c8448e2b",
+        "product_type": "pbf",
+        "product_key": "fee1c298-f60c1664-c8448e2b"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54077": {
+  "geoid": "54077",
+  "geoname": "Preston County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "5cda77ce",
+        "product_origin": "derived",
+        "product_id": 82,
+        "product_individual_ref": "e30d7639",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/077-Preston-County/fee1c298-5cda77ce-e30d7639-54077-Preston-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "5cda77ce",
+        "product_origin": "derived",
+        "product_id": 144,
+        "product_individual_ref": "f24c70b2",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/077-Preston-County/fee1c298-5cda77ce-f24c70b2-54077-Preston-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "5cda77ce",
+        "product_origin": "derived",
+        "product_id": 145,
+        "product_individual_ref": "9a8de6fb",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/077-Preston-County/fee1c298-5cda77ce-9a8de6fb-54077-Preston-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "5cda77ce",
+        "product_origin": "derived",
+        "product_id": 148,
+        "product_individual_ref": "42a8eaba",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/077-Preston-County/fee1c298-5cda77ce-42a8eaba-54077-Preston-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "5cda77ce",
+        "product_origin": "original",
+        "product_id": 157,
+        "product_individual_ref": "6f72a93f",
+        "product_type": "pbf",
+        "product_key": "fee1c298-5cda77ce-6f72a93f"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54079": {
+  "geoid": "54079",
+  "geoname": "Putnam County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "67fe86f9",
+        "product_origin": "derived",
+        "product_id": 83,
+        "product_individual_ref": "ea4c0b15",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/079-Putnam-County/fee1c298-67fe86f9-ea4c0b15-54079-Putnam-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "67fe86f9",
+        "product_origin": "derived",
+        "product_id": 264,
+        "product_individual_ref": "1a6a25c6",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/079-Putnam-County/fee1c298-67fe86f9-1a6a25c6-54079-Putnam-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "67fe86f9",
+        "product_origin": "derived",
+        "product_id": 266,
+        "product_individual_ref": "cf6ea709",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/079-Putnam-County/fee1c298-67fe86f9-cf6ea709-54079-Putnam-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "67fe86f9",
+        "product_origin": "derived",
+        "product_id": 268,
+        "product_individual_ref": "4295ee14",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/079-Putnam-County/fee1c298-67fe86f9-4295ee14-54079-Putnam-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "67fe86f9",
+        "product_origin": "original",
+        "product_id": 282,
+        "product_individual_ref": "15794de4",
+        "product_type": "pbf",
+        "product_key": "fee1c298-67fe86f9-15794de4"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54081": {
+  "geoid": "54081",
+  "geoname": "Raleigh County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "2a922bc7",
+        "product_origin": "derived",
+        "product_id": 84,
+        "product_individual_ref": "e7abc625",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/081-Raleigh-County/fee1c298-2a922bc7-e7abc625-54081-Raleigh-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "2a922bc7",
+        "product_origin": "derived",
+        "product_id": 256,
+        "product_individual_ref": "b4ab7be6",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/081-Raleigh-County/fee1c298-2a922bc7-b4ab7be6-54081-Raleigh-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "2a922bc7",
+        "product_origin": "derived",
+        "product_id": 261,
+        "product_individual_ref": "acdc7c5c",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/081-Raleigh-County/fee1c298-2a922bc7-acdc7c5c-54081-Raleigh-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "2a922bc7",
+        "product_origin": "derived",
+        "product_id": 267,
+        "product_individual_ref": "6eeaf99d",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/081-Raleigh-County/fee1c298-2a922bc7-6eeaf99d-54081-Raleigh-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "2a922bc7",
+        "product_origin": "original",
+        "product_id": 288,
+        "product_individual_ref": "10418cf5",
+        "product_type": "pbf",
+        "product_key": "fee1c298-2a922bc7-10418cf5"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54083": {
+  "geoid": "54083",
+  "geoname": "Randolph County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "6157e9dd",
+        "product_origin": "derived",
+        "product_id": 85,
+        "product_individual_ref": "1ea2e32b",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/083-Randolph-County/fee1c298-6157e9dd-1ea2e32b-54083-Randolph-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "6157e9dd",
+        "product_origin": "derived",
+        "product_id": 149,
+        "product_individual_ref": "58ee66b8",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/083-Randolph-County/fee1c298-6157e9dd-58ee66b8-54083-Randolph-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "6157e9dd",
+        "product_origin": "derived",
+        "product_id": 153,
+        "product_individual_ref": "8929fd31",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/083-Randolph-County/fee1c298-6157e9dd-8929fd31-54083-Randolph-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "6157e9dd",
+        "product_origin": "derived",
+        "product_id": 156,
+        "product_individual_ref": "0197f4b8",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/083-Randolph-County/fee1c298-6157e9dd-0197f4b8-54083-Randolph-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "6157e9dd",
+        "product_origin": "original",
+        "product_id": 162,
+        "product_individual_ref": "6dac304b",
+        "product_type": "pbf",
+        "product_key": "fee1c298-6157e9dd-6dac304b"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54085": {
+  "geoid": "54085",
+  "geoname": "Ritchie County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "1367fe1c",
+        "product_origin": "derived",
+        "product_id": 86,
+        "product_individual_ref": "f74ef671",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/085-Ritchie-County/fee1c298-1367fe1c-f74ef671-54085-Ritchie-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "1367fe1c",
+        "product_origin": "derived",
+        "product_id": 182,
+        "product_individual_ref": "2d21c120",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/085-Ritchie-County/fee1c298-1367fe1c-2d21c120-54085-Ritchie-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "1367fe1c",
+        "product_origin": "derived",
+        "product_id": 187,
+        "product_individual_ref": "e5ffd773",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/085-Ritchie-County/fee1c298-1367fe1c-e5ffd773-54085-Ritchie-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "1367fe1c",
+        "product_origin": "derived",
+        "product_id": 189,
+        "product_individual_ref": "50066c6b",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/085-Ritchie-County/fee1c298-1367fe1c-50066c6b-54085-Ritchie-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "1367fe1c",
+        "product_origin": "original",
+        "product_id": 197,
+        "product_individual_ref": "4b9fb8ca",
+        "product_type": "pbf",
+        "product_key": "fee1c298-1367fe1c-4b9fb8ca"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54087": {
+  "geoid": "54087",
+  "geoname": "Roane County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "6ff82f7b",
+        "product_origin": "derived",
+        "product_id": 87,
+        "product_individual_ref": "ac77dc82",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/087-Roane-County/fee1c298-6ff82f7b-ac77dc82-54087-Roane-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "6ff82f7b",
+        "product_origin": "derived",
+        "product_id": 291,
+        "product_individual_ref": "b3110148",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/087-Roane-County/fee1c298-6ff82f7b-b3110148-54087-Roane-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "6ff82f7b",
+        "product_origin": "derived",
+        "product_id": 292,
+        "product_individual_ref": "8bb5518b",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/087-Roane-County/fee1c298-6ff82f7b-8bb5518b-54087-Roane-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "6ff82f7b",
+        "product_origin": "derived",
+        "product_id": 296,
+        "product_individual_ref": "b04538df",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/087-Roane-County/fee1c298-6ff82f7b-b04538df-54087-Roane-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "6ff82f7b",
+        "product_origin": "original",
+        "product_id": 305,
+        "product_individual_ref": "271fb478",
+        "product_type": "pbf",
+        "product_key": "fee1c298-6ff82f7b-271fb478"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54089": {
+  "geoid": "54089",
+  "geoname": "Summers County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "951898dd",
+        "product_origin": "derived",
+        "product_id": 88,
+        "product_individual_ref": "2f5981e7",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/089-Summers-County/fee1c298-951898dd-2f5981e7-54089-Summers-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "951898dd",
+        "product_origin": "derived",
+        "product_id": 150,
+        "product_individual_ref": "597e0135",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/089-Summers-County/fee1c298-951898dd-597e0135-54089-Summers-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "951898dd",
+        "product_origin": "derived",
+        "product_id": 152,
+        "product_individual_ref": "32898b7f",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/089-Summers-County/fee1c298-951898dd-32898b7f-54089-Summers-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "951898dd",
+        "product_origin": "derived",
+        "product_id": 155,
+        "product_individual_ref": "94d87353",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/089-Summers-County/fee1c298-951898dd-94d87353-54089-Summers-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "951898dd",
+        "product_origin": "original",
+        "product_id": 158,
+        "product_individual_ref": "b29e754a",
+        "product_type": "pbf",
+        "product_key": "fee1c298-951898dd-b29e754a"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54091": {
+  "geoid": "54091",
+  "geoname": "Taylor County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "d64f8202",
+        "product_origin": "derived",
+        "product_id": 89,
+        "product_individual_ref": "ad168735",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/091-Taylor-County/fee1c298-d64f8202-ad168735-54091-Taylor-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "d64f8202",
+        "product_origin": "derived",
+        "product_id": 183,
+        "product_individual_ref": "417f79b6",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/091-Taylor-County/fee1c298-d64f8202-417f79b6-54091-Taylor-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "d64f8202",
+        "product_origin": "derived",
+        "product_id": 186,
+        "product_individual_ref": "af2a67ab",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/091-Taylor-County/fee1c298-d64f8202-af2a67ab-54091-Taylor-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "d64f8202",
+        "product_origin": "derived",
+        "product_id": 188,
+        "product_individual_ref": "bca336da",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/091-Taylor-County/fee1c298-d64f8202-bca336da-54091-Taylor-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "d64f8202",
+        "product_origin": "original",
+        "product_id": 193,
+        "product_individual_ref": "a9ee1eec",
+        "product_type": "pbf",
+        "product_key": "fee1c298-d64f8202-a9ee1eec"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54093": {
+  "geoid": "54093",
+  "geoname": "Tucker County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "7fb4ab40",
+        "product_origin": "derived",
+        "product_id": 90,
+        "product_individual_ref": "f1ebe806",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/093-Tucker-County/fee1c298-7fb4ab40-f1ebe806-54093-Tucker-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "7fb4ab40",
+        "product_origin": "derived",
+        "product_id": 252,
+        "product_individual_ref": "f800bc35",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/093-Tucker-County/fee1c298-7fb4ab40-f800bc35-54093-Tucker-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "7fb4ab40",
+        "product_origin": "derived",
+        "product_id": 255,
+        "product_individual_ref": "c61a8a33",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/093-Tucker-County/fee1c298-7fb4ab40-c61a8a33-54093-Tucker-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "7fb4ab40",
+        "product_origin": "derived",
+        "product_id": 258,
+        "product_individual_ref": "72d6a510",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/093-Tucker-County/fee1c298-7fb4ab40-72d6a510-54093-Tucker-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "7fb4ab40",
+        "product_origin": "original",
+        "product_id": 263,
+        "product_individual_ref": "e4e3d4f2",
+        "product_type": "pbf",
+        "product_key": "fee1c298-7fb4ab40-e4e3d4f2"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54095": {
+  "geoid": "54095",
+  "geoname": "Tyler County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "2029bf59",
+        "product_origin": "derived",
+        "product_id": 91,
+        "product_individual_ref": "d0be81ee",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/095-Tyler-County/fee1c298-2029bf59-d0be81ee-54095-Tyler-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "2029bf59",
+        "product_origin": "derived",
+        "product_id": 201,
+        "product_individual_ref": "6d18a80e",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/095-Tyler-County/fee1c298-2029bf59-6d18a80e-54095-Tyler-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "2029bf59",
+        "product_origin": "derived",
+        "product_id": 204,
+        "product_individual_ref": "1f56d4b3",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/095-Tyler-County/fee1c298-2029bf59-1f56d4b3-54095-Tyler-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "2029bf59",
+        "product_origin": "derived",
+        "product_id": 205,
+        "product_individual_ref": "84760d8d",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/095-Tyler-County/fee1c298-2029bf59-84760d8d-54095-Tyler-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "2029bf59",
+        "product_origin": "original",
+        "product_id": 208,
+        "product_individual_ref": "95aa6a5f",
+        "product_type": "pbf",
+        "product_key": "fee1c298-2029bf59-95aa6a5f"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54097": {
+  "geoid": "54097",
+  "geoname": "Upshur County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "db0df28b",
+        "product_origin": "derived",
+        "product_id": 92,
+        "product_individual_ref": "7f1c26e3",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/097-Upshur-County/fee1c298-db0df28b-7f1c26e3-54097-Upshur-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "db0df28b",
+        "product_origin": "derived",
+        "product_id": 192,
+        "product_individual_ref": "1acbc94f",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/097-Upshur-County/fee1c298-db0df28b-1acbc94f-54097-Upshur-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "db0df28b",
+        "product_origin": "derived",
+        "product_id": 195,
+        "product_individual_ref": "8fc6b009",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/097-Upshur-County/fee1c298-db0df28b-8fc6b009-54097-Upshur-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "db0df28b",
+        "product_origin": "derived",
+        "product_id": 199,
+        "product_individual_ref": "5f700d09",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/097-Upshur-County/fee1c298-db0df28b-5f700d09-54097-Upshur-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "db0df28b",
+        "product_origin": "original",
+        "product_id": 203,
+        "product_individual_ref": "0767bdf8",
+        "product_type": "pbf",
+        "product_key": "fee1c298-db0df28b-0767bdf8"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54099": {
+  "geoid": "54099",
+  "geoname": "Wayne County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "bd888549",
+        "product_origin": "derived",
+        "product_id": 93,
+        "product_individual_ref": "16c8fb3f",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/099-Wayne-County/fee1c298-bd888549-16c8fb3f-54099-Wayne-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "bd888549",
+        "product_origin": "derived",
+        "product_id": 179,
+        "product_individual_ref": "102e380d",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/099-Wayne-County/fee1c298-bd888549-102e380d-54099-Wayne-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "bd888549",
+        "product_origin": "derived",
+        "product_id": 181,
+        "product_individual_ref": "7d6246b9",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/099-Wayne-County/fee1c298-bd888549-7d6246b9-54099-Wayne-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "bd888549",
+        "product_origin": "derived",
+        "product_id": 185,
+        "product_individual_ref": "eeba3e5f",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/099-Wayne-County/fee1c298-bd888549-eeba3e5f-54099-Wayne-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "bd888549",
+        "product_origin": "original",
+        "product_id": 198,
+        "product_individual_ref": "8f8e710b",
+        "product_type": "pbf",
+        "product_key": "fee1c298-bd888549-8f8e710b"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54101": {
+  "geoid": "54101",
+  "geoname": "Webster County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "dd4bc440",
+        "product_origin": "derived",
+        "product_id": 94,
+        "product_individual_ref": "4f5e4439",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/101-Webster-County/fee1c298-dd4bc440-4f5e4439-54101-Webster-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "dd4bc440",
+        "product_origin": "derived",
+        "product_id": 191,
+        "product_individual_ref": "82d9727b",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/101-Webster-County/fee1c298-dd4bc440-82d9727b-54101-Webster-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "dd4bc440",
+        "product_origin": "derived",
+        "product_id": 194,
+        "product_individual_ref": "859514bc",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/101-Webster-County/fee1c298-dd4bc440-859514bc-54101-Webster-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "dd4bc440",
+        "product_origin": "derived",
+        "product_id": 196,
+        "product_individual_ref": "86e7c5d0",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/101-Webster-County/fee1c298-dd4bc440-86e7c5d0-54101-Webster-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "dd4bc440",
+        "product_origin": "original",
+        "product_id": 202,
+        "product_individual_ref": "48a2fa64",
+        "product_type": "pbf",
+        "product_key": "fee1c298-dd4bc440-48a2fa64"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54103": {
+  "geoid": "54103",
+  "geoname": "Wetzel County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "aeef907e",
+        "product_origin": "derived",
+        "product_id": 95,
+        "product_individual_ref": "01950829",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/103-Wetzel-County/fee1c298-aeef907e-01950829-54103-Wetzel-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "aeef907e",
+        "product_origin": "derived",
+        "product_id": 270,
+        "product_individual_ref": "f2094644",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/103-Wetzel-County/fee1c298-aeef907e-f2094644-54103-Wetzel-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "aeef907e",
+        "product_origin": "derived",
+        "product_id": 274,
+        "product_individual_ref": "6afe7fd9",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/103-Wetzel-County/fee1c298-aeef907e-6afe7fd9-54103-Wetzel-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "aeef907e",
+        "product_origin": "derived",
+        "product_id": 278,
+        "product_individual_ref": "c143d629",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/103-Wetzel-County/fee1c298-aeef907e-c143d629-54103-Wetzel-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "aeef907e",
+        "product_origin": "original",
+        "product_id": 283,
+        "product_individual_ref": "b8373bf4",
+        "product_type": "pbf",
+        "product_key": "fee1c298-aeef907e-b8373bf4"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54105": {
+  "geoid": "54105",
+  "geoname": "Wirt County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "75fb3534",
+        "product_origin": "derived",
+        "product_id": 96,
+        "product_individual_ref": "a907e4d0",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/105-Wirt-County/fee1c298-75fb3534-a907e4d0-54105-Wirt-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "75fb3534",
+        "product_origin": "derived",
+        "product_id": 207,
+        "product_individual_ref": "f4ae1127",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/105-Wirt-County/fee1c298-75fb3534-f4ae1127-54105-Wirt-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "75fb3534",
+        "product_origin": "derived",
+        "product_id": 209,
+        "product_individual_ref": "4fac5865",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/105-Wirt-County/fee1c298-75fb3534-4fac5865-54105-Wirt-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "75fb3534",
+        "product_origin": "derived",
+        "product_id": 210,
+        "product_individual_ref": "0fcffa4e",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/105-Wirt-County/fee1c298-75fb3534-0fcffa4e-54105-Wirt-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "75fb3534",
+        "product_origin": "original",
+        "product_id": 214,
+        "product_individual_ref": "6f066291",
+        "product_type": "pbf",
+        "product_key": "fee1c298-75fb3534-6f066291"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54107": {
+  "geoid": "54107",
+  "geoname": "Wood County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "b9ce994f",
+        "product_origin": "derived",
+        "product_id": 97,
+        "product_individual_ref": "5e17a661",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/107-Wood-County/fee1c298-b9ce994f-5e17a661-54107-Wood-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "b9ce994f",
+        "product_origin": "derived",
+        "product_id": 206,
+        "product_individual_ref": "4a0cd0e6",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/107-Wood-County/fee1c298-b9ce994f-4a0cd0e6-54107-Wood-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "b9ce994f",
+        "product_origin": "derived",
+        "product_id": 212,
+        "product_individual_ref": "2d130079",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/107-Wood-County/fee1c298-b9ce994f-2d130079-54107-Wood-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "b9ce994f",
+        "product_origin": "derived",
+        "product_id": 226,
+        "product_individual_ref": "8a59c37f",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/107-Wood-County/fee1c298-b9ce994f-8a59c37f-54107-Wood-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "b9ce994f",
+        "product_origin": "original",
+        "product_id": 240,
+        "product_individual_ref": "421ace7c",
+        "product_type": "pbf",
+        "product_key": "fee1c298-b9ce994f-421ace7c"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "54109": {
+  "geoid": "54109",
+  "geoname": "Wyoming County",
+  "sumlev": "050",
+  "sources": {
+   "3": {
+    "source_id": 3,
+    "source_name": "http://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/parcels/",
+    "last_checked": "2020-07-17 22:18:30",
+    "downloads": {
+     "4": {
+      "download_id": 4,
+      "created": "2020-07-17 22:18:30",
+      "download_ref": "fee1c298",
+      "raw_key": "54-West-Virginia/000-West-Virginia/fee1c298-54-West-Virginia.zip",
+      "products": [
+       {
+        "product_ref": "557eea4e",
+        "product_origin": "derived",
+        "product_id": 98,
+        "product_individual_ref": "f4e67583",
+        "product_type": "ndgeojson",
+        "product_key": "54-West-Virginia/109-Wyoming-County/fee1c298-557eea4e-f4e67583-54109-Wyoming-County-West-Virginia.ndgeojson"
+       },
+       {
+        "product_ref": "557eea4e",
+        "product_origin": "derived",
+        "product_id": 276,
+        "product_individual_ref": "fdd9a8a4",
+        "product_type": "geojson",
+        "product_key": "54-West-Virginia/109-Wyoming-County/fee1c298-557eea4e-fdd9a8a4-54109-Wyoming-County-West-Virginia.geojson"
+       },
+       {
+        "product_ref": "557eea4e",
+        "product_origin": "derived",
+        "product_id": 280,
+        "product_individual_ref": "10985c9e",
+        "product_type": "gpkg",
+        "product_key": "54-West-Virginia/109-Wyoming-County/fee1c298-557eea4e-10985c9e-54109-Wyoming-County-West-Virginia.gpkg"
+       },
+       {
+        "product_ref": "557eea4e",
+        "product_origin": "derived",
+        "product_id": 284,
+        "product_individual_ref": "74d1e474",
+        "product_type": "shp",
+        "product_key": "54-West-Virginia/109-Wyoming-County/fee1c298-557eea4e-74d1e474-54109-Wyoming-County-West-Virginia-shp.zip"
+       },
+       {
+        "product_ref": "557eea4e",
+        "product_origin": "original",
+        "product_id": 290,
+        "product_individual_ref": "db815e76",
+        "product_type": "pbf",
+        "product_key": "fee1c298-557eea4e-db815e76"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 22:18:30"
+   }
+  }
+ },
+ "08031": {
+  "geoid": "08031",
+  "geoname": "Denver County",
+  "sumlev": "050",
+  "sources": {
+   "1": {
+    "source_id": 1,
+    "source_name": "https://gisftp.colorado.gov/#/State%20Data/OIT-GIS/ColoradoData/Cadastral/",
+    "last_checked": "2020-07-17 21:00:26",
+    "downloads": {
+     "1": {
+      "download_id": 1,
+      "created": "2020-07-17 18:30:22",
+      "download_ref": "8f318f42",
+      "raw_key": "08-Colorado/031-Denver-County/8f318f42-08031-Denver-County-Colorado.zip",
+      "products": [
+       {
+        "product_ref": "5681e1da",
+        "product_origin": "original",
+        "product_id": 1,
+        "product_individual_ref": "538a8de6",
+        "product_type": "ndgeojson",
+        "product_key": "08-Colorado/031-Denver-County/8f318f42-5681e1da-538a8de6-08031-Denver-County-Colorado.ndgeojson"
+       },
+       {
+        "product_ref": "5681e1da",
+        "product_origin": "original",
+        "product_id": 2,
+        "product_individual_ref": "a752e302",
+        "product_type": "geojson",
+        "product_key": "08-Colorado/031-Denver-County/8f318f42-5681e1da-a752e302-08031-Denver-County-Colorado.geojson"
+       },
+       {
+        "product_ref": "5681e1da",
+        "product_origin": "original",
+        "product_id": 3,
+        "product_individual_ref": "61e8dd6a",
+        "product_type": "gpkg",
+        "product_key": "08-Colorado/031-Denver-County/8f318f42-5681e1da-61e8dd6a-08031-Denver-County-Colorado.gpkg"
+       },
+       {
+        "product_ref": "5681e1da",
+        "product_origin": "original",
+        "product_id": 30,
+        "product_individual_ref": "ff91a99c",
+        "product_type": "shp",
+        "product_key": "08-Colorado/031-Denver-County/8f318f42-5681e1da-ff91a99c-08031-Denver-County-Colorado-shp.zip"
+       },
+       {
+        "product_ref": "5681e1da",
+        "product_origin": "original",
+        "product_id": 52,
+        "product_individual_ref": "75bd3b98",
+        "product_type": "pbf",
+        "product_key": "8f318f42-5681e1da-75bd3b98"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 18:30:22"
+   }
+  }
+ },
+ "08005": {
+  "geoid": "08005",
+  "geoname": "Arapahoe County",
+  "sumlev": "050",
+  "sources": {
+   "1": {
+    "source_id": 1,
+    "source_name": "https://gisftp.colorado.gov/#/State%20Data/OIT-GIS/ColoradoData/Cadastral/",
+    "last_checked": "2020-07-17 21:00:26",
+    "downloads": {
+     "3": {
+      "download_id": 3,
+      "created": "2020-07-17 21:00:26",
+      "download_ref": "bce63fbb",
+      "raw_key": "08-Colorado/005-Arapahoe-County/bce63fbb-08005-Arapahoe-County-Colorado.zip",
+      "products": [
+       {
+        "product_ref": "e53df2f2",
+        "product_origin": "original",
+        "product_id": 23,
+        "product_individual_ref": "089bd947",
+        "product_type": "ndgeojson",
+        "product_key": "08-Colorado/005-Arapahoe-County/bce63fbb-e53df2f2-089bd947-08005-Arapahoe-County-Colorado.ndgeojson"
+       },
+       {
+        "product_ref": "e53df2f2",
+        "product_origin": "original",
+        "product_id": 24,
+        "product_individual_ref": "16e63d9b",
+        "product_type": "geojson",
+        "product_key": "08-Colorado/005-Arapahoe-County/bce63fbb-e53df2f2-16e63d9b-08005-Arapahoe-County-Colorado.geojson"
+       },
+       {
+        "product_ref": "e53df2f2",
+        "product_origin": "original",
+        "product_id": 25,
+        "product_individual_ref": "c133e351",
+        "product_type": "gpkg",
+        "product_key": "08-Colorado/005-Arapahoe-County/bce63fbb-e53df2f2-c133e351-08005-Arapahoe-County-Colorado.gpkg"
+       },
+       {
+        "product_ref": "e53df2f2",
+        "product_origin": "original",
+        "product_id": 26,
+        "product_individual_ref": "f61db640",
+        "product_type": "shp",
+        "product_key": "08-Colorado/005-Arapahoe-County/bce63fbb-e53df2f2-f61db640-08005-Arapahoe-County-Colorado-shp.zip"
+       },
+       {
+        "product_ref": "e53df2f2",
+        "product_origin": "original",
+        "product_id": 27,
+        "product_individual_ref": "2001edbe",
+        "product_type": "pbf",
+        "product_key": "bce63fbb-e53df2f2-2001edbe"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-17 21:00:26"
+   }
+  }
+ }
+}

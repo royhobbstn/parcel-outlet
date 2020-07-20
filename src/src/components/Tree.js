@@ -1,87 +1,144 @@
-import React from "react";
-import TreeView from "@material-ui/lab/TreeView";
-import TreeItem from "@material-ui/lab/TreeItem";
-import { stateLookup } from "../lookups/states";
-import { countyLookup } from "../lookups/counties.js";
-import Chip from "@material-ui/core/Chip";
-import {
-  MinusSquare,
-  PlusSquare,
-  CloseSquare,
-} from "../style/svgComponents.js";
-import "../style/treeEntry.css";
+import React from 'react';
+import TreeView from '@material-ui/lab/TreeView';
+import TreeItem from '@material-ui/lab/TreeItem';
+import { stateLookup } from '../lookups/states';
+import Chip from '@material-ui/core/Chip';
+import { MinusSquare, PlusSquare, CloseSquare } from '../style/svgComponents.js';
+import MapIcon from '@material-ui/icons/Map';
+import '../style/treeEntry.css';
+import { rawBase, productBase, tileBase } from '../service/env.js';
 
 export function Tree(props) {
-  const crunched = props.crunched;
-  console.log({ crunched });
+  const inventory = props.inventory;
 
   return (
     <TreeView
       style={{
-        width: "85%",
-        maxWidth: "800px",
-        margin: "auto",
-        marginBottom: "40px",
-        padding: "20px",
-        backgroundColor: "antiquewhite",
-        marginTop: "30px",
-        borderRadius: "6px",
-        height: "auto",
-        flexGrow: "1",
+        width: '92%',
+        maxWidth: '1200px',
+        margin: 'auto',
+        marginBottom: '40px',
+        padding: '20px',
+        backgroundColor: 'antiquewhite',
+        marginTop: '30px',
+        borderRadius: '6px',
+        height: 'auto',
+        flexGrow: '1',
       }}
-      defaultExpanded={["1"]}
+      defaultExpanded={['1']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
     >
-      {Object.keys(crunched)
-        .sort((a, b) => {
-          return stateLookup(a) > stateLookup(b) ? 1 : -1;
-        })
-        .map((d) => {
+      {Object.keys(inventory)
+        .sort()
+        .map(stateFipsKey => {
           return (
-            <TreeItem nodeId={d} label={stateLookup(d)} key={d}>
-              {Object.keys(crunched[d])
+            <TreeItem nodeId={stateFipsKey} label={stateLookup(stateFipsKey)} key={stateFipsKey}>
+              {Object.keys(inventory[stateFipsKey])
                 .sort((a, b) => {
-                  return countyLookup(d + a) > countyLookup(d + b) ? 1 : -1;
+                  return inventory[stateFipsKey][a].geoname > inventory[stateFipsKey][b].geoname
+                    ? 1
+                    : -1;
                 })
-                .map((e) => {
+                .map(countyFipsKey => {
+                  const cntyplc = inventory[stateFipsKey][countyFipsKey];
                   return (
-                    <TreeItem
-                      nodeId={d + e}
-                      label={countyLookup(d + e)}
-                      key={d + e}
-                    >
-                      {Object.keys(crunched[d][e]).map((f) => {
+                    <TreeItem nodeId={cntyplc.geoid} label={cntyplc.geoname} key={cntyplc.geoid}>
+                      {Object.keys(cntyplc.sources).map(sourceIdKey => {
+                        const source = cntyplc.sources[sourceIdKey];
+                        const source_name = source.source_name;
+                        const last_checked = source.last_checked;
+                        const last_download = source.last_download;
+
+                        let most_recent_download;
+
+                        Object.keys(source.downloads).forEach(downloadKey => {
+                          const download = source.downloads[downloadKey];
+                          if (download.created === last_download) {
+                            most_recent_download = download;
+                          }
+                        });
+
+                        const products = most_recent_download.products;
+
                         return (
-                          <div
-                            key={f}
-                            className="treeEntry"
-                            onClick={() => window.open(f, "_blank")}
-                          >
-                            <span style={{}}>{new URL(f).hostname}</span>
-                            <span style={{ float: "right" }}>
-                              {crunched[d][e][f]["Shapefile"] ? (
+                          <div key={sourceIdKey} className="treeEntry">
+                            <a href={source_name} target="_blank" rel="noopener noreferrer">
+                              {new URL(source_name).hostname}
+                            </a>
+                            <span className="treeChips" style={{ float: 'right' }}>
+                              <a
+                                key={most_recent_download.download_id}
+                                href={rawBase + most_recent_download.raw_key}
+                                download
+                              >
                                 <Chip
                                   size="small"
-                                  label=".shp"
-                                  style={{ marginRight: "6px" }}
+                                  label="Original"
+                                  style={{ padding: '2px', marginRight: '6px' }}
                                 />
-                              ) : null}
-                              {crunched[d][e][f]["File Geodatabase"] ? (
-                                <Chip
-                                  size="small"
-                                  label=".gdb"
-                                  style={{ marginRight: "6px" }}
-                                />
-                              ) : null}
-                              {crunched[d][e][f]["GeoJSON"] ? (
-                                <Chip
-                                  size="small"
-                                  label=".geojson"
-                                  style={{ marginRight: "6px" }}
-                                />
-                              ) : null}
+                              </a>
+                              {products.map(product => {
+                                if (product.product_type === 'shp') {
+                                  return (
+                                    <a
+                                      key={product.product_individual_ref}
+                                      href={productBase + product.product_key}
+                                      download
+                                    >
+                                      <Chip
+                                        size="small"
+                                        label="SHP"
+                                        style={{ marginRight: '6px' }}
+                                      />
+                                    </a>
+                                  );
+                                } else if (product.product_type === 'gpkg') {
+                                  return (
+                                    <a
+                                      key={product.product_individual_ref}
+                                      href={productBase + product.product_key}
+                                      download
+                                    >
+                                      <Chip
+                                        size="small"
+                                        label="GPKG"
+                                        style={{ marginRight: '6px' }}
+                                      />
+                                    </a>
+                                  );
+                                } else if (product.product_type === 'geojson') {
+                                  return (
+                                    <a
+                                      key={product.product_individual_ref}
+                                      href={productBase + product.product_key}
+                                      download
+                                    >
+                                      <Chip
+                                        size="small"
+                                        label="JSON"
+                                        style={{ marginRight: '6px' }}
+                                      />
+                                    </a>
+                                  );
+                                } else if (product.product_type === 'pbf') {
+                                  return (
+                                    <a
+                                      key={product.product_individual_ref}
+                                      href={tileBase + product.product_key + 'map prid'}
+                                    >
+                                      <Chip
+                                        size="small"
+                                        label={<MapIcon style={{ verticalAlign: 'middle' }} />}
+                                        style={{ marginRight: '6px' }}
+                                      />
+                                    </a>
+                                  );
+                                } else {
+                                  return null;
+                                }
+                              })}
                             </span>
                           </div>
                         );

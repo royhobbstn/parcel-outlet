@@ -1,13 +1,20 @@
-
 .treeEntry {
-    width: 100%;
-    border-radius: 6px;
-    padding: 3px 6px 7px 6px;
-    margin: 4px 0 0 0;
-    cursor: pointer;
-    background-color: lightgrey;
+  width: 100%;
+  padding: 2px 6px 2px 16px;
+  background-color: lightgrey;
+  line-height: 32px;
 }
 
-.treeEntry:hover {
-    background-color: cornflowerblue;
+a:hover {
+  color: blue;
+}
+
+.treeChips .MuiChip-root:hover {
+  color: black;
+  background-color: blue;
+  cursor: pointer;
+}
+
+.treeChips a {
+  text-decoration: none;
 }
