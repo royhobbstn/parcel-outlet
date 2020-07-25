@@ -259,7 +259,7 @@
    "4": {
     "source_id": 4,
     "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
-    "last_checked": "2020-07-18 02:53:15",
+    "last_checked": "2020-07-25 16:05:50",
     "downloads": {
      "6": {
       "download_id": 6,
@@ -322,7 +322,7 @@
    "4": {
     "source_id": 4,
     "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
-    "last_checked": "2020-07-18 02:53:15",
+    "last_checked": "2020-07-25 16:05:50",
     "downloads": {
      "7": {
       "download_id": 7,
@@ -377,6 +377,69 @@
    }
   }
  },
+ "48269": {
+  "geoid": "48269",
+  "geoname": "King County",
+  "sumlev": "050",
+  "sources": {
+   "4": {
+    "source_id": 4,
+    "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
+    "last_checked": "2020-07-25 16:05:50",
+    "downloads": {
+     "9": {
+      "download_id": 9,
+      "created": "2020-07-25 16:05:50",
+      "download_ref": "03dac3a7",
+      "raw_key": "48-Texas/269-King-County/03dac3a7-48269-King-County-Texas.zip",
+      "products": [
+       {
+        "product_ref": "fb735e1d",
+        "product_origin": "original",
+        "product_id": 328,
+        "product_individual_ref": "15ff0c8f",
+        "product_type": "ndgeojson",
+        "product_key": "48-Texas/269-King-County/03dac3a7-fb735e1d-15ff0c8f-48269-King-County-Texas.ndgeojson"
+       },
+       {
+        "product_ref": "fb735e1d",
+        "product_origin": "original",
+        "product_id": 329,
+        "product_individual_ref": "2b5c7883",
+        "product_type": "geojson",
+        "product_key": "48-Texas/269-King-County/03dac3a7-fb735e1d-2b5c7883-48269-King-County-Texas.geojson"
+       },
+       {
+        "product_ref": "fb735e1d",
+        "product_origin": "original",
+        "product_id": 330,
+        "product_individual_ref": "77dee9c7",
+        "product_type": "gpkg",
+        "product_key": "48-Texas/269-King-County/03dac3a7-fb735e1d-77dee9c7-48269-King-County-Texas.gpkg"
+       },
+       {
+        "product_ref": "fb735e1d",
+        "product_origin": "original",
+        "product_id": 331,
+        "product_individual_ref": "a8b2c79b",
+        "product_type": "shp",
+        "product_key": "48-Texas/269-King-County/03dac3a7-fb735e1d-a8b2c79b-48269-King-County-Texas-shp.zip"
+       },
+       {
+        "product_ref": "fb735e1d",
+        "product_origin": "original",
+        "product_id": 332,
+        "product_individual_ref": "6961db1b",
+        "product_type": "pbf",
+        "product_key": "03dac3a7-fb735e1d-6961db1b"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-25 16:05:50"
+   }
+  }
+ },
  "48275": {
   "geoid": "48275",
   "geoname": "Knox County",
@@ -385,7 +448,7 @@
    "4": {
     "source_id": 4,
     "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
-    "last_checked": "2020-07-18 02:53:15",
+    "last_checked": "2020-07-25 16:05:50",
     "downloads": {
      "5": {
       "download_id": 5,
@@ -448,7 +511,7 @@
    "4": {
     "source_id": 4,
     "source_name": "https://data.tnris.org/collection/2679b514-bb7b-409f-97f3-ee3879f34448",
-    "last_checked": "2020-07-18 02:53:15",
+    "last_checked": "2020-07-25 16:05:50",
     "downloads": {
      "8": {
       "download_id": 8,

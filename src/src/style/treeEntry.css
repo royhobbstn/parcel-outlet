@@ -15,6 +15,12 @@ a:hover {
   cursor: pointer;
 }
 
+.appBarProducts .MuiChip-root:hover {
+  color: black;
+  background-color: grey;
+  cursor: pointer;
+}
+
 .treeChips a {
   text-decoration: none;
 }
