@@ -17,7 +17,6 @@ function App() {
   const [selectedDownload, updatedSelectedDownload] = useState({});
 
   async function fetchData() {
-    console.log('fetching inventory');
     const res = await fetch('/data/database_data.json');
     res
       .json()

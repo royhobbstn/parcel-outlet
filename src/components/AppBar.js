@@ -10,7 +10,6 @@ import HelpOutline from '@material-ui/icons/HelpOutline';
 import { Link } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
 import AppBarDownloadButtons from './AppBarDownloadButtons.js';
-import '../style/appBar.css';
 
 const useStyles = makeStyles(theme => ({
   root: {

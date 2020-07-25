@@ -9,7 +9,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import '../style/statsOverrides.css';
 import { TableHead } from '@material-ui/core';
 
 export default function StatsDialog({ modalOpen, updateModalOpen, productKey, selectedDownload }) {

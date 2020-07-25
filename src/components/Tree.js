@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { MinusSquare, PlusSquare, CloseSquare } from '../style/svgComponents.js';
 import MapIcon from '@material-ui/icons/Map';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
-import '../style/treeEntry.css';
 import { rawBase, productBase } from '../service/env.js';
 
 export function Tree({ inventory, updateModalOpen, updateStatChoice, updatedSelectedDownload }) {

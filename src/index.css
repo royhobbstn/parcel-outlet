@@ -1,12 +1,65 @@
-body { margin:0; padding:0; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;}
+body {
+  margin: 0;
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
 
-#map { position:absolute; top:64px; bottom:0; width:100%; }
+#map {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  width: 100%;
+}
 
 .mapboxgl-popup {
-    max-width: 400px;
-    font: 12px sans-serif;
+  max-width: 400px;
+  font: 12px sans-serif;
 }
 
 .mapboxgl-popup-content {
-    padding-top: 15px;
+  padding-top: 15px;
+}
+
+/* treeEntry */
+
+.treeEntry {
+  width: 100%;
+  padding: 2px 6px 2px 16px;
+  background-color: lightgrey;
+  line-height: 32px;
+}
+
+.treeChips a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: blue;
+}
+
+.MuiChip-root:hover {
+  color: white;
+  background-color: grey;
+  cursor: pointer;
+}
+
+/* Stats Overrides */
+
+.MuiDialog-paperFullWidth {
+  overflow-x: hidden;
+}
+
+#headertable td {
+  border: none;
+}
+
+/* AppBar */
+
+.MuiButtonBase-root.MuiIconButton-root {
+  color: white;
+}
+
+.MuiButtonBase-root.MuiIconButton-root:hover {
+  color: grey;
 }

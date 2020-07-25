@@ -1,7 +1,4 @@
-//
-
 import React, { Component } from 'react';
-import '../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';

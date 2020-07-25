@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 import { style } from '../style/mapStyle.js';
 import { stateLookup } from '../lookups/states';
