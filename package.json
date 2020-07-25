@@ -1,32 +1,49 @@
 {
   "name": "parcel-outlet",
-  "version": "0.0.1",
-  "description": "Master List : CSV of all Parcel Sources",
-  "main": "inventoryCSVtoJSON.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd src && npm run start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/royhobbstn/parcel-outlet.git"
-  },
-  "author": "Daniel Trone",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/royhobbstn/parcel-outlet/issues"
-  },
-  "homepage": "https://github.com/royhobbstn/parcel-outlet#readme",
+  "version": "0.1.1",
+  "private": true,
+  "homepage": "https://www.parcel-outlet.com",
   "dependencies": {
-    "axios": "^0.19.2",
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
     "can-ndjson-stream": "^1.0.2",
-    "featureservice": "^1.6.2",
-    "gh-pages": "^2.2.0",
-    "mapbox-gl": "^1.11.1",
-    "papaparse": "^5.2.0",
-    "shapefile": "^0.6.6"
+    "mapbox-gl": "^1.11.1"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "gh-pages": "^2.2.0"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "aws s3 sync build/ s3://www.parcel-outlet.com --delete --profile parcel-outlet",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id=E2X21IFEOVH42V --paths / --profile=parcel-outlet",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "loc": "scc --by-file --exclude-dir lookups --include-ext js ."
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

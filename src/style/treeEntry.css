@@ -10,13 +10,13 @@ a:hover {
 }
 
 .treeChips .MuiChip-root:hover {
-  color: black;
-  background-color: blue;
+  color: white;
+  background-color: grey;
   cursor: pointer;
 }
 
 .appBarProducts .MuiChip-root:hover {
-  color: black;
+  color: white;
   background-color: grey;
   cursor: pointer;
 }
