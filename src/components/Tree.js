@@ -8,8 +8,11 @@ import { MinusSquare, PlusSquare, CloseSquare } from '../style/svgComponents.js'
 import MapIcon from '@material-ui/icons/Map';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { rawBase, productBase } from '../service/env.js';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export function Tree({ inventory, updateModalOpen, updateStatChoice, updatedSelectedDownload }) {
+  const smallResolution = useMediaQuery('(max-width:500px)');
+
   return (
     <div>
       <TreeView
@@ -68,33 +71,37 @@ export function Tree({ inventory, updateModalOpen, updateStatChoice, updatedSele
                                 {new URL(source_name).hostname}
                               </a>
                               <span className="treeChips" style={{ float: 'right' }}>
-                                {products
-                                  .filter(d => d.product_type === 'ndgeojson')
-                                  .map(product => {
-                                    return (
-                                      <Chip
-                                        key={product.product_key}
-                                        size="small"
-                                        onClick={() => {
-                                          const record = {
-                                            geoid: cntyplc.geoid,
-                                            geoname: cntyplc.geoname,
-                                            source_name,
-                                            last_checked,
-                                            created: most_recent_download.created,
-                                            download_ref: most_recent_download.download_ref,
-                                          };
-                                          updateStatChoice(`${productBase}/${product.product_key}`);
-                                          updatedSelectedDownload(record);
-                                          updateModalOpen(true);
-                                        }}
-                                        label={
-                                          <EqualizerIcon style={{ verticalAlign: 'middle' }} />
-                                        }
-                                        style={{ marginRight: '6px' }}
-                                      />
-                                    );
-                                  })}
+                                {!smallResolution
+                                  ? products
+                                      .filter(d => d.product_type === 'ndgeojson')
+                                      .map(product => {
+                                        return (
+                                          <Chip
+                                            key={product.product_key}
+                                            size="small"
+                                            onClick={() => {
+                                              const record = {
+                                                geoid: cntyplc.geoid,
+                                                geoname: cntyplc.geoname,
+                                                source_name,
+                                                last_checked,
+                                                created: most_recent_download.created,
+                                                download_ref: most_recent_download.download_ref,
+                                              };
+                                              updateStatChoice(
+                                                `${productBase}/${product.product_key}`,
+                                              );
+                                              updatedSelectedDownload(record);
+                                              updateModalOpen(true);
+                                            }}
+                                            label={
+                                              <EqualizerIcon style={{ verticalAlign: 'middle' }} />
+                                            }
+                                            style={{ marginRight: '6px' }}
+                                          />
+                                        );
+                                      })
+                                  : null}
 
                                 <a
                                   key={most_recent_download.download_id}

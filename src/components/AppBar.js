@@ -9,7 +9,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import HelpOutline from '@material-ui/icons/HelpOutline';
 import { Link } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
-import AppBarDownloadButtons from './AppBarDownloadButtons.js';
+import DesktopDownloadButtons from './DesktopDownloadButtons.js';
+import MobileMenu from './MobileMenu.js';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,51 +44,69 @@ export default function ButtonAppBar({
   updateModalOpen,
 }) {
   const classes = useStyles();
+  const matches = useMediaQuery('(min-width:700px)');
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className="customAppBar">
         <Toolbar>
-          <LightTooltip title="Home" placement="bottom">
-            <IconButton
-              component={Link}
-              to={'/'}
-              className={classes.menuButton}
-              onClick={() => {
-                updateFocusDownload({});
-              }}
-            >
-              <HomeIcon />
+          {!matches ? (
+            <IconButton className="mobileMenuActivator">
+              <MobileMenu
+                updateFocusDownload={updateFocusDownload}
+                focusDownload={focusDownload}
+                updateStatChoice={updateStatChoice}
+                updatedSelectedDownload={updatedSelectedDownload}
+                updateModalOpen={updateModalOpen}
+              />
             </IconButton>
-          </LightTooltip>
+          ) : (
+            <LightTooltip title="Home" placement="bottom">
+              <IconButton
+                component={Link}
+                to={'/'}
+                className={classes.menuButton}
+                onClick={() => {
+                  updateFocusDownload({});
+                }}
+              >
+                <HomeIcon />
+              </IconButton>
+            </LightTooltip>
+          )}
           <Typography variant="h6" className={classes.title}>
             Parcel Outlet
           </Typography>
-          {focusDownload.products ? (
-            <AppBarDownloadButtons
-              focusDownload={focusDownload}
-              updateStatChoice={updateStatChoice}
-              updatedSelectedDownload={updatedSelectedDownload}
-              updateModalOpen={updateModalOpen}
-            />
+
+          {matches ? (
+            <React.Fragment>
+              {focusDownload.products ? (
+                <DesktopDownloadButtons
+                  focusDownload={focusDownload}
+                  updateStatChoice={updateStatChoice}
+                  updatedSelectedDownload={updatedSelectedDownload}
+                  updateModalOpen={updateModalOpen}
+                />
+              ) : null}
+              <LightTooltip title="Parcel Coverage Map" placement="bottom">
+                <IconButton
+                  component={Link}
+                  to={'/coverage-map'}
+                  className={classes.menuButton}
+                  onClick={() => {
+                    updateFocusDownload({});
+                  }}
+                >
+                  <MapIcon />
+                </IconButton>
+              </LightTooltip>
+              <LightTooltip title="About this Site" placement="bottom">
+                <IconButton component={Link} to={'/about'} className={classes.menuButton}>
+                  <HelpOutline />
+                </IconButton>
+              </LightTooltip>
+            </React.Fragment>
           ) : null}
-          <LightTooltip title="Parcel Coverage Map" placement="bottom">
-            <IconButton
-              component={Link}
-              to={'/coverage-map'}
-              className={classes.menuButton}
-              onClick={() => {
-                updateFocusDownload({});
-              }}
-            >
-              <MapIcon />
-            </IconButton>
-          </LightTooltip>
-          <LightTooltip title="About this Site" placement="bottom">
-            <IconButton component={Link} to={'/about'} className={classes.menuButton}>
-              <HelpOutline />
-            </IconButton>
-          </LightTooltip>
         </Toolbar>
       </AppBar>
     </div>

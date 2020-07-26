@@ -38,7 +38,7 @@ a:hover {
   color: blue;
 }
 
-.MuiChip-root:hover {
+.treeChips .MuiChip-root:hover {
   color: white;
   background-color: grey;
   cursor: pointer;
@@ -46,7 +46,7 @@ a:hover {
 
 /* Stats Overrides */
 
-.MuiDialog-paperFullWidth {
+.statsDialog .MuiDialog-paperFullWidth {
   overflow-x: hidden;
 }
 
@@ -54,12 +54,42 @@ a:hover {
   border: none;
 }
 
-/* AppBar */
-
-.MuiButtonBase-root.MuiIconButton-root {
-  color: white;
+.statsDialog .MuiTableCell-sizeSmall {
+  padding: 10px 6px 10px 10px !important;
 }
 
-.MuiButtonBase-root.MuiIconButton-root:hover {
-  color: grey;
+/* AppBar */
+
+.customAppBar {
+  height: 64px;
+}
+
+.customAppBar .MuiButtonBase-root.MuiIconButton-root,
+.MuiAppBar-colorPrimary {
+  color: azure;
+}
+
+.customAppBar .MuiButtonBase-root.MuiIconButton-root:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.customAppBar .mobileMenuActivator.MuiButtonBase-root.MuiIconButton-root:hover {
+  background-color: transparent;
+}
+
+.customAppBar .MuiChip-root {
+  background-color: azure;
+  width: 55px;
+}
+
+.customAppBar .iconChip.MuiChip-root {
+  background-color: azure;
+  width: 40px;
+}
+
+.customAppBar .MuiChip-root:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
 }

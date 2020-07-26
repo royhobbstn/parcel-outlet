@@ -5,14 +5,14 @@ import IconButton from '@material-ui/core/IconButton';
 import { LightTooltip } from './AppBar';
 import { productBase, rawBase } from '../service/env.js';
 
-export default function AppBarDownloadButtons({
+export default function DesktopDownloadButtons({
   focusDownload,
   updateStatChoice,
   updatedSelectedDownload,
   updateModalOpen,
 }) {
   return (
-    <div className="appBarProducts" style={{ marginRight: '40px' }}>
+    <div className="appBarProducts" style={{ marginRight: '25px' }}>
       {focusDownload.products
         .filter(d => d.product_type === 'ndgeojson')
         .map(product => {
@@ -22,6 +22,7 @@ export default function AppBarDownloadButtons({
                 <Chip
                   key={product.product_key}
                   size="small"
+                  className="iconChip"
                   onClick={() => {
                     const record = {
                       geoid: focusDownload.geoid,
@@ -49,7 +50,7 @@ export default function AppBarDownloadButtons({
           <LightTooltip title="Download Original File" placement="bottom">
             <Chip
               size="small"
-              label="Original"
+              label="Origin"
               style={{
                 verticalAlign: 'middle',
                 marginBottom: '2px',

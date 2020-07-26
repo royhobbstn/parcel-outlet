@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { TableHead } from '@material-ui/core';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 export default function StatsDialog({ modalOpen, updateModalOpen, productKey, selectedDownload }) {
   const [statsInfo, updateStatsInfo] = useState(null);
@@ -34,7 +35,7 @@ export default function StatsDialog({ modalOpen, updateModalOpen, productKey, se
   }, [productKey]);
 
   return (
-    <Dialog open={modalOpen} fullWidth={true} maxWidth="md">
+    <Dialog open={modalOpen} fullWidth={true} maxWidth="md" className="statsDialog">
       <StatsHeader
         selectedDownload={selectedDownload}
         updateModalOpen={updateModalOpen}
@@ -46,7 +47,7 @@ export default function StatsDialog({ modalOpen, updateModalOpen, productKey, se
           <Grid item xs={12}>
             <StatsInfoCard selectedDownload={selectedDownload} statsInfo={statsInfo} />
           </Grid>
-          <Grid item xs={6} style={{ paddingLeft: '60px' }}>
+          <Grid item xs={5} style={{ paddingLeft: '6%' }}>
             <h3 style={{ marginTop: '0px' }}>Fields</h3>{' '}
             <StatsFields
               statsInfo={statsInfo}
@@ -54,7 +55,7 @@ export default function StatsDialog({ modalOpen, updateModalOpen, productKey, se
               updateSelectedFieldKey={updateSelectedFieldKey}
             />
           </Grid>{' '}
-          <Grid item xs={6} style={{ paddingRight: '60px' }}>
+          <Grid item xs={7} style={{ paddingRight: '6%' }}>
             <h3 style={{ marginTop: '0px' }}>Field Attributes</h3>
             {selectedFieldKey ? (
               <FieldAttributes selectedFieldKey={selectedFieldKey} statsInfo={statsInfo} />
@@ -71,6 +72,9 @@ export default function StatsDialog({ modalOpen, updateModalOpen, productKey, se
 function StatsHeader({ selectedDownload, updateModalOpen, statsInfo, updateSelectedFieldKey }) {
   return (
     <div style={{ height: '48px', borderBottom: '1px dotted grey' }}>
+      <div style={{ marginLeft: '20px', position: 'relative', top: '5px', display: 'inline' }}>
+        <EqualizerIcon />
+      </div>
       <h3
         style={{
           marginLeft: '20px',
@@ -79,8 +83,10 @@ function StatsHeader({ selectedDownload, updateModalOpen, statsInfo, updateSelec
           overflowX: 'hidden',
         }}
       >
-        Statistics:&nbsp;&nbsp;&nbsp;{selectedDownload.geoname}&nbsp;&nbsp;(
-        {statsInfo ? new URL(selectedDownload.source_name).hostname : null})
+        {selectedDownload.geoname}&nbsp;
+        <span style={{ fontSize: '12px', color: 'grey' }}>
+          ({statsInfo ? new URL(selectedDownload.source_name).hostname : null})
+        </span>
       </h3>
       <IconButton
         style={{ float: 'right' }}
@@ -142,7 +148,7 @@ function StatsFields({ statsInfo, selectedFieldKey, updateSelectedFieldKey }) {
       elevation={5}
       style={{
         padding: '2px',
-        margin: '0 20px 40px 5px',
+        margin: '0 10px 40px 5px',
         height: '250px',
         overflowY: 'scroll',
         overflowX: 'hidden',
