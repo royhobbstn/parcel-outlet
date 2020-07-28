@@ -24,6 +24,7 @@ export default function MobileDownloadButtons({
             .map(product => {
               return (
                 <StyledMenuItem
+                  key="ndgeojson"
                   onClick={() => {
                     const record = {
                       geoid: focusDownload.geoid,
@@ -48,6 +49,7 @@ export default function MobileDownloadButtons({
         : null}
 
       <Link
+        key="original"
         href={`${rawBase}/${focusDownload.raw_key}`}
         style={{ textDecoration: 'none' }}
         download
@@ -64,6 +66,7 @@ export default function MobileDownloadButtons({
         if (product.product_type === 'shp') {
           return (
             <Link
+              key={product.product_type}
               href={`${productBase}/${product.product_key}`}
               style={{ textDecoration: 'none' }}
               download
@@ -79,6 +82,7 @@ export default function MobileDownloadButtons({
         } else if (product.product_type === 'gpkg') {
           return (
             <Link
+              key={product.product_type}
               href={`${productBase}/${product.product_key}`}
               style={{ textDecoration: 'none' }}
               download
@@ -94,6 +98,7 @@ export default function MobileDownloadButtons({
         } else if (product.product_type === 'geojson') {
           return (
             <Link
+              key={product.product_type}
               href={`${productBase}/${product.product_key}`}
               style={{ textDecoration: 'none' }}
               download

@@ -4,13 +4,6 @@ import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
 
 export class ParcelMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      feature_attributes: {},
-    };
-  }
-
   componentDidMount() {
     mapboxgl.accessToken = key;
     window.map = new mapboxgl.Map({
@@ -31,14 +24,12 @@ export class ParcelMap extends Component {
 
     let data = null;
 
-    // todo parse querystring params here
     const productId = getUrlParameter('prid');
     if (!productId) {
-      console.log('sorry, please provide a prid');
+      console.error('sorry, please provide a prid');
       // todo visual UI saying not availabe and link back to parcel-outlet or overview map
     }
 
-    // todo promise here to fetch info.json file
     const info = window
       .fetch(`${tileBase}/${productId}/info.json`)
       .then(response => response.json());
@@ -53,7 +44,7 @@ export class ParcelMap extends Component {
           // TODO remove if-check when clear current old tilesets from dev
           if (data.generatedMetadata && data.generatedMetadata.bounds) {
             const boundsArray = data.generatedMetadata.bounds.split(',').map(d => Number(d));
-            window.map.fitBounds(boundsArray);
+            window.map.fitBounds(boundsArray, { animate: false });
           }
 
           // add download buttons to AppBar (possible race condition here?)
@@ -122,38 +113,68 @@ export class ParcelMap extends Component {
         if (!(e.features && e.features[0])) {
           return;
         }
+        const storedFeatures = e.features;
+        const productId = getUrlParameter('prid');
 
-        const cluster = e.features[0].properties.__po_cl;
-        const featureId = e.features[0].properties.__po_id;
-        const coordinates = e.lngLat;
+        const missingClustersSet = new Set();
 
-        if (!this.state.feature_attributes[featureId]) {
-          // todo spinner
+        if (!this.props.allFeatureAttributes.current[productId]) {
+          this.props.allFeatureAttributes.current[productId] = {};
+        }
 
-          const response = await window.fetch(
-            `${tileBase}/${productId}/attributes/cl_${cluster}.ndjson`,
+        storedFeatures.forEach(feature => {
+          if (!this.props.allFeatureAttributes.current[productId][feature.properties.__po_id]) {
+            missingClustersSet.add(feature.properties.__po_cl);
+          }
+          return feature.properties.__po_id;
+        });
+
+        const missingClusters = Array.from(missingClustersSet);
+
+        const data = {};
+
+        if (missingClusters.length) {
+          await Promise.all(
+            missingClusters.map(cluster => {
+              return new Promise((resolve, reject) => {
+                window
+                  .fetch(`${tileBase}/${productId}/attributes/cl_${cluster}.ndjson`)
+                  .then(async response => {
+                    const exampleReader = ndjsonStream(response.body).getReader();
+
+                    let result;
+                    while (!result || !result.done) {
+                      result = await exampleReader.read();
+                      if (result.value) {
+                        data[result.value.__po_id] = result.value;
+                      }
+                    }
+                    resolve();
+                  })
+                  .catch(err => {
+                    console.error(err);
+                    reject();
+                  });
+              });
+            }),
           );
 
-          const exampleReader = ndjsonStream(response.body).getReader();
-
-          let result;
-          let data = {};
-          while (!result || !result.done) {
-            result = await exampleReader.read();
-            if (result.value) {
-              data[result.value.__po_id] = result.value;
-            }
-          }
-
-          const description = data[featureId];
-          window.popup.setLngLat(coordinates).setHTML(renderPopup(description)).addTo(window.map);
-          this.setState({
-            feature_attributes: Object.assign({}, this.state.feature_attributes, data),
-          });
-        } else {
-          const description = this.state.feature_attributes[featureId];
-          window.popup.setLngLat(coordinates).setHTML(renderPopup(description)).addTo(window.map);
+          this.props.allFeatureAttributes.current[productId] = Object.assign(
+            {},
+            this.props.allFeatureAttributes.current[productId],
+            data,
+          );
         }
+
+        // corral the information just for the features you need
+        // ends up being an array of feature properties objects
+
+        const attributeData = storedFeatures.map(feature => {
+          return this.props.allFeatureAttributes.current[productId][feature.properties.__po_id];
+        });
+
+        this.props.updateMapAttributesModalOpen(true);
+        this.props.updateCurrentFeatureAttributes(attributeData);
       });
     });
   }
@@ -165,42 +186,6 @@ export class ParcelMap extends Component {
   render() {
     return <div id="map" />;
   }
-}
-
-function displayValue(value) {
-  if (typeof value === 'undefined' || value === null) return value;
-  if (typeof value === 'object' || typeof value === 'number' || typeof value === 'string')
-    return value.toString();
-  return value;
-}
-function renderProperty(propertyName, property) {
-  return (
-    '<div class="mbview_property">' +
-    '<div class="mbview_property-name">' +
-    propertyName +
-    '</div>' +
-    '<div class="mbview_property-value">' +
-    displayValue(property) +
-    '</div>' +
-    '</div>'
-  );
-}
-
-function renderProperties(properties) {
-  var renderedProperties = Object.keys(properties)
-    .filter(d => d !== '__po_id')
-    .map(function (propertyName) {
-      return renderProperty(propertyName, properties[propertyName]);
-    });
-  return renderedProperties.join('');
-}
-
-function renderPopup(properties) {
-  return (
-    '<div class="mbview_popup"><div class="mbview_feature">' +
-    renderProperties(properties) +
-    '</div></div>'
-  );
 }
 
 function getUrlParameter(name) {

@@ -51,7 +51,7 @@ export default function ButtonAppBar({
       <AppBar position="static" className="customAppBar">
         <Toolbar>
           {!matches ? (
-            <IconButton className="mobileMenuActivator">
+            <div className="mobileMenuActivator">
               <MobileMenu
                 updateFocusDownload={updateFocusDownload}
                 focusDownload={focusDownload}
@@ -59,7 +59,7 @@ export default function ButtonAppBar({
                 updatedSelectedDownload={updatedSelectedDownload}
                 updateModalOpen={updateModalOpen}
               />
-            </IconButton>
+            </div>
           ) : (
             <LightTooltip title="Home" placement="bottom">
               <IconButton

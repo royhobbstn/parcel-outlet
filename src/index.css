@@ -93,3 +93,7 @@ a:hover {
   color: black;
   font-weight: bold;
 }
+
+#mobileActivatorButton {
+  margin-right: 20px;
+}

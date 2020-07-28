@@ -17,7 +17,10 @@ export default function DesktopDownloadButtons({
         .filter(d => d.product_type === 'ndgeojson')
         .map(product => {
           return (
-            <IconButton style={{ paddingLeft: '4px', paddingRight: '4px', cursor: 'pointer' }}>
+            <IconButton
+              key="ndgeojson"
+              style={{ paddingLeft: '4px', paddingRight: '4px', cursor: 'pointer' }}
+            >
               <LightTooltip title="View Data Statistics" placement="bottom">
                 <Chip
                   key={product.product_key}

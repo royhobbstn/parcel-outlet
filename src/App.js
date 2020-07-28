@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AppBar from './components/AppBar.js';
 import About from './components/About.js';
 import { Tree } from './components/Tree.js';
@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { CoverageMap } from './components/CoverageMap';
 import { ParcelMap } from './components/ParcelMap';
 import StatsDialog from './components/StatsDialog';
+import MapAttributesDialog from './components/MapAttributesDialog';
 
 function App() {
   const [hasError, setErrors] = useState(false);
@@ -15,6 +16,10 @@ function App() {
   const [modalOpen, updateModalOpen] = useState(false);
   const [statChoice, updateStatChoice] = useState('');
   const [selectedDownload, updatedSelectedDownload] = useState({});
+
+  const [mapAttributesModalOpen, updateMapAttributesModalOpen] = useState(false);
+  const [currentFeatureAttributes, updateCurrentFeatureAttributes] = useState({});
+  const allFeatureAttributes = useRef({});
 
   async function fetchData() {
     const res = await fetch('/data/database_data.json');
@@ -32,12 +37,22 @@ function App() {
 
   return (
     <Router>
-      <StatsDialog
-        modalOpen={modalOpen}
-        updateModalOpen={updateModalOpen}
-        productKey={statChoice}
-        selectedDownload={selectedDownload}
-      />
+      {modalOpen ? (
+        <StatsDialog
+          modalOpen={modalOpen}
+          updateModalOpen={updateModalOpen}
+          productKey={statChoice}
+          selectedDownload={selectedDownload}
+        />
+      ) : null}
+      {mapAttributesModalOpen ? (
+        <MapAttributesDialog
+          mapAttributesModalOpen={mapAttributesModalOpen}
+          updateMapAttributesModalOpen={updateMapAttributesModalOpen}
+          currentFeatureAttributes={currentFeatureAttributes}
+        />
+      ) : null}
+
       <AppBar
         updateFocusDownload={updateFocusDownload}
         focusDownload={focusDownload}
@@ -51,7 +66,13 @@ function App() {
         </Route>
 
         <Route path="/parcel-map">
-          <ParcelMap inventory={inventory} updateFocusDownload={updateFocusDownload} />
+          <ParcelMap
+            inventory={inventory}
+            updateFocusDownload={updateFocusDownload}
+            updateMapAttributesModalOpen={updateMapAttributesModalOpen}
+            updateCurrentFeatureAttributes={updateCurrentFeatureAttributes}
+            allFeatureAttributes={allFeatureAttributes}
+          />
         </Route>
 
         <Route path="/about">

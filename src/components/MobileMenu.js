@@ -63,6 +63,7 @@ export default function CustomizedMenus({
   return (
     <div>
       <Button
+        id="mobileActivatorButton"
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
