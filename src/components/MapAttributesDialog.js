@@ -18,8 +18,6 @@ export default function MapAttributesDialog({
   updateMapAttributesModalOpen,
   currentFeatureAttributes,
 }) {
-  console.log({ currentFeatureAttributes });
-
   const [current, updateCurrent] = useState(0);
 
   const total = currentFeatureAttributes.length;

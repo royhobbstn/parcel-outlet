@@ -7,6 +7,7 @@ import { CoverageMap } from './components/CoverageMap';
 import { ParcelMap } from './components/ParcelMap';
 import StatsDialog from './components/StatsDialog';
 import MapAttributesDialog from './components/MapAttributesDialog';
+import CoverageDialog from './components/CoverageDialog';
 
 function App() {
   const [hasError, setErrors] = useState(false);
@@ -16,6 +17,9 @@ function App() {
   const [modalOpen, updateModalOpen] = useState(false);
   const [statChoice, updateStatChoice] = useState('');
   const [selectedDownload, updatedSelectedDownload] = useState({});
+
+  const [coverageModalOpen, updateCoverageModalOpen] = useState(false);
+  const [focusCoverageGeoid, updateFocusCoverageGeoid] = useState('');
 
   const [mapAttributesModalOpen, updateMapAttributesModalOpen] = useState(false);
   const [currentFeatureAttributes, updateCurrentFeatureAttributes] = useState({});
@@ -52,7 +56,14 @@ function App() {
           currentFeatureAttributes={currentFeatureAttributes}
         />
       ) : null}
-
+      {coverageModalOpen ? (
+        <CoverageDialog
+          coverageModalOpen={coverageModalOpen}
+          updateCoverageModalOpen={updateCoverageModalOpen}
+          focusCoverageGeoid={focusCoverageGeoid}
+          inventory={inventory}
+        />
+      ) : null}
       <AppBar
         updateFocusDownload={updateFocusDownload}
         focusDownload={focusDownload}
@@ -62,7 +73,11 @@ function App() {
       />
       <Switch>
         <Route path="/coverage-map">
-          <CoverageMap inventory={inventory} />
+          <CoverageMap
+            inventory={inventory}
+            updateCoverageModalOpen={updateCoverageModalOpen}
+            updateFocusCoverageGeoid={updateFocusCoverageGeoid}
+          />
         </Route>
 
         <Route path="/parcel-map">

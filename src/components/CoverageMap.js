@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { style } from '../style/mapStyle.js';
-import { stateLookup } from '../lookups/states';
-import { countyLookup } from '../lookups/counties.js';
 import { key } from '../service/env';
 
 export class CoverageMap extends Component {
@@ -77,24 +75,17 @@ export class CoverageMap extends Component {
 
     // When a click event occurs on a feature in the states layer, open a popup at the
     // location of the click, with description HTML from its properties.
-    window.map.on('click', 'counties', function (e) {
+    window.map.on('click', 'counties', e => {
       const feature = e.features[0].properties;
 
-      const geoid = feature.GEOID;
-      const state = geoid.slice(0, 2);
-      const county = geoid.slice(2);
-
-      let html = `${countyLookup(state + county)}, ${stateLookup(state)}`;
-
-      if (feature.covered) {
-        JSON.parse(feature.links).forEach(link => {
-          html += `<br /><a href="${link}" target="_blank">${new URL(link).hostname}</a>`;
-        });
-      } else {
-        html += `<br /><span style="color:maroon;">No coverage.</span>`;
+      if (!feature) {
+        return;
       }
 
-      new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(html).addTo(window.map);
+      const geoid = feature.GEOID;
+
+      this.props.updateFocusCoverageGeoid(geoid);
+      this.props.updateCoverageModalOpen(true);
     });
 
     // Change the cursor to a pointer when the mouse is over the states layer.
