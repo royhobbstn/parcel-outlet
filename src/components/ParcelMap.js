@@ -113,7 +113,18 @@ export class ParcelMap extends Component {
         if (!(e.features && e.features[0])) {
           return;
         }
-        const storedFeatures = e.features;
+
+        const duplicates = {};
+        const storedFeatures = [];
+
+        e.features.forEach(feature => {
+          const id = feature.properties.__po_id;
+          if (!duplicates[id]) {
+            storedFeatures.push(feature);
+          }
+          duplicates[id] = true;
+        });
+
         const productId = getUrlParameter('prid');
 
         const missingClustersSet = new Set();

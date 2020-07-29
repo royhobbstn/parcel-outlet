@@ -189,10 +189,6 @@ function FieldAttributes({ selectedFieldKey, statsInfo }) {
         <span style={{ fontWeight: 'bold' }}>Field: </span>
         {selectedFieldKey}
       </p>
-      <p>
-        <span style={{ fontWeight: 'bold' }}>Type(s): </span>{' '}
-        {statsInfo.fields[selectedFieldKey].types.join(', ')}
-      </p>
       {statsInfo.fields[selectedFieldKey].IDField === true ? (
         <div>
           <p style={{ paddingTop: '5px' }}>All Fields Unique. Sample:</p>
@@ -208,7 +204,7 @@ function FieldAttributes({ selectedFieldKey, statsInfo }) {
             elevation={5}
             style={{
               marginTop: '14px',
-              height: '182px',
+              height: '216px',
               overflowY: 'scroll',
               overflowX: 'hidden',
               width: '100%',

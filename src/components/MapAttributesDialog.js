@@ -30,31 +30,40 @@ export default function MapAttributesDialog({
   const currentFeature = currentFeatureAttributes[current];
 
   return (
-    <Dialog open={mapAttributesModalOpen} fullWidth={false} maxWidth="md">
+    <Dialog open={mapAttributesModalOpen} fullWidth={true} maxWidth="md">
       <MapAttributesHeader updateMapAttributesModalOpen={updateMapAttributesModalOpen} />
-      <FeatureScroller current={current} updateCurrent={updateCurrent} total={total} />
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell>Attribute</TableCell>
-            <TableCell>Value</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {Object.entries(currentFeature)
-            .filter(entry => {
-              return entry[0] !== '__po_id';
-            })
-            .map(entry => {
-              return (
-                <TableRow key={entry[0]}>
-                  <TableCell>{entry[0]}</TableCell>
-                  <TableCell>{entry[1]}</TableCell>
-                </TableRow>
-              );
-            })}
-        </TableBody>
-      </Table>
+      {total > 1 ? (
+        <FeatureScroller current={current} updateCurrent={updateCurrent} total={total} />
+      ) : null}
+      <div style={{ height: '60%', overflowY: 'scroll' }}>
+        <Table stickyHeader>
+          <colgroup>
+            <col span="1" style={{ width: '40%' }} />
+            <col style={{ width: '60%' }} />
+          </colgroup>
+          <TableHead>
+            <TableRow>
+              <TableCell>Attribute</TableCell>
+              <TableCell>Value</TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {Object.entries(currentFeature)
+              .filter(entry => {
+                return entry[0] !== '__po_id';
+              })
+              .map(entry => {
+                return (
+                  <TableRow key={entry[0]}>
+                    <TableCell>{entry[0]}</TableCell>
+                    <TableCell>{entry[1]}</TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </div>
     </Dialog>
   );
 }
@@ -64,8 +73,8 @@ function FeatureScroller({ current, updateCurrent, total }) {
     <React.Fragment>
       <div style={{ margin: '10px auto' }}>
         <Typography>
-          Found {total} features. Showing feature #{' '}
-          <span style={{ fontWeight: 'bold' }}> {current + 1} </span>{' '}
+          Showing #<span style={{ fontWeight: 'bold' }}> {current + 1} </span>of {total} total
+          features.
         </Typography>
       </div>
       <div style={{ margin: '5px auto' }}>
