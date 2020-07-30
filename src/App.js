@@ -65,6 +65,12 @@ function App() {
           updateCoverageModalOpen={updateCoverageModalOpen}
           focusCoverageGeoid={focusCoverageGeoid}
           inventory={inventory}
+          modalOpen={modalOpen}
+          updateModalOpen={updateModalOpen}
+          statChoice={statChoice}
+          updateStatChoice={updateStatChoice}
+          selectedDownload={selectedDownload}
+          updatedSelectedDownload={updatedSelectedDownload}
         />
       ) : null}
       <AppBar
@@ -102,7 +108,7 @@ function App() {
 
         <Route exact path="/">
           <Tree
-            inventory={crunchInventory(inventory)}
+            inventory={inventory}
             modalOpen={modalOpen}
             updateModalOpen={updateModalOpen}
             statChoice={statChoice}
@@ -126,28 +132,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
-
-function crunchInventory(inventory) {
-  if (!inventory) {
-    return {};
-  }
-
-  const state = {};
-
-  Object.keys(inventory).forEach(key => {
-    const stfips = key.slice(0, 2);
-    if (!state[stfips]) {
-      state[stfips] = {};
-    }
-
-    const cntyplcfips = key.slice(2);
-    if (!state[stfips][cntyplcfips]) {
-      state[stfips][cntyplcfips] = inventory[key];
-    }
-  });
-
-  return state;
 }
 
 export default App;

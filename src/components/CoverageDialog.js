@@ -3,6 +3,7 @@ import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import ListIcon from '@material-ui/icons/List';
+import TreeEntry from './TreeEntry.js';
 
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties.js';
@@ -12,6 +13,12 @@ export default function CoverageDialog({
   updateCoverageModalOpen,
   focusCoverageGeoid,
   inventory,
+  modalOpen,
+  updateModalOpen,
+  statChoice,
+  updateStatChoice,
+  selectedDownload,
+  updatedSelectedDownload,
 }) {
   console.log(inventory[focusCoverageGeoid]);
 
@@ -24,8 +31,13 @@ export default function CoverageDialog({
       <CoverageHeader updateCoverageModalOpen={updateCoverageModalOpen} titleGeo={titleGeo} />
 
       {inventory[focusCoverageGeoid] ? (
-        <div style={{ height: '60%', overflowY: 'scroll' }}>
-          <p>Hi</p>
+        <div style={{ padding: '20px', overflowY: 'scroll' }}>
+          <TreeEntry
+            cntyplc={inventory[focusCoverageGeoid]}
+            updateModalOpen={updateModalOpen}
+            updateStatChoice={updateStatChoice}
+            updatedSelectedDownload={updatedSelectedDownload}
+          />
         </div>
       ) : (
         <p style={{ margin: '40px auto' }}>No parcel coverage available.</p>
