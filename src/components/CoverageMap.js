@@ -3,6 +3,9 @@ import mapboxgl from 'mapbox-gl';
 import { style } from '../style/mapStyle.js';
 import { key } from '../service/env';
 
+import { stateLookup } from '../lookups/states';
+import { countyLookup } from '../lookups/counties.js';
+
 export class CoverageMap extends Component {
   componentDidMount() {
     mapboxgl.accessToken = key;
@@ -89,19 +92,37 @@ export class CoverageMap extends Component {
     });
 
     // Change the cursor to a pointer when the mouse is over the states layer.
-    window.map.on('mouseenter', 'counties', function () {
+    window.map.on('mouseenter', 'counties', e => {
+      const feature = e.features[0].properties;
+
+      if (!feature) {
+        return;
+      }
+
+      const state = feature.STATEFP;
+      const county = feature.COUNTYFP;
+      const titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
       window.map.getCanvas().style.cursor = 'pointer';
+      this.props.updateCoverageLabelText(titleGeo);
+      this.props.updateCoverageLabelOpen(true);
     });
 
     // Change it back to a pointer when it leaves.
-    window.map.on('mouseleave', 'counties', function () {
+    window.map.on('mouseleave', 'counties', e => {
       window.map.getCanvas().style.cursor = '';
+      this.props.updateCoverageLabelText('');
+      this.props.updateCoverageLabelOpen(false);
     });
 
     // When the user moves their mouse over the state-fill layer, we'll update the
     // feature state for the feature under the mouse.
-    window.map.on('mousemove', 'counties', function (e) {
+    window.map.on('mousemove', 'counties', e => {
       if (e.features.length > 0) {
+        const state = e.features[0].properties.STATEFP;
+        const county = e.features[0].properties.COUNTYFP;
+        const titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
+        this.props.updateCoverageLabelText(titleGeo);
+
         if (hoveredStateId) {
           window.map.setFeatureState({ source: 'counties', id: hoveredStateId }, { hover: false });
         }

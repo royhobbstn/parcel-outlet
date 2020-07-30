@@ -8,6 +8,7 @@ import { ParcelMap } from './components/ParcelMap';
 import StatsDialog from './components/StatsDialog';
 import MapAttributesDialog from './components/MapAttributesDialog';
 import CoverageDialog from './components/CoverageDialog';
+import CoverageLabel from './components/CoverageLabel';
 
 function App() {
   const [hasError, setErrors] = useState(false);
@@ -20,6 +21,8 @@ function App() {
 
   const [coverageModalOpen, updateCoverageModalOpen] = useState(false);
   const [focusCoverageGeoid, updateFocusCoverageGeoid] = useState('');
+  const [coverageLabelOpen, updateCoverageLabelOpen] = useState(false);
+  const [coverageLabelText, updateCoverageLabelText] = useState('');
 
   const [mapAttributesModalOpen, updateMapAttributesModalOpen] = useState(false);
   const [currentFeatureAttributes, updateCurrentFeatureAttributes] = useState({});
@@ -73,10 +76,13 @@ function App() {
       />
       <Switch>
         <Route path="/coverage-map">
+          {coverageLabelOpen ? <CoverageLabel coverageLabelText={coverageLabelText} /> : null}
           <CoverageMap
             inventory={inventory}
             updateCoverageModalOpen={updateCoverageModalOpen}
             updateFocusCoverageGeoid={updateFocusCoverageGeoid}
+            updateCoverageLabelOpen={updateCoverageLabelOpen}
+            updateCoverageLabelText={updateCoverageLabelText}
           />
         </Route>
 
