@@ -4,9 +4,16 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import TreeEntry from './TreeEntry.js';
 import { stateLookup } from '../lookups/states';
 import { MinusSquare, PlusSquare, CloseSquare } from '../style/svgComponents.js';
+import { countyLookup } from '../lookups/counties.js';
 
-export function Tree({ inventory, updateModalOpen, updateStatChoice, updatedSelectedDownload }) {
-  const treeData = crunchInventory(inventory);
+export function Tree({
+  inventory,
+  updateModalOpen,
+  updateStatChoice,
+  updatedSelectedDownload,
+  searchboxText,
+}) {
+  const treeData = crunchInventory(inventory, searchboxText);
 
   return (
     <div>
@@ -60,24 +67,33 @@ export function Tree({ inventory, updateModalOpen, updateStatChoice, updatedSele
   );
 }
 
-function crunchInventory(inventory) {
+function crunchInventory(inventory, searchboxText) {
   if (!inventory) {
     return {};
   }
 
+  const lowercaseSearch = searchboxText.toLowerCase();
   const state = {};
 
-  Object.keys(inventory).forEach(key => {
-    const stfips = key.slice(0, 2);
-    if (!state[stfips]) {
-      state[stfips] = {};
-    }
+  Object.keys(inventory)
+    .filter(key => {
+      if (!lowercaseSearch) {
+        return true;
+      }
+      const geoname = countyLookup(key).replace('County', '').toLowerCase();
+      return geoname.includes(lowercaseSearch);
+    })
+    .forEach(key => {
+      const stfips = key.slice(0, 2);
+      if (!state[stfips]) {
+        state[stfips] = {};
+      }
 
-    const cntyplcfips = key.slice(2);
-    if (!state[stfips][cntyplcfips]) {
-      state[stfips][cntyplcfips] = inventory[key];
-    }
-  });
+      const cntyplcfips = key.slice(2);
+      if (!state[stfips][cntyplcfips]) {
+        state[stfips][cntyplcfips] = inventory[key];
+      }
+    });
 
   return state;
 }

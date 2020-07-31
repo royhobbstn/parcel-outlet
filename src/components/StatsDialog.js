@@ -71,7 +71,14 @@ export default function StatsDialog({ modalOpen, updateModalOpen, productKey, se
 
 function StatsHeader({ selectedDownload, updateModalOpen, statsInfo, updateSelectedFieldKey }) {
   return (
-    <div style={{ height: '48px', borderBottom: '1px dotted grey' }}>
+    <div
+      style={{
+        height: '48px',
+        borderBottom: '1px dotted grey',
+        zIndex: '500',
+        backgroundColor: 'white',
+      }}
+    >
       <div style={{ marginLeft: '20px', position: 'relative', top: '5px', display: 'inline' }}>
         <EqualizerIcon />
       </div>
@@ -126,13 +133,13 @@ function StatsInfoCard({ selectedDownload, statsInfo }) {
                 </a>
               </TableCell>
               <TableCell>
-                Downloaded: {new Date(selectedDownload.created).toLocaleTimeString()}
+                Downloaded: {new Date(selectedDownload.created).toLocaleString()}
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Records: {statsInfo.rowCount.toLocaleString() || '...?'}</TableCell>
               <TableCell>
-                Last Checked: {new Date(selectedDownload.last_checked).toLocaleTimeString()}
+                Last Checked: {new Date(selectedDownload.last_checked).toLocaleString()}
               </TableCell>
             </TableRow>
           </TableBody>

@@ -28,7 +28,7 @@ export default function MapAttributesDialog({
   const currentFeature = currentFeatureAttributes[current];
 
   return (
-    <Dialog open={mapAttributesModalOpen} fullWidth={true} maxWidth="md">
+    <Dialog open={mapAttributesModalOpen} fullWidth={true} maxWidth="sm">
       <MapAttributesHeader updateMapAttributesModalOpen={updateMapAttributesModalOpen} />
       {total > 1 ? (
         <FeatureScroller current={current} updateCurrent={updateCurrent} total={total} />

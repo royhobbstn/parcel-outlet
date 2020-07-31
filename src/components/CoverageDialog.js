@@ -13,15 +13,10 @@ export default function CoverageDialog({
   updateCoverageModalOpen,
   focusCoverageGeoid,
   inventory,
-  modalOpen,
   updateModalOpen,
-  statChoice,
   updateStatChoice,
-  selectedDownload,
   updatedSelectedDownload,
 }) {
-  console.log(inventory[focusCoverageGeoid]);
-
   const state = focusCoverageGeoid.slice(0, 2);
   const county = focusCoverageGeoid.slice(2);
   const titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
@@ -37,6 +32,7 @@ export default function CoverageDialog({
             updateModalOpen={updateModalOpen}
             updateStatChoice={updateStatChoice}
             updatedSelectedDownload={updatedSelectedDownload}
+            updateCoverageModalOpen={updateCoverageModalOpen}
           />
         </div>
       ) : (

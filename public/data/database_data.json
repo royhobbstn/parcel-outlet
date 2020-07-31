@@ -4091,6 +4091,62 @@
      }
     },
     "last_download": "2020-07-17 18:30:22"
+   },
+   "5": {
+    "source_id": 5,
+    "source_name": "https://www.denvercounty.com",
+    "last_checked": "2020-07-31 21:39:26",
+    "downloads": {
+     "10": {
+      "download_id": 10,
+      "created": "2020-07-31 21:39:26",
+      "download_ref": "d797b639",
+      "raw_key": "08-Colorado/031-Denver-County/d797b639-08031-Denver-County-Colorado.zip",
+      "products": [
+       {
+        "product_ref": "0b3759a8",
+        "product_origin": "original",
+        "product_id": 333,
+        "product_individual_ref": "7a18c59c",
+        "product_type": "ndgeojson",
+        "product_key": "08-Colorado/031-Denver-County/d797b639-0b3759a8-7a18c59c-08031-Denver-County-Colorado.ndgeojson"
+       },
+       {
+        "product_ref": "0b3759a8",
+        "product_origin": "original",
+        "product_id": 334,
+        "product_individual_ref": "5fdb9c85",
+        "product_type": "geojson",
+        "product_key": "08-Colorado/031-Denver-County/d797b639-0b3759a8-5fdb9c85-08031-Denver-County-Colorado.geojson"
+       },
+       {
+        "product_ref": "0b3759a8",
+        "product_origin": "original",
+        "product_id": 335,
+        "product_individual_ref": "885a52be",
+        "product_type": "gpkg",
+        "product_key": "08-Colorado/031-Denver-County/d797b639-0b3759a8-885a52be-08031-Denver-County-Colorado.gpkg"
+       },
+       {
+        "product_ref": "0b3759a8",
+        "product_origin": "original",
+        "product_id": 336,
+        "product_individual_ref": "7ecd3e52",
+        "product_type": "shp",
+        "product_key": "08-Colorado/031-Denver-County/d797b639-0b3759a8-7ecd3e52-08031-Denver-County-Colorado-shp.zip"
+       },
+       {
+        "product_ref": "0b3759a8",
+        "product_origin": "original",
+        "product_id": 337,
+        "product_individual_ref": "5c45c9d1",
+        "product_type": "pbf",
+        "product_key": "d797b639-0b3759a8-5c45c9d1"
+       }
+      ]
+     }
+    },
+    "last_download": "2020-07-31 21:39:26"
    }
   }
  },

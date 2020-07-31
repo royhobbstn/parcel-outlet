@@ -5,6 +5,10 @@ import { tileBase, key } from '../service/env';
 
 export class ParcelMap extends Component {
   componentDidMount() {
+    // edge case to make sure the coverage modal is closed.
+    // because if they change the map (which only changes querystring), it cant be recognized without a lot of work
+    this.props.updateCoverageModalOpen(false);
+
     mapboxgl.accessToken = key;
     window.map = new mapboxgl.Map({
       container: 'map',
@@ -27,7 +31,6 @@ export class ParcelMap extends Component {
     const productId = getUrlParameter('prid');
     if (!productId) {
       console.error('sorry, please provide a prid');
-      // todo visual UI saying not availabe and link back to parcel-outlet or overview map
     }
 
     const info = window
@@ -54,7 +57,7 @@ export class ParcelMap extends Component {
             id: 'parcels',
             'source-layer': data.layername,
             source: {
-              maxzoom: data.maxZoom || data.generatedMetadata.maxzoom, // todo eventually remove the former, replaced by grabbing straight from auto generated tippecanoe metadata output
+              maxzoom: data.maxZoom || Number(data.generatedMetadata.maxzoom), // todo eventually remove the former, replaced by grabbing straight from auto generated tippecanoe metadata output
               promoteId: '__po_id',
               type: 'vector',
               tiles: [`${tileBase}/${productId}/{z}/{x}/{y}.pbf`],

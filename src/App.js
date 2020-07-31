@@ -9,8 +9,27 @@ import StatsDialog from './components/StatsDialog';
 import MapAttributesDialog from './components/MapAttributesDialog';
 import CoverageDialog from './components/CoverageDialog';
 import CoverageLabel from './components/CoverageLabel';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+    width: '100%',
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
+  const [searchboxText, updateSearchboxText] = useState('');
+
   const [hasError, setErrors] = useState(false);
   const [inventory, setInventory] = useState([]);
   const [focusDownload, updateFocusDownload] = useState({});
@@ -65,11 +84,8 @@ function App() {
           updateCoverageModalOpen={updateCoverageModalOpen}
           focusCoverageGeoid={focusCoverageGeoid}
           inventory={inventory}
-          modalOpen={modalOpen}
           updateModalOpen={updateModalOpen}
-          statChoice={statChoice}
           updateStatChoice={updateStatChoice}
-          selectedDownload={selectedDownload}
           updatedSelectedDownload={updatedSelectedDownload}
         />
       ) : null}
@@ -99,6 +115,7 @@ function App() {
             updateMapAttributesModalOpen={updateMapAttributesModalOpen}
             updateCurrentFeatureAttributes={updateCurrentFeatureAttributes}
             allFeatureAttributes={allFeatureAttributes}
+            updateCoverageModalOpen={updateCoverageModalOpen}
           />
         </Route>
 
@@ -107,14 +124,40 @@ function App() {
         </Route>
 
         <Route exact path="/">
+          <div style={{ width: '70%', maxWidth: '600px', margin: '40px auto 10px auto' }}>
+            <TextField
+              className={classes.margin}
+              label="Search for parcel datasets..."
+              variant="outlined"
+              value={searchboxText}
+              onChange={evt => {
+                updateSearchboxText(evt.target.value);
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment
+                    style={{ cursor: 'pointer' }}
+                    position="end"
+                    onClick={() => {
+                      updateSearchboxText('');
+                    }}
+                  >
+                    {searchboxText ? <HighlightOffIcon /> : <span />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
           <Tree
             inventory={inventory}
+            searchboxText={searchboxText}
             modalOpen={modalOpen}
             updateModalOpen={updateModalOpen}
             statChoice={statChoice}
             updateStatChoice={updateStatChoice}
             selectedDownload={selectedDownload}
             updatedSelectedDownload={updatedSelectedDownload}
+            updateCoverageModalOpen={updateCoverageModalOpen}
           />
           {hasError ? (
             <p
