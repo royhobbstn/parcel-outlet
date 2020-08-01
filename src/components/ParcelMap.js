@@ -78,6 +78,15 @@ export class ParcelMap extends Component {
 
       //
 
+      window.map.on('error', event => {
+        if (event.error && event.error.status === 403) {
+          // ignore missing / forbidden tile error from S3
+          return;
+        } else {
+          console.error(event && event.error);
+        }
+      });
+
       window.map.on('mousemove', 'parcels', function (e) {
         if (!(e.features && e.features[0])) {
           return;
