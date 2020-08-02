@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { makeStyles } from '@material-ui/core/styles';
+import { dataPath } from './service/env';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,7 +49,7 @@ function App() {
   const allFeatureAttributes = useRef({});
 
   async function fetchData() {
-    const res = await fetch('/data/database_data.json');
+    const res = await fetch(dataPath);
     res
       .json()
       .then(res => {

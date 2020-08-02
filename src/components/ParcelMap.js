@@ -34,7 +34,7 @@ export class ParcelMap extends Component {
     }
 
     const info = window
-      .fetch(`${tileBase}/${productId}/info.json`)
+      .fetch(`${tileBase[0]}/${productId}/info.json`)
       .then(response => response.json());
 
     window.map.on('load', () => {
@@ -60,7 +60,9 @@ export class ParcelMap extends Component {
               maxzoom: data.maxZoom || Number(data.generatedMetadata.maxzoom), // todo eventually remove the former, replaced by grabbing straight from auto generated tippecanoe metadata output
               promoteId: '__po_id',
               type: 'vector',
-              tiles: [`${tileBase}/${productId}/{z}/{x}/{y}.pbf`],
+              tiles: tileBase.map(base => {
+                return `${base}/${productId}/{z}/{x}/{y}.pbf`;
+              }),
             },
             type: 'fill',
             layout: {},
@@ -161,7 +163,7 @@ export class ParcelMap extends Component {
             missingClusters.map(cluster => {
               return new Promise((resolve, reject) => {
                 window
-                  .fetch(`${tileBase}/${productId}/attributes/cl_${cluster}.ndjson`)
+                  .fetch(`${tileBase[0]}/${productId}/attributes/cl_${cluster}.ndjson`)
                   .then(async response => {
                     const exampleReader = ndjsonStream(response.body).getReader();
 

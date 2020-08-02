@@ -23,13 +23,13 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync build/ s3://www.parcel-outlet.com --delete --profile parcel-outlet",
+    "deploy": "aws s3 sync build/ s3://www.parcel-outlet.com --delete --profile parcel-outlet --exclude build/data/parcel_dataset_inventory-dev.json --exclude build/data/parcel_dataset_inventory.json",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id=E2X21IFEOVH42V --paths / --profile=parcel-outlet",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "loc": "scc --by-file --exclude-dir lookups --include-ext js ."
+    "loc": "scc --avg-wage 100000 --by-file --exclude-dir lookups --include-ext js ."
   },
   "eslintConfig": {
     "extends": "react-app"
