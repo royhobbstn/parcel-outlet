@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
+let layer_add = 0;
 
 export class ParcelMap extends Component {
+  constructor() {
+    super();
+    this.loadedClusters = {};
+    this.clustersInTransit = {};
+    this.selectedFeatureAttribute = 'GIS_AREA';
+  }
+
   componentDidMount() {
     // edge case to make sure the coverage modal is closed.
     // because if they change the map (which only changes querystring), it cant be recognized without a lot of work
@@ -14,9 +22,9 @@ export class ParcelMap extends Component {
       container: 'map',
       style: 'mapbox://styles/mapbox/dark-v9',
       center: [-88, 44.5],
-      zoom: 3,
+      zoom: 4,
       maxZoom: 20,
-      minZoom: 1,
+      minZoom: 4,
     });
 
     window.popup = new mapboxgl.Popup({
@@ -26,7 +34,7 @@ export class ParcelMap extends Component {
 
     let hoveredStateId = null;
 
-    let data = null;
+    let infoMeta = null;
 
     const productId = getUrlParameter('prid');
     if (!productId) {
@@ -37,33 +45,57 @@ export class ParcelMap extends Component {
       .fetch(`${tileBase[0]}/${productId}/info.json`)
       .then(response => response.json());
 
+    const hull = window
+      .fetch(`${tileBase[0]}/${productId}/feature_hulls.geojson`)
+      .then(response => response.json());
+
     window.map.on('load', () => {
       //
-      info
+      Promise.all([info, hull])
         .then(response => {
-          data = response;
+          infoMeta = response[0];
+          const geoHull = response[1];
 
           // set map extent here with new generated metadata values
-          // TODO remove if-check when clear current old tilesets from dev
-          if (data.generatedMetadata && data.generatedMetadata.bounds) {
-            const boundsArray = data.generatedMetadata.bounds.split(',').map(d => Number(d));
-            window.map.fitBounds(boundsArray, { animate: false });
-          }
+          const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
+          window.map.fitBounds(boundsArray, { animate: false });
 
           // add download buttons to AppBar (possible race condition here?)
-          populateProductDownloads(this.props.inventory, this.props.updateFocusDownload, data);
+          populateProductDownloads(this.props.inventory, this.props.updateFocusDownload, infoMeta);
+
+          window.map.addSource('hulls', {
+            type: 'geojson',
+            data: geoHull,
+          });
+
+          // temporarily visible
+          window.map.addLayer({
+            id: 'hull-layer',
+            source: 'hulls',
+            type: 'line',
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round',
+            },
+            paint: {
+              'line-color': '#ff69b4',
+              'line-width': 1,
+            },
+          });
+
+          window.map.addSource('tiles', {
+            maxzoom: Number(infoMeta.generatedMetadata.maxzoom),
+            promoteId: '__po_id',
+            type: 'vector',
+            tiles: tileBase.map(base => {
+              return `${base}/${productId}/{z}/{x}/{y}.pbf`;
+            }),
+          });
 
           window.map.addLayer({
             id: 'parcels',
-            'source-layer': data.layername,
-            source: {
-              maxzoom: data.maxZoom || Number(data.generatedMetadata.maxzoom), // todo eventually remove the former, replaced by grabbing straight from auto generated tippecanoe metadata output
-              promoteId: '__po_id',
-              type: 'vector',
-              tiles: tileBase.map(base => {
-                return `${base}/${productId}/{z}/{x}/{y}.pbf`;
-              }),
-            },
+            'source-layer': 'parcelslayer',
+            source: 'tiles',
             type: 'fill',
             layout: {},
             paint: {
@@ -89,6 +121,151 @@ export class ParcelMap extends Component {
         }
       });
 
+      window.map.on('moveend', async e => {
+        // todo change back
+        return;
+
+        // todo would be nice if this fired after map load
+        const features = window.map.querySourceFeatures('hulls');
+        const uniqueClusters = new Set();
+        features.forEach(feature => {
+          const cluster = feature.properties.cluster;
+
+          // filter out clusters at a higher zoom level
+          const zoom = window.map.getZoom();
+          const parsedCluster = parseInt(cluster.split('_')[0], 10);
+          if (parsedCluster > zoom) {
+            return;
+          }
+
+          // filter out cluster that have already been read, or are in transit
+          if (!this.loadedClusters[cluster] && !this.clustersInTransit[cluster]) {
+            uniqueClusters.add(cluster);
+          }
+        });
+
+        const clusterArray = Array.from(uniqueClusters);
+
+        if (clusterArray.length) {
+          clusterArray.forEach(cluster => {
+            this.clustersInTransit[cluster] = true;
+          });
+          const featureDetails = await Promise.all(
+            Array.from(clusterArray).map(cluster => {
+              return window
+                .fetch(
+                  `${tileBase[0]}/${productId}/featureAttributes/${cluster}__${this.selectedFeatureAttribute}.json`,
+                )
+                .then(response => response.json());
+            }),
+          );
+          clusterArray.forEach(cluster => {
+            this.loadedClusters[cluster] = true;
+            this.clustersInTransit[cluster] = false;
+          });
+
+          // apply some sort of categorical style
+
+          // todo dont hardcode
+          const colorscheme = {
+            schemename: 'mh1',
+            count: 7,
+            ifnull: 'gray',
+            ifzero: 'gray',
+            colors: ['#F3FC71', '#E7D45A', '#D5AD4B', '#BE8A40', '#A16938', '#814C2F', '#5F3225'],
+          };
+
+          const breaks = [10, 100, 200, 400, 600, 800];
+
+          // how is this done?
+          const p_stops = {};
+          featureDetails.forEach(data => {
+            Object.keys(data).forEach(key => {
+              p_stops[key] = getStopColor(data[key], colorscheme, breaks);
+            });
+          });
+
+          const unique_geoids = Object.keys(p_stops).map(d => Number(d));
+
+          const stops = unique_geoids.map(key => {
+            return [key, p_stops[key]];
+          });
+
+          // to avoid 'must have stops' errors
+          const drawn_stops = stops.length ? stops : [['0', 'blue']];
+
+          layer_add++;
+
+          const new_layer_name = `tiles-polygons-${layer_add}`;
+
+          console.log(drawn_stops);
+          window.map.addLayer({
+            id: new_layer_name,
+            type: 'fill',
+            source: 'tiles',
+            'source-layer': infoMeta.layername,
+            filter: ['in', '__po_id', ...unique_geoids],
+            paint: {
+              'fill-antialias': false,
+              'fill-opacity': 0.6,
+              'fill-color': {
+                property: '__po_id',
+                type: 'categorical',
+                stops: drawn_stops,
+              },
+            },
+          });
+
+          window.map.addLayer({
+            id: new_layer_name + '_line',
+            type: 'line',
+            source: 'tiles',
+            'source-layer': infoMeta.layername,
+            filter: ['in', '__po_id', ...unique_geoids],
+            paint: {
+              'line-opacity': 0.8,
+              'line-width': 0.5,
+              'line-offset': 0.25,
+              'line-color': {
+                property: '__po_id',
+                type: 'categorical',
+                stops: drawn_stops,
+              },
+            },
+          });
+
+          function getStopColor(value, color_info, break_values) {
+            //
+            if (!value && value !== 0) {
+              // null, undefined, NaN
+              return color_info.ifnull;
+            } else if (value === 0) {
+              // zero value
+
+              return color_info.ifzero;
+            }
+
+            const arr_length = break_values.length;
+            let color = 'black';
+
+            break_values.forEach((brval, index) => {
+              if (index === 0 && value < brval) {
+                // less than first value in breaks array
+                color = color_info.colors[index];
+              } else if (index === arr_length - 1 && value >= brval) {
+                // greater than last item in breaks array
+                color = color_info.colors[index + 1];
+              } else if (value >= brval && value < break_values[index + 1]) {
+                // between two break values
+                color = color_info.colors[index + 1];
+              }
+            });
+
+            return color;
+          }
+        }
+      });
+
       window.map.on('mousemove', 'parcels', function (e) {
         if (!(e.features && e.features[0])) {
           return;
@@ -99,14 +276,14 @@ export class ParcelMap extends Component {
         if (e.features.length > 0) {
           if (hoveredStateId) {
             window.map.setFeatureState(
-              { source: 'parcels', sourceLayer: data.layername, id: hoveredStateId },
+              { source: 'tiles', sourceLayer: infoMeta.layername, id: hoveredStateId },
               { hover: false },
             );
           }
           hoveredStateId = e.features[0].properties.__po_id;
 
           window.map.setFeatureState(
-            { source: 'parcels', sourceLayer: data.layername, id: hoveredStateId },
+            { source: 'tiles', sourceLayer: infoMeta.layername, id: hoveredStateId },
             { hover: true },
           );
         }
@@ -116,7 +293,7 @@ export class ParcelMap extends Component {
         window.map.getCanvas().style.cursor = '';
         if (hoveredStateId) {
           window.map.setFeatureState(
-            { source: 'parcels', sourceLayer: data.layername, id: hoveredStateId },
+            { source: 'tiles', sourceLayer: infoMeta.layername, id: hoveredStateId },
             { hover: false },
           );
         }
