@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
-let layer_add = 0;
+
+const LAYERNAME = 'parcelslayer';
 
 export class ParcelMap extends Component {
   constructor() {
     super();
+    // symbology clusters
     this.loadedClusters = {};
     this.clustersInTransit = {};
-    this.selectedFeatureAttribute = 'GIS_AREA';
+    this.selectedFeatureAttribute = 'MKT_VALUE';
+    // click popup clusters
+    this.clickClustersLoaded = {};
+    this.clickClustersInTransit = [];
+    this.parcelAttributes = {};
   }
 
   componentDidMount() {
@@ -20,7 +26,7 @@ export class ParcelMap extends Component {
     mapboxgl.accessToken = key;
     window.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v9',
+      style: 'mapbox://styles/mapbox/dark-v9?optimize=true',
       center: [-88, 44.5],
       zoom: 4,
       maxZoom: 20,
@@ -49,12 +55,17 @@ export class ParcelMap extends Component {
       .fetch(`${tileBase[0]}/${productId}/feature_hulls.geojson`)
       .then(response => response.json());
 
+    const clHull = window
+      .fetch(`${tileBase[0]}/${productId}/cluster_hull.geojson`)
+      .then(response => response.json());
+
     window.map.on('load', () => {
       //
-      Promise.all([info, hull])
+      Promise.all([info, hull, clHull])
         .then(response => {
           infoMeta = response[0];
           const geoHull = response[1];
+          const clusterHull = response[2];
 
           // set map extent here with new generated metadata values
           const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
@@ -68,6 +79,11 @@ export class ParcelMap extends Component {
             data: geoHull,
           });
 
+          window.map.addSource('clusterHull', {
+            type: 'geojson',
+            data: clusterHull,
+          });
+
           // temporarily visible
           window.map.addLayer({
             id: 'hull-layer',
@@ -78,8 +94,20 @@ export class ParcelMap extends Component {
               'line-cap': 'round',
             },
             paint: {
+              'line-opacity': 0,
               'line-color': '#ff69b4',
               'line-width': 1,
+            },
+          });
+
+          window.map.addLayer({
+            id: 'cluster-hull-layer',
+            source: 'clusterHull',
+            type: 'fill',
+            layout: {},
+            paint: {
+              'fill-opacity': 0,
+              'fill-outline-color': 'green',
             },
           });
 
@@ -99,9 +127,22 @@ export class ParcelMap extends Component {
             type: 'fill',
             layout: {},
             paint: {
-              'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.5, 0.2],
-              'fill-color': 'cyan',
-              'fill-outline-color': 'cyan',
+              'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.6],
+              'fill-color': [
+                'case',
+                ['!=', ['feature-state', 'selectedfeature'], null],
+                [
+                  'interpolate',
+                  ['linear'],
+                  ['feature-state', 'selectedfeature'],
+                  50000,
+                  'rgba(222,235,247,1)',
+                  500000,
+                  'rgba(49,130,189,1)',
+                ],
+                'rgba(255, 255, 255, 0)',
+              ],
+              // 'fill-outline-color': 'cyan',
             },
           });
         })
@@ -111,6 +152,8 @@ export class ParcelMap extends Component {
         });
 
       //
+      // colors: ['#F3FC71', '#E7D45A', '#D5AD4B', '#BE8A40', '#A16938', '#814C2F', '#5F3225']
+      // const breaks = [50000, 100000, 150000, 200000, 300000, 500000];
 
       window.map.on('error', event => {
         if (event.error && event.error.status === 403) {
@@ -122,9 +165,6 @@ export class ParcelMap extends Component {
       });
 
       window.map.on('moveend', async e => {
-        // todo change back
-        return;
-
         // todo would be nice if this fired after map load
         const features = window.map.querySourceFeatures('hulls');
         const uniqueClusters = new Set();
@@ -166,103 +206,22 @@ export class ParcelMap extends Component {
 
           // apply some sort of categorical style
 
-          // todo dont hardcode
-          const colorscheme = {
-            schemename: 'mh1',
-            count: 7,
-            ifnull: 'gray',
-            ifzero: 'gray',
-            colors: ['#F3FC71', '#E7D45A', '#D5AD4B', '#BE8A40', '#A16938', '#814C2F', '#5F3225'],
-          };
-
-          const breaks = [10, 100, 200, 400, 600, 800];
-
-          // how is this done?
-          const p_stops = {};
           featureDetails.forEach(data => {
             Object.keys(data).forEach(key => {
-              p_stops[key] = getStopColor(data[key], colorscheme, breaks);
+              window.map.setFeatureState(
+                {
+                  source: 'tiles',
+                  sourceLayer: 'parcelslayer',
+                  id: key,
+                },
+                {
+                  selectedfeature: data[key],
+                },
+              );
             });
           });
 
-          const unique_geoids = Object.keys(p_stops).map(d => Number(d));
-
-          const stops = unique_geoids.map(key => {
-            return [key, p_stops[key]];
-          });
-
-          // to avoid 'must have stops' errors
-          const drawn_stops = stops.length ? stops : [['0', 'blue']];
-
-          layer_add++;
-
-          const new_layer_name = `tiles-polygons-${layer_add}`;
-
-          console.log(drawn_stops);
-          window.map.addLayer({
-            id: new_layer_name,
-            type: 'fill',
-            source: 'tiles',
-            'source-layer': infoMeta.layername,
-            filter: ['in', '__po_id', ...unique_geoids],
-            paint: {
-              'fill-antialias': false,
-              'fill-opacity': 0.6,
-              'fill-color': {
-                property: '__po_id',
-                type: 'categorical',
-                stops: drawn_stops,
-              },
-            },
-          });
-
-          window.map.addLayer({
-            id: new_layer_name + '_line',
-            type: 'line',
-            source: 'tiles',
-            'source-layer': infoMeta.layername,
-            filter: ['in', '__po_id', ...unique_geoids],
-            paint: {
-              'line-opacity': 0.8,
-              'line-width': 0.5,
-              'line-offset': 0.25,
-              'line-color': {
-                property: '__po_id',
-                type: 'categorical',
-                stops: drawn_stops,
-              },
-            },
-          });
-
-          function getStopColor(value, color_info, break_values) {
-            //
-            if (!value && value !== 0) {
-              // null, undefined, NaN
-              return color_info.ifnull;
-            } else if (value === 0) {
-              // zero value
-
-              return color_info.ifzero;
-            }
-
-            const arr_length = break_values.length;
-            let color = 'black';
-
-            break_values.forEach((brval, index) => {
-              if (index === 0 && value < brval) {
-                // less than first value in breaks array
-                color = color_info.colors[index];
-              } else if (index === arr_length - 1 && value >= brval) {
-                // greater than last item in breaks array
-                color = color_info.colors[index + 1];
-              } else if (value >= brval && value < break_values[index + 1]) {
-                // between two break values
-                color = color_info.colors[index + 1];
-              }
-            });
-
-            return color;
-          }
+          return;
         }
       });
 
@@ -276,14 +235,14 @@ export class ParcelMap extends Component {
         if (e.features.length > 0) {
           if (hoveredStateId) {
             window.map.setFeatureState(
-              { source: 'tiles', sourceLayer: infoMeta.layername, id: hoveredStateId },
+              { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
               { hover: false },
             );
           }
           hoveredStateId = e.features[0].properties.__po_id;
 
           window.map.setFeatureState(
-            { source: 'tiles', sourceLayer: infoMeta.layername, id: hoveredStateId },
+            { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
             { hover: true },
           );
         }
@@ -293,7 +252,7 @@ export class ParcelMap extends Component {
         window.map.getCanvas().style.cursor = '';
         if (hoveredStateId) {
           window.map.setFeatureState(
-            { source: 'tiles', sourceLayer: infoMeta.layername, id: hoveredStateId },
+            { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
             { hover: false },
           );
         }
@@ -304,6 +263,26 @@ export class ParcelMap extends Component {
         if (!(e.features && e.features[0])) {
           return;
         }
+
+        const bbox = [
+          [e.point.x - 1, e.point.y - 1],
+          [e.point.x + 1, e.point.y + 1],
+        ];
+        const renderedHulls = window.map.queryRenderedFeatures(bbox, {
+          layers: ['cluster-hull-layer'],
+        });
+
+        const missingClustersSet = new Set();
+        renderedHulls.forEach(feature => {
+          const cluster = feature.properties.__po_cl;
+          if (
+            !this.clickClustersLoaded[cluster] &&
+            !this.clickClustersInTransit.includes(cluster)
+          ) {
+            missingClustersSet.add(cluster);
+            this.clickClustersInTransit.push(cluster);
+          }
+        });
 
         const duplicates = {};
         const storedFeatures = [];
@@ -317,19 +296,6 @@ export class ParcelMap extends Component {
         });
 
         const productId = getUrlParameter('prid');
-
-        const missingClustersSet = new Set();
-
-        if (!this.props.allFeatureAttributes.current[productId]) {
-          this.props.allFeatureAttributes.current[productId] = {};
-        }
-
-        storedFeatures.forEach(feature => {
-          if (!this.props.allFeatureAttributes.current[productId][feature.properties.__po_id]) {
-            missingClustersSet.add(feature.properties.__po_cl);
-          }
-          return feature.properties.__po_id;
-        });
 
         const missingClusters = Array.from(missingClustersSet);
 
@@ -361,18 +327,29 @@ export class ParcelMap extends Component {
             }),
           );
 
-          this.props.allFeatureAttributes.current[productId] = Object.assign(
-            {},
-            this.props.allFeatureAttributes.current[productId],
-            data,
-          );
+          this.parcelAttributes = { ...this.parcelAttributes, ...data };
+
+          this.clickClustersInTransit = this.clickClustersInTransit.filter(d => {
+            return !missingClusters.includes(d);
+          });
         }
 
         // corral the information just for the features you need
         // ends up being an array of feature properties objects
+        const attributeData = [];
 
-        const attributeData = storedFeatures.map(feature => {
-          return this.props.allFeatureAttributes.current[productId][feature.properties.__po_id];
+        storedFeatures.forEach(feature => {
+          const { overlappingFeatures, ...features } = JSON.parse(
+            JSON.stringify(this.parcelAttributes[feature.properties.__po_id]),
+          );
+
+          attributeData.push(features);
+
+          // overlapping features stored as overlappingFeatures variable
+          // within an arbitrary base feature
+          if (overlappingFeatures) {
+            attributeData.push(...overlappingFeatures);
+          }
         });
 
         this.props.updateMapAttributesModalOpen(true);

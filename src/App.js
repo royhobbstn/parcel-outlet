@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from './components/AppBar.js';
 import About from './components/About.js';
 import { Tree } from './components/Tree.js';
@@ -46,7 +46,6 @@ function App() {
 
   const [mapAttributesModalOpen, updateMapAttributesModalOpen] = useState(false);
   const [currentFeatureAttributes, updateCurrentFeatureAttributes] = useState({});
-  const allFeatureAttributes = useRef({});
 
   async function fetchData() {
     const res = await fetch(dataPath);
@@ -115,7 +114,6 @@ function App() {
             updateFocusDownload={updateFocusDownload}
             updateMapAttributesModalOpen={updateMapAttributesModalOpen}
             updateCurrentFeatureAttributes={updateCurrentFeatureAttributes}
-            allFeatureAttributes={allFeatureAttributes}
             updateCoverageModalOpen={updateCoverageModalOpen}
           />
         </Route>
