@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
+import { stateLookup } from '../lookups/states';
+import { countyLookup } from '../lookups/counties';
 
 const LAYERNAME = 'parcelslayer';
 
@@ -11,7 +13,7 @@ export class ParcelMap extends Component {
     // symbology clusters
     this.loadedClusters = {};
     this.clustersInTransit = {};
-    this.selectedFeatureAttribute = 'MKT_VALUE';
+    this.selectedFeatureAttribute = 'SHAPE_Area';
     // click popup clusters
     this.clickClustersLoaded = {};
     this.clickClustersInTransit = [];
@@ -66,6 +68,14 @@ export class ParcelMap extends Component {
           infoMeta = response[0];
           const geoHull = response[1];
           const clusterHull = response[2];
+
+          // constructGeoTitle(infoMeta);
+
+          const mapTitleControl = new MapTitleControl(infoMeta);
+          window.map.addControl(mapTitleControl);
+
+          const attributeSelector = new AttributeControl(infoMeta);
+          window.map.addControl(attributeSelector);
 
           // set map extent here with new generated metadata values
           const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
@@ -399,4 +409,111 @@ function populateProductDownloads(inventory, updateFocusDownload, metadata) {
   } else {
     updateFocusDownload({ ...focusDownload, geoname, geoid, source_name, last_checked });
   }
+}
+
+class MapTitleControl {
+  constructor(infoMeta) {
+    this.titleTextCounty = countyLookup(infoMeta.geoid);
+    this.titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
+  }
+  onAdd(map) {
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'mapboxgl-ctrl map-title-control';
+    this.container.textContent = this.titleTextCounty + ', ' + this.titleTextState;
+    return this.container;
+  }
+  onRemove() {
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+}
+
+class AttributeControl {
+  constructor(infoMeta) {
+    // this.titleTextCounty = countyLookup(infoMeta.geoid);
+    // this.titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
+    this.fieldMetadata = infoMeta.fieldMetadata;
+    console.log(infoMeta);
+  }
+  onAdd(map) {
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'mapboxgl-ctrl map-attribute-control';
+
+    const categoricalKeys = Object.keys(this.fieldMetadata.categorical).sort();
+    const numericKeys = Object.keys(this.fieldMetadata.numeric).sort();
+
+    const selLabel = document.createElement('label');
+    selLabel.appendChild(document.createTextNode('Attribute Selection'));
+    selLabel.style.color = 'azure';
+    selLabel.style.margin = '5px auto';
+
+    const sel = document.createElement('select');
+    sel.id = 'attribute_selector';
+    selLabel.for = 'attribute_selector';
+    sel.style.display = 'block';
+    selLabel.style.display = 'block';
+
+    const defaultOption = createDefaultOption();
+    sel.appendChild(defaultOption);
+
+    if (categoricalKeys.length) {
+      const categoricalOptGroup = createOptGroup('Categorical');
+      categoricalKeys.forEach(key => {
+        const opt = createOption(key, 'cat_');
+        categoricalOptGroup.appendChild(opt);
+      });
+      sel.appendChild(categoricalOptGroup);
+    }
+
+    if (numericKeys.length) {
+      const numericOptGroup = createOptGroup('Numeric');
+      numericKeys.forEach(key => {
+        const opt = createOption(key, 'num_');
+        numericOptGroup.appendChild(opt);
+      });
+      sel.appendChild(numericOptGroup);
+    }
+
+    this.container.appendChild(selLabel);
+    this.container.appendChild(sel);
+
+    this.attributeSelectorChange = sel.addEventListener(
+      'change',
+      e => {
+        console.log(e.target.value);
+
+        // if num_ show numeric controls
+
+        // if cat_ show categorical controls
+      },
+      false,
+    );
+    return this.container;
+  }
+  onRemove() {
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+}
+
+function createDefaultOption() {
+  var opt = document.createElement('option');
+  opt.appendChild(document.createTextNode('Default (none)'));
+  opt.value = '__default__';
+  return opt;
+}
+
+function createOption(labelAndValue, prefix) {
+  var opt = document.createElement('option');
+  opt.appendChild(document.createTextNode(labelAndValue));
+  opt.value = prefix + labelAndValue;
+  return opt;
+}
+
+function createOptGroup(label) {
+  var optGroup = document.createElement('optgroup');
+  optGroup.label = label;
+  return optGroup;
 }
