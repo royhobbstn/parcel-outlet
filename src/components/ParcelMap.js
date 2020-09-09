@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
-import { stateLookup } from '../lookups/states';
-import { countyLookup } from '../lookups/counties';
+import { AttributeSelector } from './AttributeSelector';
 
 const LAYERNAME = 'parcelslayer';
 
 export class ParcelMap extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // symbology clusters
     this.loadedClusters = {};
     this.clustersInTransit = {};
@@ -18,9 +18,11 @@ export class ParcelMap extends Component {
     this.clickClustersLoaded = {};
     this.clickClustersInTransit = [];
     this.parcelAttributes = {};
+
+    this.state = { infoMeta: null };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // edge case to make sure the coverage modal is closed.
     // because if they change the map (which only changes querystring), it cant be recognized without a lot of work
     this.props.updateCoverageModalOpen(false);
@@ -42,8 +44,6 @@ export class ParcelMap extends Component {
 
     let hoveredStateId = null;
 
-    let infoMeta = null;
-
     const productId = getUrlParameter('prid');
     if (!productId) {
       console.error('sorry, please provide a prid');
@@ -61,105 +61,94 @@ export class ParcelMap extends Component {
       .fetch(`${tileBase[0]}/${productId}/cluster_hull.geojson`)
       .then(response => response.json());
 
-    window.map.on('load', () => {
+    window.map.on('load', async () => {
       //
-      Promise.all([info, hull, clHull])
-        .then(response => {
-          infoMeta = response[0];
-          const geoHull = response[1];
-          const clusterHull = response[2];
+      const response = await Promise.all([info, hull, clHull]);
 
-          // constructGeoTitle(infoMeta);
+      const infoMeta = response[0];
+      const geoHull = response[1];
+      const clusterHull = response[2];
 
-          const mapTitleControl = new MapTitleControl(infoMeta);
-          window.map.addControl(mapTitleControl);
+      this.setState({ infoMeta: response[0] });
 
-          const attributeSelector = new AttributeControl(infoMeta);
-          window.map.addControl(attributeSelector);
+      // set map extent here with new generated metadata values
+      const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
+      window.map.fitBounds(boundsArray, { animate: false });
 
-          // set map extent here with new generated metadata values
-          const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
-          window.map.fitBounds(boundsArray, { animate: false });
+      // add download buttons to AppBar (possible race condition here?)
+      populateProductDownloads(this.props.inventory, this.props.updateFocusDownload, infoMeta);
 
-          // add download buttons to AppBar (possible race condition here?)
-          populateProductDownloads(this.props.inventory, this.props.updateFocusDownload, infoMeta);
+      window.map.addSource('hulls', {
+        type: 'geojson',
+        data: geoHull,
+      });
 
-          window.map.addSource('hulls', {
-            type: 'geojson',
-            data: geoHull,
-          });
+      window.map.addSource('clusterHull', {
+        type: 'geojson',
+        data: clusterHull,
+      });
 
-          window.map.addSource('clusterHull', {
-            type: 'geojson',
-            data: clusterHull,
-          });
+      // temporarily visible
+      window.map.addLayer({
+        id: 'hull-layer',
+        source: 'hulls',
+        type: 'line',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round',
+        },
+        paint: {
+          'line-opacity': 0,
+          'line-color': '#ff69b4',
+          'line-width': 1,
+        },
+      });
 
-          // temporarily visible
-          window.map.addLayer({
-            id: 'hull-layer',
-            source: 'hulls',
-            type: 'line',
-            layout: {
-              'line-join': 'round',
-              'line-cap': 'round',
-            },
-            paint: {
-              'line-opacity': 0,
-              'line-color': '#ff69b4',
-              'line-width': 1,
-            },
-          });
+      window.map.addLayer({
+        id: 'cluster-hull-layer',
+        source: 'clusterHull',
+        type: 'fill',
+        layout: {},
+        paint: {
+          'fill-opacity': 0,
+          'fill-outline-color': 'green',
+        },
+      });
 
-          window.map.addLayer({
-            id: 'cluster-hull-layer',
-            source: 'clusterHull',
-            type: 'fill',
-            layout: {},
-            paint: {
-              'fill-opacity': 0,
-              'fill-outline-color': 'green',
-            },
-          });
+      window.map.addSource('tiles', {
+        maxzoom: Number(infoMeta.generatedMetadata.maxzoom),
+        promoteId: '__po_id',
+        type: 'vector',
+        tiles: tileBase.map(base => {
+          return `${base}/${productId}/{z}/{x}/{y}.pbf`;
+        }),
+      });
 
-          window.map.addSource('tiles', {
-            maxzoom: Number(infoMeta.generatedMetadata.maxzoom),
-            promoteId: '__po_id',
-            type: 'vector',
-            tiles: tileBase.map(base => {
-              return `${base}/${productId}/{z}/{x}/{y}.pbf`;
-            }),
-          });
-
-          window.map.addLayer({
-            id: 'parcels',
-            'source-layer': 'parcelslayer',
-            source: 'tiles',
-            type: 'fill',
-            layout: {},
-            paint: {
-              'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.6],
-              'fill-color': [
-                'case',
-                ['!=', ['feature-state', 'selectedfeature'], null],
-                [
-                  'interpolate',
-                  ['linear'],
-                  ['feature-state', 'selectedfeature'],
-                  50000,
-                  'rgba(222,235,247,1)',
-                  500000,
-                  'rgba(49,130,189,1)',
-                ],
-                'rgba(255, 255, 255, 0)',
-              ],
-              // 'fill-outline-color': 'cyan',
-            },
-          });
-        })
-        .catch(err => {
-          console.error(err);
-          // todo: message data no longer here.  redirect options.
-        });
+      window.map.addLayer({
+        id: 'parcels',
+        'source-layer': 'parcelslayer',
+        source: 'tiles',
+        type: 'fill',
+        layout: {},
+        paint: {
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.6],
+          'fill-color': [
+            'case',
+            ['!=', ['feature-state', 'selectedfeature'], null],
+            [
+              'interpolate',
+              ['linear'],
+              ['feature-state', 'selectedfeature'],
+              50000,
+              'rgba(222,235,247,1)',
+              500000,
+              'rgba(49,130,189,1)',
+            ],
+            'rgba(255, 255, 255, 0)',
+          ],
+          // 'fill-outline-color': 'cyan',
+        },
+      });
 
       //
       // colors: ['#F3FC71', '#E7D45A', '#D5AD4B', '#BE8A40', '#A16938', '#814C2F', '#5F3225']
@@ -174,66 +163,66 @@ export class ParcelMap extends Component {
         }
       });
 
-      window.map.on('moveend', async e => {
-        // todo would be nice if this fired after map load
-        const features = window.map.querySourceFeatures('hulls');
-        const uniqueClusters = new Set();
-        features.forEach(feature => {
-          const cluster = feature.properties.cluster;
+      // window.map.on('moveend', async e => {
+      //   // todo would be nice if this fired after map load
+      //   const features = window.map.querySourceFeatures('hulls');
+      //   const uniqueClusters = new Set();
+      //   features.forEach(feature => {
+      //     const cluster = feature.properties.cluster;
 
-          // filter out clusters at a higher zoom level
-          const zoom = window.map.getZoom();
-          const parsedCluster = parseInt(cluster.split('_')[0], 10);
-          if (parsedCluster > zoom) {
-            return;
-          }
+      //     // filter out clusters at a higher zoom level
+      //     const zoom = window.map.getZoom();
+      //     const parsedCluster = parseInt(cluster.split('_')[0], 10);
+      //     if (parsedCluster > zoom) {
+      //       return;
+      //     }
 
-          // filter out cluster that have already been read, or are in transit
-          if (!this.loadedClusters[cluster] && !this.clustersInTransit[cluster]) {
-            uniqueClusters.add(cluster);
-          }
-        });
+      //     // filter out cluster that have already been read, or are in transit
+      //     if (!this.loadedClusters[cluster] && !this.clustersInTransit[cluster]) {
+      //       uniqueClusters.add(cluster);
+      //     }
+      //   });
 
-        const clusterArray = Array.from(uniqueClusters);
+      //   const clusterArray = Array.from(uniqueClusters);
 
-        if (clusterArray.length) {
-          clusterArray.forEach(cluster => {
-            this.clustersInTransit[cluster] = true;
-          });
-          const featureDetails = await Promise.all(
-            Array.from(clusterArray).map(cluster => {
-              return window
-                .fetch(
-                  `${tileBase[0]}/${productId}/featureAttributes/${cluster}__${this.selectedFeatureAttribute}.json`,
-                )
-                .then(response => response.json());
-            }),
-          );
-          clusterArray.forEach(cluster => {
-            this.loadedClusters[cluster] = true;
-            this.clustersInTransit[cluster] = false;
-          });
+      //   if (clusterArray.length) {
+      //     clusterArray.forEach(cluster => {
+      //       this.clustersInTransit[cluster] = true;
+      //     });
+      //     const featureDetails = await Promise.all(
+      //       Array.from(clusterArray).map(cluster => {
+      //         return window
+      //           .fetch(
+      //             `${tileBase[0]}/${productId}/featureAttributes/${cluster}__${this.selectedFeatureAttribute}.json`,
+      //           )
+      //           .then(response => response.json());
+      //       }),
+      //     );
+      //     clusterArray.forEach(cluster => {
+      //       this.loadedClusters[cluster] = true;
+      //       this.clustersInTransit[cluster] = false;
+      //     });
 
-          // apply some sort of categorical style
+      //     // apply some sort of categorical style
 
-          featureDetails.forEach(data => {
-            Object.keys(data).forEach(key => {
-              window.map.setFeatureState(
-                {
-                  source: 'tiles',
-                  sourceLayer: 'parcelslayer',
-                  id: key,
-                },
-                {
-                  selectedfeature: data[key],
-                },
-              );
-            });
-          });
+      //     featureDetails.forEach(data => {
+      //       Object.keys(data).forEach(key => {
+      //         window.map.setFeatureState(
+      //           {
+      //             source: 'tiles',
+      //             sourceLayer: 'parcelslayer',
+      //             id: key,
+      //           },
+      //           {
+      //             selectedfeature: data[key],
+      //           },
+      //         );
+      //       });
+      //     });
 
-          return;
-        }
-      });
+      //     return;
+      //   }
+      // });
 
       window.map.on('mousemove', 'parcels', function (e) {
         if (!(e.features && e.features[0])) {
@@ -369,11 +358,19 @@ export class ParcelMap extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false;
+    return true;
   }
 
   render() {
-    return <div id="map" />;
+    return (
+      <div>
+        {/* <div className="sidebarStyle">
+          <div>Longitude: 25 | Latitude: 25 | Zoom: 10</div>
+        </div>{' '} */}
+        <AttributeSelector infoMeta={this.state.infoMeta} map={window.map}></AttributeSelector>
+        <div id="map" />
+      </div>
+    );
   }
 }
 
@@ -409,111 +406,4 @@ function populateProductDownloads(inventory, updateFocusDownload, metadata) {
   } else {
     updateFocusDownload({ ...focusDownload, geoname, geoid, source_name, last_checked });
   }
-}
-
-class MapTitleControl {
-  constructor(infoMeta) {
-    this.titleTextCounty = countyLookup(infoMeta.geoid);
-    this.titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
-  }
-  onAdd(map) {
-    this.map = map;
-    this.container = document.createElement('div');
-    this.container.className = 'mapboxgl-ctrl map-title-control';
-    this.container.textContent = this.titleTextCounty + ', ' + this.titleTextState;
-    return this.container;
-  }
-  onRemove() {
-    this.container.parentNode.removeChild(this.container);
-    this.map = undefined;
-  }
-}
-
-class AttributeControl {
-  constructor(infoMeta) {
-    // this.titleTextCounty = countyLookup(infoMeta.geoid);
-    // this.titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
-    this.fieldMetadata = infoMeta.fieldMetadata;
-    console.log(infoMeta);
-  }
-  onAdd(map) {
-    this.map = map;
-    this.container = document.createElement('div');
-    this.container.className = 'mapboxgl-ctrl map-attribute-control';
-
-    const categoricalKeys = Object.keys(this.fieldMetadata.categorical).sort();
-    const numericKeys = Object.keys(this.fieldMetadata.numeric).sort();
-
-    const selLabel = document.createElement('label');
-    selLabel.appendChild(document.createTextNode('Attribute Selection'));
-    selLabel.style.color = 'azure';
-    selLabel.style.margin = '5px auto';
-
-    const sel = document.createElement('select');
-    sel.id = 'attribute_selector';
-    selLabel.for = 'attribute_selector';
-    sel.style.display = 'block';
-    selLabel.style.display = 'block';
-
-    const defaultOption = createDefaultOption();
-    sel.appendChild(defaultOption);
-
-    if (categoricalKeys.length) {
-      const categoricalOptGroup = createOptGroup('Categorical');
-      categoricalKeys.forEach(key => {
-        const opt = createOption(key, 'cat_');
-        categoricalOptGroup.appendChild(opt);
-      });
-      sel.appendChild(categoricalOptGroup);
-    }
-
-    if (numericKeys.length) {
-      const numericOptGroup = createOptGroup('Numeric');
-      numericKeys.forEach(key => {
-        const opt = createOption(key, 'num_');
-        numericOptGroup.appendChild(opt);
-      });
-      sel.appendChild(numericOptGroup);
-    }
-
-    this.container.appendChild(selLabel);
-    this.container.appendChild(sel);
-
-    this.attributeSelectorChange = sel.addEventListener(
-      'change',
-      e => {
-        console.log(e.target.value);
-
-        // if num_ show numeric controls
-
-        // if cat_ show categorical controls
-      },
-      false,
-    );
-    return this.container;
-  }
-  onRemove() {
-    this.container.parentNode.removeChild(this.container);
-    this.map = undefined;
-  }
-}
-
-function createDefaultOption() {
-  var opt = document.createElement('option');
-  opt.appendChild(document.createTextNode('Default (none)'));
-  opt.value = '__default__';
-  return opt;
-}
-
-function createOption(labelAndValue, prefix) {
-  var opt = document.createElement('option');
-  opt.appendChild(document.createTextNode(labelAndValue));
-  opt.value = prefix + labelAndValue;
-  return opt;
-}
-
-function createOptGroup(label) {
-  var optGroup = document.createElement('optgroup');
-  optGroup.label = label;
-  return optGroup;
 }
