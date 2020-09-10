@@ -32,14 +32,14 @@ export function MapAttributeSelect({
       </option>
       <optgroup label="Categorical">
         {categoricalKeys.map(option => (
-          <option key={option} value={option}>
+          <option key={option} value={'cat_' + option}>
             {option}
           </option>
         ))}
       </optgroup>
       <optgroup label="Numeric">
         {numericKeys.map(option => (
-          <option key={option} value={option}>
+          <option key={option} value={'num_' + option}>
             {option}
           </option>
         ))}

@@ -27,13 +27,13 @@ export const lightCategorical = [
 ];
 
 export const classifications = [
-  'ckmeans5',
-  'ckmeans7',
-  'ckmeans9',
-  'quantile5',
-  'quantile7',
-  'quantile9',
-  'quantile11',
-  'stddev7',
-  'stddev8',
+  'ckmeans_5',
+  'ckmeans_7',
+  'ckmeans_9',
+  'quantile_5',
+  'quantile_7',
+  'quantile_9',
+  'quantile_11',
+  'stddev_7',
+  'stddev_8',
 ];

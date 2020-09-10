@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties';
 
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Grid } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, Grid } from '@material-ui/core';
 
 import { MapTitleControl } from './MapTitleControl';
 import { MapAttributeSelect } from './MapAttributeSelect';
@@ -17,6 +17,7 @@ import { classifications } from '../lookups/styleData';
 
 export function AttributeSelector(props) {
   const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
+  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('mh4_5');
   const [selectedAttribute, updateSelectedAttribute] = useState('default');
   const [selectedClassification, updateSelectedClassification] = useState(classifications[0]);
   const [advancedToggle, updateAdvancedToggle] = useState(false);
@@ -65,8 +66,12 @@ export function AttributeSelector(props) {
               </Grid>
               <Grid item xs={6}>
                 <MapColorschemeSelect
+                  selectedAttribute={selectedAttribute}
+                  selectedClassification={selectedClassification}
                   selectedCategoricalScheme={selectedCategoricalScheme}
                   updateSelectedCategoricalScheme={updateSelectedCategoricalScheme}
+                  selectedNumericScheme={selectedNumericScheme}
+                  updateSelectedNumericScheme={updateSelectedNumericScheme}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -96,17 +101,6 @@ export function AttributeSelector(props) {
               </Grid>
             ) : null}
           </DialogContent>
-          <DialogActions>
-            <Button
-              autoFocus
-              onClick={() => {
-                updateDialogOpen(false);
-              }}
-              color="primary"
-            >
-              Save changes
-            </Button>
-          </DialogActions>
         </Dialog>
       </div>
     </div>
