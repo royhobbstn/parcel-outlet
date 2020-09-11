@@ -4,7 +4,7 @@ import About from './components/About.js';
 import { Tree } from './components/Tree.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { CoverageMap } from './components/CoverageMap';
-import { ParcelMap } from './components/ParcelMap';
+import { ParcelMap } from './components/ParcelMapHook';
 import StatsDialog from './components/StatsDialog';
 import MapAttributesDialog from './components/MapAttributesDialog';
 import CoverageDialog from './components/CoverageDialog';

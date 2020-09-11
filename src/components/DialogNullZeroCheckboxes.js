@@ -16,7 +16,7 @@ export function DialogNullZeroCheckboxes({
 }) {
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Data Classification</FormLabel>
+      <FormLabel component="legend">Convert Data</FormLabel>
       <FormGroup>
         <FormControlLabel
           control={
@@ -24,11 +24,12 @@ export function DialogNullZeroCheckboxes({
               checked={zeroAsNull}
               onChange={() => {
                 updateZeroAsNull(!zeroAsNull);
+                console.log('update zero null');
               }}
               name="zeroAsNull"
             />
           }
-          label="Consider 0 to be null"
+          label="0 to null"
         />
         <FormControlLabel
           control={
@@ -36,11 +37,12 @@ export function DialogNullZeroCheckboxes({
               checked={nullAsZero}
               onChange={() => {
                 updateNullAsZero(!nullAsZero);
+                console.log('update null zero');
               }}
               name="nullAsZero"
             />
           }
-          label="Consider null to be 0"
+          label="null to 0"
         />
       </FormGroup>
       <FormHelperText>Null parcels are filtered out.</FormHelperText>

@@ -1,17 +1,8 @@
 import React from 'react';
 import { TextField, MenuItem } from '@material-ui/core';
 import { darkCategorical, lightCategorical } from '../lookups/styleData';
+
 import { colortree } from '../lookups/colortree';
-
-// show color schemes
-
-// every single possible color palette per selected scheme
-
-// show nothing if default
-// show categorical if attribute cat_
-
-// if attribute num_
-//   take in classification scheme value and select from it.
 
 export function MapColorschemeSelect({
   selectedCategoricalScheme,
@@ -19,7 +10,6 @@ export function MapColorschemeSelect({
   selectedNumericScheme,
   updateSelectedNumericScheme,
   selectedAttribute,
-  selectedClassification,
 }) {
   let ColorschemeSelect = null;
   const prefix = selectedAttribute.slice(0, 3);
@@ -30,9 +20,16 @@ export function MapColorschemeSelect({
       updateSelectedCategoricalScheme,
     });
   } else if (prefix === 'num') {
-    const postfix = selectedClassification.split('_')[1];
+    const postfix = selectedNumericScheme.split('_')[1];
+
+    const schemes = Object.keys(colortree)
+      .filter(d => colortree[d].count === Number(postfix))
+      .map(d => {
+        return { id: d, colors: colortree[d].colors };
+      });
+
     ColorschemeSelect = NumericSelector(
-      postfix,
+      schemes,
       selectedNumericScheme,
       updateSelectedNumericScheme,
     );
@@ -58,6 +55,7 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
       onChange={evt => {
         // @ts-ignore
         updateSelectedCategoricalScheme(evt.target.value);
+        console.log('change map categoric');
       }}
       variant="outlined"
     >
@@ -95,13 +93,7 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
   );
 }
 
-function NumericSelector(postfix, selectedNumericScheme, updateSelectedNumericScheme) {
-  const schemes = Object.keys(colortree)
-    .filter(d => colortree[d].count === Number(postfix))
-    .map(d => {
-      return { id: d, colors: colortree[d].colors };
-    });
-  console.log(schemes);
+function NumericSelector(schemes, selectedNumericScheme, updateSelectedNumericScheme) {
   return (
     <TextField
       style={{
@@ -116,6 +108,7 @@ function NumericSelector(postfix, selectedNumericScheme, updateSelectedNumericSc
       onChange={evt => {
         // @ts-ignore
         updateSelectedNumericScheme(evt.target.value);
+        console.log('change map numeric');
       }}
       variant="outlined"
     >

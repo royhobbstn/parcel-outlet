@@ -24,6 +24,7 @@ export function MapAttributeSelect({
       onChange={evt => {
         // @ts-ignore
         updateSelectedAttribute(evt.target.value);
+        console.log('change map attribute');
       }}
       variant="outlined"
     >

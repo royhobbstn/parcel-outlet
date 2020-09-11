@@ -21,19 +21,6 @@ body {
   padding-top: 15px;
 }
 
-.sidebarStyle {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 12px;
-  background-color: #404040;
-  color: #ffffff;
-  z-index: 1 !important;
-  padding: 6px;
-  font-weight: bold;
-}
-
 .map-title-control {
   color: rgb(0, 0, 0, 0.87);
   background: azure;
@@ -42,20 +29,6 @@ body {
   outline: 1px solid grey;
   font-size: 0.8125rem;
   cursor: text;
-}
-
-.map-attribute-control {
-  color: rgb(0, 0, 0, 0.87);
-  /* background: azure; */
-  padding: 6px 10px;
-  margin: 8px;
-  /* outline: 1px solid grey; */
-  font-size: 0.8125rem;
-  cursor: default;
-}
-
-.map-attribute-control select {
-  cursor: pointer;
 }
 
 /* treeEntry */

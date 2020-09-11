@@ -15,7 +15,7 @@ import { DialogNullZeroCheckboxes } from './DialogNullZeroCheckboxes';
 import { MapClassificationSelect } from './MapClassificationSelect';
 import { classifications } from '../lookups/styleData';
 
-export function AttributeSelector(props) {
+export function AttributeSelector({ infoMeta, map }) {
   const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
   const [selectedNumericScheme, updateSelectedNumericScheme] = useState('mh4_5');
   const [selectedAttribute, updateSelectedAttribute] = useState('default');
@@ -25,12 +25,11 @@ export function AttributeSelector(props) {
   const [nullAsZero, updateNullAsZero] = useState(false);
   const [dialogOpen, updateDialogOpen] = useState(true);
 
-  const infoMeta = props.infoMeta;
   if (!infoMeta) {
     return null;
   }
 
-  console.log(infoMeta);
+  console.log(map);
 
   const titleTextCounty = countyLookup(infoMeta.geoid);
   const titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
@@ -39,6 +38,8 @@ export function AttributeSelector(props) {
 
   const categoricalKeys = Object.keys(fieldMetadata.categorical).sort();
   const numericKeys = Object.keys(fieldMetadata.numeric).sort();
+
+  const numericIsSelected = selectedAttribute.slice(0, 3) === 'num';
 
   return (
     <div>
@@ -67,7 +68,6 @@ export function AttributeSelector(props) {
               <Grid item xs={6}>
                 <MapColorschemeSelect
                   selectedAttribute={selectedAttribute}
-                  selectedClassification={selectedClassification}
                   selectedCategoricalScheme={selectedCategoricalScheme}
                   updateSelectedCategoricalScheme={updateSelectedCategoricalScheme}
                   selectedNumericScheme={selectedNumericScheme}
@@ -75,19 +75,23 @@ export function AttributeSelector(props) {
                 />
               </Grid>
               <Grid item xs={12}>
-                <DialogAdvancedToggle
-                  advancedToggle={advancedToggle}
-                  updateAdvancedToggle={updateAdvancedToggle}
-                />
+                {numericIsSelected ? (
+                  <DialogAdvancedToggle
+                    advancedToggle={advancedToggle}
+                    updateAdvancedToggle={updateAdvancedToggle}
+                  />
+                ) : null}
               </Grid>
             </Grid>
 
-            {advancedToggle ? (
+            {advancedToggle && numericIsSelected ? (
               <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
                 <Grid item xs={6}>
                   <MapClassificationSelect
                     selectedClassification={selectedClassification}
                     updateSelectedClassification={updateSelectedClassification}
+                    selectedNumericScheme={selectedNumericScheme}
+                    updateSelectedNumericScheme={updateSelectedNumericScheme}
                   />
                 </Grid>
                 <Grid item xs={6}>

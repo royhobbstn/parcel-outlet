@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
@@ -7,25 +7,28 @@ import { AttributeSelector } from './AttributeSelector';
 
 const LAYERNAME = 'parcelslayer';
 
-export class ParcelMap extends Component {
-  constructor(props) {
-    super(props);
-    // symbology clusters
-    this.loadedClusters = {};
-    this.clustersInTransit = {};
-    this.selectedFeatureAttribute = 'Shape_Area';
-    // click popup clusters
-    this.clickClustersLoaded = {};
-    this.clickClustersInTransit = [];
-    this.parcelAttributes = {};
+export function ParcelMap({
+  updateCoverageModalOpen,
+  inventory,
+  updateFocusDownload,
+  updateMapAttributesModalOpen,
+  updateCurrentFeatureAttributes,
+}) {
+  // symbology clusters
+  const [loadedClusters, updateLoadedClusters] = useState({});
+  const [clustersInTransit, updateClustersInTransit] = useState({});
+  const [selectedFeatureAttribute, updateSelectedFeatureAttribute] = useState('Shape_Area');
+  // popup clusters
+  const [clickClustersLoaded, updateClickClustersLoaded] = useState({});
+  const [clickClustersInTransit, updateClickClustersInTransit] = useState([]);
+  const [parcelAttributes, updateParcelAttributes] = useState({});
+  const [infoMeta, updateInfoMeta] = useState(null);
 
-    this.state = { infoMeta: null };
-  }
+  const [hoveredStateId, updateHoveredStateId] = useState(null);
 
-  async componentDidMount() {
-    // edge case to make sure the coverage modal is closed.
-    // because if they change the map (which only changes querystring), it cant be recognized without a lot of work
-    this.props.updateCoverageModalOpen(false);
+  // one time
+  useEffect(() => {
+    updateCoverageModalOpen(false);
 
     mapboxgl.accessToken = key;
     window.map = new mapboxgl.Map({
@@ -41,8 +44,6 @@ export class ParcelMap extends Component {
       closeButton: true,
       closeOnClick: true,
     });
-
-    let hoveredStateId = null;
 
     const productId = getUrlParameter('prid');
     if (!productId) {
@@ -65,18 +66,16 @@ export class ParcelMap extends Component {
       //
       const response = await Promise.all([info, hull, clHull]);
 
-      const infoMeta = response[0];
+      updateInfoMeta(response[0]);
       const geoHull = response[1];
       const clusterHull = response[2];
-
-      this.setState({ infoMeta: response[0] });
 
       // set map extent here with new generated metadata values
       const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
       window.map.fitBounds(boundsArray, { animate: false });
 
       // add download buttons to AppBar (possible race condition here?)
-      populateProductDownloads(this.props.inventory, this.props.updateFocusDownload, infoMeta);
+      populateProductDownloads(inventory, updateFocusDownload, infoMeta);
 
       window.map.addSource('hulls', {
         type: 'geojson',
@@ -159,7 +158,7 @@ export class ParcelMap extends Component {
           }
 
           // filter out cluster that have already been read, or are in transit
-          if (!this.loadedClusters[cluster] && !this.clustersInTransit[cluster]) {
+          if (!loadedClusters[cluster] && !clustersInTransit[cluster]) {
             uniqueClusters.add(cluster);
           }
         });
@@ -168,20 +167,21 @@ export class ParcelMap extends Component {
 
         if (clusterArray.length) {
           clusterArray.forEach(cluster => {
-            this.clustersInTransit[cluster] = true;
+            // todo not efficient
+            updateClustersInTransit(Object.assign({}, clustersInTransit, { [cluster]: true }));
           });
           const featureDetails = await Promise.all(
             Array.from(clusterArray).map(cluster => {
               return window
                 .fetch(
-                  `${tileBase[0]}/${productId}/featureAttributes/${cluster}__${this.selectedFeatureAttribute}.json`,
+                  `${tileBase[0]}/${productId}/featureAttributes/${cluster}__${selectedFeatureAttribute}.json`,
                 )
                 .then(response => response.json());
             }),
           );
           clusterArray.forEach(cluster => {
-            this.loadedClusters[cluster] = true;
-            this.clustersInTransit[cluster] = false;
+            updateLoadedClusters(Object.assign({}, loadedClusters, { [cluster]: true }));
+            updateClustersInTransit(Object.assign({}, clustersInTransit, { [cluster]: false }));
           });
 
           // apply some sort of categorical style
@@ -228,7 +228,7 @@ export class ParcelMap extends Component {
               { hover: false },
             );
           }
-          hoveredStateId = e.features[0].properties.__po_id;
+          updateHoveredStateId(e.features[0].properties.__po_id);
 
           window.map.setFeatureState(
             { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
@@ -245,7 +245,7 @@ export class ParcelMap extends Component {
             { hover: false },
           );
         }
-        hoveredStateId = null;
+        updateHoveredStateId(null);
       });
 
       window.map.on('click', 'parcels', async e => {
@@ -264,12 +264,9 @@ export class ParcelMap extends Component {
         const missingClustersSet = new Set();
         renderedHulls.forEach(feature => {
           const cluster = feature.properties.__po_cl;
-          if (
-            !this.clickClustersLoaded[cluster] &&
-            !this.clickClustersInTransit.includes(cluster)
-          ) {
+          if (!clickClustersLoaded[cluster] && !clickClustersInTransit.includes(cluster)) {
             missingClustersSet.add(cluster);
-            this.clickClustersInTransit.push(cluster);
+            updateClickClustersInTransit([...clickClustersInTransit, cluster]);
           }
         });
 
@@ -306,6 +303,9 @@ export class ParcelMap extends Component {
                         data[result.value.__po_id] = result.value;
                       }
                     }
+                    updateClickClustersLoaded(
+                      Object.assign({}, clickClustersLoaded, { [cluster]: true }),
+                    );
                     resolve();
                   })
                   .catch(err => {
@@ -316,11 +316,13 @@ export class ParcelMap extends Component {
             }),
           );
 
-          this.parcelAttributes = { ...this.parcelAttributes, ...data };
+          updateParcelAttributes({ ...parcelAttributes, ...data });
 
-          this.clickClustersInTransit = this.clickClustersInTransit.filter(d => {
-            return !missingClusters.includes(d);
-          });
+          updateClickClustersInTransit(
+            clickClustersInTransit.filter(d => {
+              return !missingClusters.includes(d);
+            }),
+          );
         }
 
         // corral the information just for the features you need
@@ -329,7 +331,7 @@ export class ParcelMap extends Component {
 
         storedFeatures.forEach(feature => {
           const { overlappingFeatures, ...features } = JSON.parse(
-            JSON.stringify(this.parcelAttributes[feature.properties.__po_id]),
+            JSON.stringify(parcelAttributes[feature.properties.__po_id]),
           );
 
           attributeData.push(features);
@@ -341,24 +343,18 @@ export class ParcelMap extends Component {
           }
         });
 
-        this.props.updateMapAttributesModalOpen(true);
-        this.props.updateCurrentFeatureAttributes(attributeData);
+        updateMapAttributesModalOpen(true);
+        updateCurrentFeatureAttributes(attributeData);
       });
     });
-  }
+  }, []);
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-
-  render() {
-    return (
-      <div>
-        <AttributeSelector infoMeta={this.state.infoMeta} map={window.map}></AttributeSelector>
-        <div id="map" />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <AttributeSelector infoMeta={infoMeta} map={window.map}></AttributeSelector>
+      <div id="map" />
+    </div>
+  );
 }
 
 function getUrlParameter(name) {
