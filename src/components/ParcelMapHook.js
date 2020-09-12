@@ -1,9 +1,10 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
-import { AttributeSelector } from './AttributeSelector';
+import { AttributeSelectorMemo as AttributeSelector } from './AttributeSelector';
+import { classifications } from '../lookups/styleData';
 
 const LAYERNAME = 'parcelslayer';
 
@@ -14,35 +15,44 @@ export function ParcelMap({
   updateMapAttributesModalOpen,
   updateCurrentFeatureAttributes,
 }) {
+  const mapContainerRef = useRef(null);
+
+  // attribute selector
+  const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
+  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('mh4_5');
+  const [selectedAttribute, updateSelectedAttribute] = useState('default');
+  const [selectedClassification, updateSelectedClassification] = useState(classifications[0]);
+  const [advancedToggle, updateAdvancedToggle] = useState(false);
+  const [zeroAsNull, updateZeroAsNull] = useState(false);
+  const [nullAsZero, updateNullAsZero] = useState(false);
+
   // symbology clusters
-  const [loadedClusters, updateLoadedClusters] = useState({});
-  const [clustersInTransit, updateClustersInTransit] = useState({});
+  const loadedClusters = useRef({});
+  const clustersInTransit = useRef({});
   const [selectedFeatureAttribute, updateSelectedFeatureAttribute] = useState('Shape_Area');
   // popup clusters
-  const [clickClustersLoaded, updateClickClustersLoaded] = useState({});
-  const [clickClustersInTransit, updateClickClustersInTransit] = useState([]);
-  const [parcelAttributes, updateParcelAttributes] = useState({});
+  const clickClustersLoaded = useRef({});
+  const clickClustersInTransit = useRef([]);
+  const parcelAttributes = useRef({});
   const [infoMeta, updateInfoMeta] = useState(null);
 
-  const [hoveredStateId, updateHoveredStateId] = useState(null);
+  const hoveredStateId = useRef(null);
+  //   const [map, setMap] = useState(null);
+
+  console.log('map render');
 
   // one time
   useEffect(() => {
     updateCoverageModalOpen(false);
 
     mapboxgl.accessToken = key;
-    window.map = new mapboxgl.Map({
-      container: 'map',
+    const map = new mapboxgl.Map({
+      container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/dark-v9?optimize=true',
       center: [-88, 44.5],
       zoom: 4,
       maxZoom: 20,
       minZoom: 4,
-    });
-
-    window.popup = new mapboxgl.Popup({
-      closeButton: true,
-      closeOnClick: true,
     });
 
     const productId = getUrlParameter('prid');
@@ -62,32 +72,25 @@ export function ParcelMap({
       .fetch(`${tileBase[0]}/${productId}/cluster_hull.geojson`)
       .then(response => response.json());
 
-    window.map.on('load', async () => {
+    map.on('load', async () => {
       //
-      const response = await Promise.all([info, hull, clHull]);
-
-      updateInfoMeta(response[0]);
-      const geoHull = response[1];
-      const clusterHull = response[2];
+      const [infoMeta, geoHull, clusterHull] = await Promise.all([info, hull, clHull]);
 
       // set map extent here with new generated metadata values
       const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));
-      window.map.fitBounds(boundsArray, { animate: false });
+      map.fitBounds(boundsArray, { animate: false });
 
-      // add download buttons to AppBar (possible race condition here?)
-      populateProductDownloads(inventory, updateFocusDownload, infoMeta);
-
-      window.map.addSource('hulls', {
+      map.addSource('hulls', {
         type: 'geojson',
         data: geoHull,
       });
 
-      window.map.addSource('clusterHull', {
+      map.addSource('clusterHull', {
         type: 'geojson',
         data: clusterHull,
       });
 
-      window.map.addLayer({
+      map.addLayer({
         id: 'hull-layer',
         source: 'hulls',
         type: 'line',
@@ -102,7 +105,7 @@ export function ParcelMap({
         },
       });
 
-      window.map.addLayer({
+      map.addLayer({
         id: 'cluster-hull-layer',
         source: 'clusterHull',
         type: 'fill',
@@ -113,7 +116,7 @@ export function ParcelMap({
         },
       });
 
-      window.map.addSource('tiles', {
+      map.addSource('tiles', {
         maxzoom: Number(infoMeta.generatedMetadata.maxzoom),
         promoteId: '__po_id',
         type: 'vector',
@@ -123,7 +126,7 @@ export function ParcelMap({
       });
 
       // "DEFAULT STYLE"
-      window.map.addLayer({
+      map.addLayer({
         id: 'parcels',
         'source-layer': 'parcelslayer',
         source: 'tiles',
@@ -138,27 +141,27 @@ export function ParcelMap({
 
       // TODO event here on-load that
 
-      window.map.on('moveend', async e => {
+      map.on('moveend', async e => {
         // if(defaultStyle) {
         //   return;
         // }
 
         // issues:  need to know the selectedFeature here
 
-        const features = window.map.querySourceFeatures('hulls');
+        const features = map.querySourceFeatures('hulls');
         const uniqueClusters = new Set();
         features.forEach(feature => {
           const cluster = feature.properties.cluster;
 
           // filter out clusters at a higher zoom level
-          const zoom = window.map.getZoom();
+          const zoom = map.getZoom();
           const parsedCluster = parseInt(cluster.split('_')[0], 10);
           if (parsedCluster > zoom) {
             return;
           }
 
           // filter out cluster that have already been read, or are in transit
-          if (!loadedClusters[cluster] && !clustersInTransit[cluster]) {
+          if (!loadedClusters.current[cluster] && !clustersInTransit.current[cluster]) {
             uniqueClusters.add(cluster);
           }
         });
@@ -167,8 +170,7 @@ export function ParcelMap({
 
         if (clusterArray.length) {
           clusterArray.forEach(cluster => {
-            // todo not efficient
-            updateClustersInTransit(Object.assign({}, clustersInTransit, { [cluster]: true }));
+            clustersInTransit.current[cluster] = true;
           });
           const featureDetails = await Promise.all(
             Array.from(clusterArray).map(cluster => {
@@ -180,15 +182,15 @@ export function ParcelMap({
             }),
           );
           clusterArray.forEach(cluster => {
-            updateLoadedClusters(Object.assign({}, loadedClusters, { [cluster]: true }));
-            updateClustersInTransit(Object.assign({}, clustersInTransit, { [cluster]: false }));
+            loadedClusters.current[cluster] = true;
+            clustersInTransit.current[cluster] = false;
           });
 
           // apply some sort of categorical style
 
           featureDetails.forEach(data => {
             Object.keys(data).forEach(key => {
-              window.map.setFeatureState(
+              map.setFeatureState(
                 {
                   source: 'tiles',
                   sourceLayer: 'parcelslayer',
@@ -205,7 +207,7 @@ export function ParcelMap({
         }
       });
 
-      window.map.on('error', event => {
+      map.on('error', event => {
         if (event.error && event.error.status === 403) {
           // ignore missing / forbidden tile error from S3
           return;
@@ -214,41 +216,41 @@ export function ParcelMap({
         }
       });
 
-      window.map.on('mousemove', 'parcels', function (e) {
+      map.on('mousemove', 'parcels', function (e) {
         if (!(e.features && e.features[0])) {
           return;
         }
 
-        window.map.getCanvas().style.cursor = 'pointer';
+        map.getCanvas().style.cursor = 'pointer';
 
         if (e.features.length > 0) {
           if (hoveredStateId) {
-            window.map.setFeatureState(
+            map.setFeatureState(
               { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
               { hover: false },
             );
           }
-          updateHoveredStateId(e.features[0].properties.__po_id);
+          hoveredStateId.current = e.features[0].properties.__po_id;
 
-          window.map.setFeatureState(
+          map.setFeatureState(
             { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
             { hover: true },
           );
         }
       });
 
-      window.map.on('mouseleave', 'parcels', function () {
-        window.map.getCanvas().style.cursor = '';
+      map.on('mouseleave', 'parcels', function () {
+        map.getCanvas().style.cursor = '';
         if (hoveredStateId) {
-          window.map.setFeatureState(
+          map.setFeatureState(
             { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
             { hover: false },
           );
         }
-        updateHoveredStateId(null);
+        hoveredStateId.current = null;
       });
 
-      window.map.on('click', 'parcels', async e => {
+      map.on('click', 'parcels', async e => {
         if (!(e.features && e.features[0])) {
           return;
         }
@@ -257,16 +259,19 @@ export function ParcelMap({
           [e.point.x - 1, e.point.y - 1],
           [e.point.x + 1, e.point.y + 1],
         ];
-        const renderedHulls = window.map.queryRenderedFeatures(bbox, {
+        const renderedHulls = map.queryRenderedFeatures(bbox, {
           layers: ['cluster-hull-layer'],
         });
 
         const missingClustersSet = new Set();
         renderedHulls.forEach(feature => {
           const cluster = feature.properties.__po_cl;
-          if (!clickClustersLoaded[cluster] && !clickClustersInTransit.includes(cluster)) {
+          if (
+            !clickClustersLoaded.current[cluster] &&
+            !clickClustersInTransit.current.includes(cluster)
+          ) {
             missingClustersSet.add(cluster);
-            updateClickClustersInTransit([...clickClustersInTransit, cluster]);
+            clickClustersInTransit.current.push(cluster);
           }
         });
 
@@ -303,9 +308,7 @@ export function ParcelMap({
                         data[result.value.__po_id] = result.value;
                       }
                     }
-                    updateClickClustersLoaded(
-                      Object.assign({}, clickClustersLoaded, { [cluster]: true }),
-                    );
+                    clickClustersLoaded.current[cluster] = true;
                     resolve();
                   })
                   .catch(err => {
@@ -316,13 +319,13 @@ export function ParcelMap({
             }),
           );
 
-          updateParcelAttributes({ ...parcelAttributes, ...data });
+          Object.keys(data).forEach(key => {
+            parcelAttributes.current[key] = data[key];
+          });
 
-          updateClickClustersInTransit(
-            clickClustersInTransit.filter(d => {
-              return !missingClusters.includes(d);
-            }),
-          );
+          clickClustersInTransit.current = clickClustersInTransit.current.filter(d => {
+            return !missingClusters.includes(d);
+          });
         }
 
         // corral the information just for the features you need
@@ -331,7 +334,7 @@ export function ParcelMap({
 
         storedFeatures.forEach(feature => {
           const { overlappingFeatures, ...features } = JSON.parse(
-            JSON.stringify(parcelAttributes[feature.properties.__po_id]),
+            JSON.stringify(parcelAttributes.current[feature.properties.__po_id]),
           );
 
           attributeData.push(features);
@@ -346,13 +349,46 @@ export function ParcelMap({
         updateMapAttributesModalOpen(true);
         updateCurrentFeatureAttributes(attributeData);
       });
+
+      updateInfoMeta(infoMeta);
     });
-  }, []);
+
+    // Clean up on unmount
+    return () => map.remove();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (infoMeta && Object.keys(inventory).length) {
+      // add download buttons to AppBar (possible race condition here?)
+      populateProductDownloads(inventory, updateFocusDownload, infoMeta);
+    }
+  }, [updateFocusDownload, inventory, infoMeta]);
+
+  useEffect(() => {
+    // this will be the effect to paint when something with the attribute selector changes
+    //
+  }, [updateFocusDownload, inventory, infoMeta]);
 
   return (
     <div>
-      <AttributeSelector infoMeta={infoMeta} map={window.map}></AttributeSelector>
-      <div id="map" />
+      <AttributeSelector
+        infoMeta={infoMeta}
+        selectedCategoricalScheme={selectedCategoricalScheme}
+        updateSelectedCategoricalScheme={updateSelectedCategoricalScheme}
+        selectedNumericScheme={selectedNumericScheme}
+        updateSelectedNumericScheme={updateSelectedNumericScheme}
+        selectedAttribute={selectedAttribute}
+        updateSelectedAttribute={updateSelectedAttribute}
+        selectedClassification={selectedClassification}
+        updateSelectedClassification={updateSelectedClassification}
+        advancedToggle={advancedToggle}
+        updateAdvancedToggle={updateAdvancedToggle}
+        zeroAsNull={zeroAsNull}
+        updateZeroAsNull={updateZeroAsNull}
+        nullAsZero={nullAsZero}
+        updateNullAsZero={updateNullAsZero}
+      ></AttributeSelector>
+      <div ref={mapContainerRef} id="map" />
     </div>
   );
 }
@@ -366,7 +402,9 @@ function getUrlParameter(name) {
 }
 
 function populateProductDownloads(inventory, updateFocusDownload, metadata) {
+  console.log({ inventory, metadata });
   const focusGeo = inventory[metadata.geoid];
+  console.log({ focusGeo });
 
   let focusSource;
   let focusDownload;

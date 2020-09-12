@@ -13,23 +13,31 @@ import { MapModalToggleButton } from './MapModalToggleButton';
 import { DialogAdvancedToggle } from './DialogAdvancedToggle';
 import { DialogNullZeroCheckboxes } from './DialogNullZeroCheckboxes';
 import { MapClassificationSelect } from './MapClassificationSelect';
-import { classifications } from '../lookups/styleData';
 
-export function AttributeSelector({ infoMeta, map }) {
-  const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
-  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('mh4_5');
-  const [selectedAttribute, updateSelectedAttribute] = useState('default');
-  const [selectedClassification, updateSelectedClassification] = useState(classifications[0]);
-  const [advancedToggle, updateAdvancedToggle] = useState(false);
-  const [zeroAsNull, updateZeroAsNull] = useState(false);
-  const [nullAsZero, updateNullAsZero] = useState(false);
+const AttributeSelector = ({
+  infoMeta,
+  selectedCategoricalScheme,
+  updateSelectedCategoricalScheme,
+  selectedNumericScheme,
+  updateSelectedNumericScheme,
+  selectedAttribute,
+  updateSelectedAttribute,
+  selectedClassification,
+  updateSelectedClassification,
+  advancedToggle,
+  updateAdvancedToggle,
+  zeroAsNull,
+  updateZeroAsNull,
+  nullAsZero,
+  updateNullAsZero,
+}) => {
   const [dialogOpen, updateDialogOpen] = useState(true);
 
   if (!infoMeta) {
     return null;
   }
 
-  console.log(map);
+  console.log('as render');
 
   const titleTextCounty = countyLookup(infoMeta.geoid);
   const titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
@@ -109,4 +117,6 @@ export function AttributeSelector({ infoMeta, map }) {
       </div>
     </div>
   );
-}
+};
+
+export const AttributeSelectorMemo = React.memo(AttributeSelector);
