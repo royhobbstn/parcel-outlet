@@ -16,11 +16,14 @@ export function ParcelMap({
   updateCurrentFeatureAttributes,
 }) {
   const mapContainerRef = useRef(null);
+  const mapRef = useRef(null);
+  const ready = useRef(false);
 
   // attribute selector
   const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
   const [selectedNumericScheme, updateSelectedNumericScheme] = useState('mh4_5');
   const [selectedAttribute, updateSelectedAttribute] = useState('default');
+  const selectedAttributeRef = useRef('default');
   const [selectedClassification, updateSelectedClassification] = useState(classifications[0]);
   const [advancedToggle, updateAdvancedToggle] = useState(false);
   const [zeroAsNull, updateZeroAsNull] = useState(false);
@@ -29,7 +32,6 @@ export function ParcelMap({
   // symbology clusters
   const loadedClusters = useRef({});
   const clustersInTransit = useRef({});
-  const [selectedFeatureAttribute, updateSelectedFeatureAttribute] = useState('Shape_Area');
   // popup clusters
   const clickClustersLoaded = useRef({});
   const clickClustersInTransit = useRef([]);
@@ -54,6 +56,8 @@ export function ParcelMap({
       maxZoom: 20,
       minZoom: 4,
     });
+
+    mapRef.current = map;
 
     const productId = getUrlParameter('prid');
     if (!productId) {
@@ -128,7 +132,7 @@ export function ParcelMap({
       // "DEFAULT STYLE"
       map.addLayer({
         id: 'parcels',
-        'source-layer': 'parcelslayer',
+        'source-layer': LAYERNAME,
         source: 'tiles',
         type: 'fill',
         layout: {},
@@ -142,9 +146,10 @@ export function ParcelMap({
       // TODO event here on-load that
 
       map.on('moveend', async e => {
-        // if(defaultStyle) {
-        //   return;
-        // }
+        if (selectedAttributeRef.current === 'default') {
+          console.log('moveend return on default');
+          return;
+        }
 
         // issues:  need to know the selectedFeature here
 
@@ -176,7 +181,11 @@ export function ParcelMap({
             Array.from(clusterArray).map(cluster => {
               return window
                 .fetch(
-                  `${tileBase[0]}/${productId}/featureAttributes/${cluster}__${selectedFeatureAttribute}.json`,
+                  `${
+                    tileBase[0]
+                  }/${productId}/featureAttributes/${cluster}__${selectedAttributeRef.current.slice(
+                    4,
+                  )}.json`,
                 )
                 .then(response => response.json());
             }),
@@ -193,7 +202,7 @@ export function ParcelMap({
               map.setFeatureState(
                 {
                   source: 'tiles',
-                  sourceLayer: 'parcelslayer',
+                  sourceLayer: LAYERNAME,
                   id: key,
                 },
                 {
@@ -224,16 +233,16 @@ export function ParcelMap({
         map.getCanvas().style.cursor = 'pointer';
 
         if (e.features.length > 0) {
-          if (hoveredStateId) {
+          if (hoveredStateId.current) {
             map.setFeatureState(
-              { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
+              { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId.current },
               { hover: false },
             );
           }
           hoveredStateId.current = e.features[0].properties.__po_id;
 
           map.setFeatureState(
-            { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
+            { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId.current },
             { hover: true },
           );
         }
@@ -241,9 +250,9 @@ export function ParcelMap({
 
       map.on('mouseleave', 'parcels', function () {
         map.getCanvas().style.cursor = '';
-        if (hoveredStateId) {
+        if (hoveredStateId.current) {
           map.setFeatureState(
-            { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId },
+            { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId.current },
             { hover: false },
           );
         }
@@ -350,6 +359,8 @@ export function ParcelMap({
         updateCurrentFeatureAttributes(attributeData);
       });
 
+      ready.current = true;
+
       updateInfoMeta(infoMeta);
     });
 
@@ -365,9 +376,80 @@ export function ParcelMap({
   }, [updateFocusDownload, inventory, infoMeta]);
 
   useEffect(() => {
+    if (!ready.current) {
+      console.log('not ready yet');
+      return;
+    }
+
+    console.log('selected attribute changed - need new data');
+
+    // clear old data.
+    loadedClusters.current = {};
+    clustersInTransit.current = {};
+
+    // clear feature state
+    mapRef.current.removeFeatureState({
+      source: 'tiles',
+      sourceLayer: LAYERNAME,
+    });
+  }, [selectedAttribute]);
+
+  useEffect(() => {
+    if (!infoMeta) {
+      return;
+    }
+    console.log('attrib useeffect');
     // this will be the effect to paint when something with the attribute selector changes
     //
-  }, [updateFocusDownload, inventory, infoMeta]);
+
+    if (selectedAttribute === 'default') {
+      // paint default
+      console.log('paint default');
+    } else if (selectedAttribute.slice(0, 3) === 'cat') {
+      console.log('paint categorical');
+    } else if (selectedAttribute.slice(0, 3) === 'num') {
+      console.log('paint numeric');
+
+      // fetch color scheme array
+      console.log({ selectedNumericScheme, selectedClassification });
+      // mh4_5, ckmeans_5
+
+      // fetch breaks from infoMeta
+      console.log({ infoMeta });
+
+      console.log(infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)]);
+
+      const colorStyle = [
+        'case',
+        ['!=', ['feature-state', 'selectedfeature'], null],
+        [
+          'interpolate',
+          ['linear'],
+          ['feature-state', 'selectedfeature'],
+          50000,
+          'rgba(222,235,247,1)',
+          500000,
+          'rgba(49,130,189,1)',
+        ],
+        'rgba(255, 255, 255, 0)',
+      ];
+
+      mapRef.current.setPaintProperty('parcels', 'fill-color', colorStyle);
+      mapRef.current.setPaintProperty('parcels', 'fill-outline-color', colorStyle);
+
+      // load new data. (or fire map.move()?)
+    } else {
+      console.log('i dont know what to paint');
+    }
+  }, [
+    selectedCategoricalScheme,
+    selectedNumericScheme,
+    selectedAttribute,
+    selectedClassification,
+    zeroAsNull,
+    nullAsZero,
+    infoMeta,
+  ]);
 
   return (
     <div>
@@ -379,6 +461,7 @@ export function ParcelMap({
         updateSelectedNumericScheme={updateSelectedNumericScheme}
         selectedAttribute={selectedAttribute}
         updateSelectedAttribute={updateSelectedAttribute}
+        selectedAttributeRef={selectedAttributeRef}
         selectedClassification={selectedClassification}
         updateSelectedClassification={updateSelectedClassification}
         advancedToggle={advancedToggle}

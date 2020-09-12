@@ -4,6 +4,7 @@ import { TextField } from '@material-ui/core';
 export function MapAttributeSelect({
   selectedAttribute,
   updateSelectedAttribute,
+  selectedAttributeRef,
   categoricalKeys,
   numericKeys,
 }) {
@@ -24,6 +25,7 @@ export function MapAttributeSelect({
       onChange={evt => {
         // @ts-ignore
         updateSelectedAttribute(evt.target.value);
+        selectedAttributeRef.current = evt.target.value;
         console.log('change map attribute');
       }}
       variant="outlined"

@@ -22,6 +22,7 @@ const AttributeSelector = ({
   updateSelectedNumericScheme,
   selectedAttribute,
   updateSelectedAttribute,
+  selectedAttributeRef,
   selectedClassification,
   updateSelectedClassification,
   advancedToggle,
@@ -69,6 +70,7 @@ const AttributeSelector = ({
                 <MapAttributeSelect
                   selectedAttribute={selectedAttribute}
                   updateSelectedAttribute={updateSelectedAttribute}
+                  selectedAttributeRef={selectedAttributeRef}
                   categoricalKeys={categoricalKeys}
                   numericKeys={numericKeys}
                 />
