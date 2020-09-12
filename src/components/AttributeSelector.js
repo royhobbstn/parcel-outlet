@@ -7,6 +7,7 @@ import { countyLookup } from '../lookups/counties';
 import { Dialog, DialogTitle, DialogContent, Grid } from '@material-ui/core';
 
 import { MapTitleControl } from './MapTitleControl';
+import { MapLegend } from './MapLegend';
 import { MapAttributeSelect } from './MapAttributeSelect';
 import { MapColorschemeSelect } from './MapColorschemeSelect';
 import { MapModalToggleButton } from './MapModalToggleButton';
@@ -29,10 +30,8 @@ const AttributeSelector = ({
   updateAdvancedToggle,
   zeroAsNull,
   updateZeroAsNull,
-  nullAsZero,
-  updateNullAsZero,
 }) => {
-  const [dialogOpen, updateDialogOpen] = useState(true);
+  const [dialogOpen, updateDialogOpen] = useState(false);
 
   if (!infoMeta) {
     return null;
@@ -53,6 +52,8 @@ const AttributeSelector = ({
   return (
     <div>
       <MapTitleControl title={titleTextCounty + ', ' + titleTextState} />
+      <MapLegend />
+
       <MapModalToggleButton updateDialogOpen={updateDialogOpen} dialogOpen={dialogOpen} />
 
       <div>
@@ -108,8 +109,6 @@ const AttributeSelector = ({
                   <DialogNullZeroCheckboxes
                     zeroAsNull={zeroAsNull}
                     updateZeroAsNull={updateZeroAsNull}
-                    nullAsZero={nullAsZero}
-                    updateNullAsZero={updateNullAsZero}
                   />
                 </Grid>
               </Grid>

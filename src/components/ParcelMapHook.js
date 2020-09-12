@@ -5,6 +5,7 @@ import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
 import { AttributeSelectorMemo as AttributeSelector } from './AttributeSelector';
 import { classifications } from '../lookups/styleData';
+import { colortree } from '../lookups/colortree';
 
 const LAYERNAME = 'parcelslayer';
 
@@ -27,7 +28,6 @@ export function ParcelMap({
   const [selectedClassification, updateSelectedClassification] = useState(classifications[0]);
   const [advancedToggle, updateAdvancedToggle] = useState(false);
   const [zeroAsNull, updateZeroAsNull] = useState(false);
-  const [nullAsZero, updateNullAsZero] = useState(false);
 
   // symbology clusters
   const loadedClusters = useRef({});
@@ -39,7 +39,6 @@ export function ParcelMap({
   const [infoMeta, updateInfoMeta] = useState(null);
 
   const hoveredStateId = useRef(null);
-  //   const [map, setMap] = useState(null);
 
   console.log('map render');
 
@@ -139,13 +138,28 @@ export function ParcelMap({
         paint: {
           'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.5, 0.2],
           'fill-color': 'cyan',
-          'fill-outline-color': 'cyan',
         },
       });
 
-      // TODO event here on-load that
+      map.addLayer({
+        id: 'parcels-line',
+        'source-layer': LAYERNAME,
+        source: 'tiles',
+        type: 'line',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round',
+        },
+        paint: {
+          'line-opacity': 0.2,
+          'line-color': 'cyan',
+          'line-width': 0.1,
+        },
+      });
 
       map.on('moveend', async e => {
+        console.log('moveend');
+
         if (selectedAttributeRef.current === 'default') {
           console.log('moveend return on default');
           return;
@@ -417,27 +431,38 @@ export function ParcelMap({
       // fetch breaks from infoMeta
       console.log({ infoMeta });
 
-      console.log(infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)]);
+      const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
+      const currentClassification =
+        availableClassifications[selectedClassification.replace('_', '')];
+      const currentColorscheme = colortree[selectedNumericScheme];
 
+      const breaks = [];
+
+      for (let i = 0; i < currentColorscheme.colors.length; i++) {
+        breaks.push(currentColorscheme.colors[i]);
+        if (i < currentColorscheme.colors.length - 1) {
+          breaks.push(currentClassification[i]);
+        }
+      }
+
+      console.log({ breaks });
+
+      console.log({ availableClassifications, currentClassification, currentColorscheme });
       const colorStyle = [
         'case',
         ['!=', ['feature-state', 'selectedfeature'], null],
-        [
-          'interpolate',
-          ['linear'],
-          ['feature-state', 'selectedfeature'],
-          50000,
-          'rgba(222,235,247,1)',
-          500000,
-          'rgba(49,130,189,1)',
-        ],
-        'rgba(255, 255, 255, 0)',
+        ['step', ['feature-state', 'selectedfeature'], ...breaks],
+        'rgba(255, 255, 255, 1)',
       ];
 
       mapRef.current.setPaintProperty('parcels', 'fill-color', colorStyle);
-      mapRef.current.setPaintProperty('parcels', 'fill-outline-color', colorStyle);
+      mapRef.current.setPaintProperty('parcels-line', 'line-color', colorStyle);
 
-      // load new data. (or fire map.move()?)
+      // todo line layer instead of setting below property
+      // mapRef.current.setPaintProperty('parcels', 'fill-outline-color', colorStyle);
+
+      // load new data.
+      mapRef.current.fire('moveend');
     } else {
       console.log('i dont know what to paint');
     }
@@ -447,7 +472,6 @@ export function ParcelMap({
     selectedAttribute,
     selectedClassification,
     zeroAsNull,
-    nullAsZero,
     infoMeta,
   ]);
 
@@ -468,8 +492,6 @@ export function ParcelMap({
         updateAdvancedToggle={updateAdvancedToggle}
         zeroAsNull={zeroAsNull}
         updateZeroAsNull={updateZeroAsNull}
-        nullAsZero={nullAsZero}
-        updateNullAsZero={updateNullAsZero}
       ></AttributeSelector>
       <div ref={mapContainerRef} id="map" />
     </div>

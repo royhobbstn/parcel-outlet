@@ -8,12 +8,7 @@ import {
   FormGroup,
 } from '@material-ui/core';
 
-export function DialogNullZeroCheckboxes({
-  zeroAsNull,
-  updateZeroAsNull,
-  nullAsZero,
-  updateNullAsZero,
-}) {
+export function DialogNullZeroCheckboxes({ zeroAsNull, updateZeroAsNull }) {
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Convert Data</FormLabel>
@@ -30,19 +25,6 @@ export function DialogNullZeroCheckboxes({
             />
           }
           label="0 to null"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={nullAsZero}
-              onChange={() => {
-                updateNullAsZero(!nullAsZero);
-                console.log('update null zero');
-              }}
-              name="nullAsZero"
-            />
-          }
-          label="null to 0"
         />
       </FormGroup>
       <FormHelperText>Null parcels are filtered out.</FormHelperText>
