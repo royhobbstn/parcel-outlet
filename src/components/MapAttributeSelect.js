@@ -27,7 +27,6 @@ export function MapAttributeSelect({
         // @ts-ignore
         updateSelectedAttribute(evt.target.value);
         selectedAttributeRef.current = evt.target.value;
-        console.log('change map attribute');
       }}
       variant="outlined"
     >

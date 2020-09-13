@@ -4,7 +4,6 @@ import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
 import { AttributeSelectorMemo as AttributeSelector } from './AttributeSelector';
-import { classifications } from '../lookups/styleData';
 import { colortree } from '../lookups/colortree';
 import { categorytree } from '../lookups/categorytree';
 
@@ -23,12 +22,12 @@ export function ParcelMap({
 
   // attribute selector
   const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
-  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('mh4_5');
+  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('viridis_11');
   const [selectedAttribute, updateSelectedAttribute] = useState('default');
   const selectedAttributeRef = useRef('default');
-  const [selectedClassification, updateSelectedClassification] = useState(classifications[0]);
-  const [advancedToggle, updateAdvancedToggle] = useState(false);
-  const [zeroAsNull, updateZeroAsNull] = useState(false);
+  const [selectedClassification, updateSelectedClassification] = useState('quantile_11');
+  const [advancedToggle, updateAdvancedToggle] = useState(true);
+  const [zeroAsNull, updateZeroAsNull] = useState(true);
 
   // symbology clusters
   const loadedClusters = useRef({});
@@ -135,8 +134,9 @@ export function ParcelMap({
         type: 'fill',
         layout: {},
         paint: {
-          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.5, 0.2],
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.6, 0.2],
           'fill-color': 'cyan',
+          'fill-antialias': false,
         },
       });
 
@@ -150,9 +150,23 @@ export function ParcelMap({
           'line-cap': 'round',
         },
         paint: {
-          'line-opacity': 0.2,
+          'line-opacity': 0.6,
+          'line-width': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            5,
+            0,
+            7,
+            0.05,
+            10,
+            0.1,
+            12,
+            0.4,
+            16,
+            1,
+          ],
           'line-color': 'cyan',
-          'line-width': 0.1,
         },
       });
 
@@ -371,7 +385,10 @@ export function ParcelMap({
 
       ready.current = true;
       updateInfoMeta(infoMeta);
-      mapRef.current.fire('moveend');
+
+      window.setTimeout(() => {
+        mapRef.current.fire('moveend');
+      }, 1000);
     });
 
     // Clean up on unmount
@@ -419,9 +436,9 @@ export function ParcelMap({
       const classes = infoMeta.fieldMetadata.categorical[categoryAttribute];
       const filteredClasses = classes.filter(d => d.trim() !== '' && d !== 'null');
 
-      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '']);
-      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], ' ']);
-      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 'null']);
+      //   zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '']);
+      //   zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], ' ']);
+      //   zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 'null']);
 
       const breaks = [];
       const lineBreaks = [];
@@ -439,15 +456,20 @@ export function ParcelMap({
       }
 
       breaks.push('rgba(0, 0, 0, 0)'); // case of no match
-      lineBreaks.push('grey'); // outline grey to designate parcel without value
+      lineBreaks.push('darkslategrey'); // outline grey to designate parcel without value
 
       colorStyle = [
         'case',
-        ['all', ['!=', ['feature-state', 'selectedfeature'], null], ...zeroFilters],
+        ['all', ...zeroFilters],
         ['match', ['feature-state', 'selectedfeature'], ...breaks],
         'rgba(0, 0, 0, 0)',
       ];
-      lineStyle = ['match', ['feature-state', 'selectedfeature'], ...lineBreaks];
+      lineStyle = [
+        'case',
+        ['all', ...zeroFilters],
+        ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
+        'rgba(0, 0, 0, 0)',
+      ];
     } else if (selectedAttribute.slice(0, 3) === 'num') {
       const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
       const currentClassification =
@@ -473,13 +495,13 @@ export function ParcelMap({
 
       colorStyle = [
         'case',
-        ['all', ['!=', ['feature-state', 'selectedfeature'], null], ...zeroFilters],
+        ['all', ...zeroFilters],
         ['step', ['feature-state', 'selectedfeature'], ...breaks],
         'rgba(0, 0, 0, 0)',
       ];
       lineStyle = [
         'case',
-        ['all', ['!=', ['feature-state', 'selectedfeature'], null]],
+        ['all', ...zeroFilters],
         ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
         'rgba(0, 0, 0, 0)',
       ];

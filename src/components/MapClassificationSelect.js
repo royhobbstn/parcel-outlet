@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TextField } from '@material-ui/core';
-import { classifications } from '../lookups/styleData';
+import { classifications } from '../lookups/classifications';
 
 import { colortree } from '../lookups/colortree';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextField, MenuItem } from '@material-ui/core';
-import { darkCategorical, lightCategorical } from '../lookups/styleData';
 
 import { colortree } from '../lookups/colortree';
+import { categorytree } from '../lookups/categorytree';
 
 export function MapColorschemeSelect({
   selectedCategoricalScheme,
@@ -61,7 +61,7 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
       variant="outlined"
     >
       <MenuItem key="dark" value="dark">
-        {darkCategorical.map((d, i) => {
+        {categorytree.dark.colors.map((d, i) => {
           return (
             <span
               key={i}
@@ -76,7 +76,7 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
         })}
       </MenuItem>
       <MenuItem key="light" value="light">
-        {lightCategorical.map((d, i) => {
+        {categorytree.light.colors.map((d, i) => {
           return (
             <span
               key={i}

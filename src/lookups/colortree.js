@@ -1,4 +1,85 @@
+// const colormap = require('colormap');
+
+// let colors = colormap({
+//   colormap: 'magma',
+//   nshades: 11,
+//   format: 'hex',
+//   alpha: 1,
+// });
+
+// console.log(colors);
+
+// todo more
+
 export const colortree = {
+  magma_9: {
+    schemename: 'magma_9',
+    count: 9,
+    colors: [
+      '#000004',
+      '#1c1044',
+      '#4f127b',
+      '#812581',
+      '#b5367a',
+      '#e55064',
+      '#fb8761',
+      '#fec287',
+      '#fcfdbf',
+    ],
+  },
+
+  magma_11: {
+    schemename: 'magma_11',
+    count: 11,
+    colors: [
+      '#000004',
+      '#1c1044',
+      '#361160',
+      '#4f127b',
+      '#812581',
+      '#b5367a',
+      '#e55064',
+      '#f06c63',
+      '#fb8761',
+      '#fec287',
+      '#fcfdbf',
+    ],
+  },
+
+  viridis_9: {
+    schemename: 'viridis_9',
+    count: 9,
+    colors: [
+      '#440154',
+      '#472c7a',
+      '#3b518b',
+      '#2c718e',
+      '#21908d',
+      '#27ad81',
+      '#5cc863',
+      '#aadc32',
+      '#fde725',
+    ],
+  },
+
+  viridis_11: {
+    schemename: 'viridis_11',
+    count: 11,
+    colors: [
+      '#440154',
+      '#472c7a',
+      '#413f83',
+      '#3b518b',
+      '#2c718e',
+      '#21908d',
+      '#27ad81',
+      '#42bb72',
+      '#5cc863',
+      '#aadc32',
+      '#fde725',
+    ],
+  },
+
   mh1_7: {
     schemename: 'mh1',
     count: 7,
