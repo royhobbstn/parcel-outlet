@@ -47,6 +47,7 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
         display: 'block',
         marginRight: '10px',
         marginBottom: '20px',
+        width: '180px',
       }}
       id="categorical-colorschemes"
       select
@@ -100,6 +101,7 @@ function NumericSelector(schemes, selectedNumericScheme, updateSelectedNumericSc
         display: 'block',
         marginRight: '10px',
         marginBottom: '20px',
+        width: '180px',
       }}
       id="numerical-colorschemes"
       select

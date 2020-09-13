@@ -6,6 +6,9 @@ import { countyLookup } from '../lookups/counties';
 
 import { Dialog, DialogTitle, DialogContent, Grid } from '@material-ui/core';
 
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+
 import { MapTitleControl } from './MapTitleControl';
 import { MapLegend } from './MapLegend';
 import { MapAttributeSelect } from './MapAttributeSelect';
@@ -37,8 +40,6 @@ const AttributeSelector = ({
     return null;
   }
 
-  console.log('as render');
-
   const titleTextCounty = countyLookup(infoMeta.geoid);
   const titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
 
@@ -64,7 +65,17 @@ const AttributeSelector = ({
           aria-labelledby="customized-dialog-title"
           open={dialogOpen}
         >
-          <DialogTitle id="customized-dialog-title">Change Map Style</DialogTitle>
+          <DialogTitle id="customized-dialog-title">
+            Change Map Style
+            <IconButton
+              style={{ position: 'absolute', right: '5px', top: '8px' }}
+              onClick={() => {
+                updateDialogOpen(false);
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
           <DialogContent dividers>
             <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
               <Grid item xs={6}>

@@ -6,6 +6,7 @@ import { tileBase, key } from '../service/env';
 import { AttributeSelectorMemo as AttributeSelector } from './AttributeSelector';
 import { classifications } from '../lookups/styleData';
 import { colortree } from '../lookups/colortree';
+import { categorytree } from '../lookups/categorytree';
 
 const LAYERNAME = 'parcelslayer';
 
@@ -39,8 +40,6 @@ export function ParcelMap({
   const [infoMeta, updateInfoMeta] = useState(null);
 
   const hoveredStateId = useRef(null);
-
-  console.log('map render');
 
   // one time
   useEffect(() => {
@@ -158,10 +157,7 @@ export function ParcelMap({
       });
 
       map.on('moveend', async e => {
-        console.log('moveend');
-
         if (selectedAttributeRef.current === 'default') {
-          console.log('moveend return on default');
           return;
         }
 
@@ -374,8 +370,8 @@ export function ParcelMap({
       });
 
       ready.current = true;
-
       updateInfoMeta(infoMeta);
+      mapRef.current.fire('moveend');
     });
 
     // Clean up on unmount
@@ -391,11 +387,8 @@ export function ParcelMap({
 
   useEffect(() => {
     if (!ready.current) {
-      console.log('not ready yet');
       return;
     }
-
-    console.log('selected attribute changed - need new data');
 
     // clear old data.
     loadedClusters.current = {};
@@ -409,63 +402,95 @@ export function ParcelMap({
   }, [selectedAttribute]);
 
   useEffect(() => {
+    // this will be the effect to paint when something with the attribute selector changes
+
     if (!infoMeta) {
       return;
     }
-    console.log('attrib useeffect');
-    // this will be the effect to paint when something with the attribute selector changes
-    //
+
+    let zeroFilters = [['!=', ['feature-state', 'selectedfeature'], null]];
+    let colorStyle = 'cyan'; // string or array
+    let lineStyle = 'cyan'; // string or array
 
     if (selectedAttribute === 'default') {
-      // paint default
-      console.log('paint default');
+      // paints default (uses default colorStyle above)
     } else if (selectedAttribute.slice(0, 3) === 'cat') {
-      console.log('paint categorical');
+      const categoryAttribute = selectedAttribute.slice(4);
+      const classes = infoMeta.fieldMetadata.categorical[categoryAttribute];
+      const filteredClasses = classes.filter(d => d.trim() !== '' && d !== 'null');
+
+      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '']);
+      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], ' ']);
+      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 'null']);
+
+      const breaks = [];
+      const lineBreaks = [];
+
+      for (let [index, value] of filteredClasses.entries()) {
+        const nextColor = categorytree[selectedCategoricalScheme].colors[index];
+        if (nextColor) {
+          breaks.push(value);
+          breaks.push(nextColor);
+          lineBreaks.push(value);
+          lineBreaks.push(nextColor);
+        } else {
+          break;
+        }
+      }
+
+      breaks.push('rgba(0, 0, 0, 0)'); // case of no match
+      lineBreaks.push('grey'); // outline grey to designate parcel without value
+
+      colorStyle = [
+        'case',
+        ['all', ['!=', ['feature-state', 'selectedfeature'], null], ...zeroFilters],
+        ['match', ['feature-state', 'selectedfeature'], ...breaks],
+        'rgba(0, 0, 0, 0)',
+      ];
+      lineStyle = ['match', ['feature-state', 'selectedfeature'], ...lineBreaks];
     } else if (selectedAttribute.slice(0, 3) === 'num') {
-      console.log('paint numeric');
-
-      // fetch color scheme array
-      console.log({ selectedNumericScheme, selectedClassification });
-      // mh4_5, ckmeans_5
-
-      // fetch breaks from infoMeta
-      console.log({ infoMeta });
-
       const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
       const currentClassification =
         availableClassifications[selectedClassification.replace('_', '')];
       const currentColorscheme = colortree[selectedNumericScheme];
 
       const breaks = [];
+      const lineBreaks = [];
 
       for (let i = 0; i < currentColorscheme.colors.length; i++) {
         breaks.push(currentColorscheme.colors[i]);
+        lineBreaks.push(currentColorscheme.colors[i]);
         if (i < currentColorscheme.colors.length - 1) {
           breaks.push(currentClassification[i]);
+          lineBreaks.push(currentClassification[i]);
         }
       }
 
-      console.log({ breaks });
+      if (zeroAsNull) {
+        zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 0]);
+        zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '0']);
+      }
 
-      console.log({ availableClassifications, currentClassification, currentColorscheme });
-      const colorStyle = [
+      colorStyle = [
         'case',
-        ['!=', ['feature-state', 'selectedfeature'], null],
+        ['all', ['!=', ['feature-state', 'selectedfeature'], null], ...zeroFilters],
         ['step', ['feature-state', 'selectedfeature'], ...breaks],
-        'rgba(255, 255, 255, 1)',
+        'rgba(0, 0, 0, 0)',
       ];
-
-      mapRef.current.setPaintProperty('parcels', 'fill-color', colorStyle);
-      mapRef.current.setPaintProperty('parcels-line', 'line-color', colorStyle);
-
-      // todo line layer instead of setting below property
-      // mapRef.current.setPaintProperty('parcels', 'fill-outline-color', colorStyle);
-
-      // load new data.
-      mapRef.current.fire('moveend');
+      lineStyle = [
+        'case',
+        ['all', ['!=', ['feature-state', 'selectedfeature'], null]],
+        ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
+        'rgba(0, 0, 0, 0)',
+      ];
     } else {
-      console.log('i dont know what to paint');
+      console.error('i dont know what to paint');
     }
+
+    mapRef.current.setPaintProperty('parcels', 'fill-color', colorStyle);
+    mapRef.current.setPaintProperty('parcels-line', 'line-color', lineStyle);
+
+    mapRef.current.fire('moveend');
   }, [
     selectedCategoricalScheme,
     selectedNumericScheme,
@@ -507,9 +532,7 @@ function getUrlParameter(name) {
 }
 
 function populateProductDownloads(inventory, updateFocusDownload, metadata) {
-  console.log({ inventory, metadata });
   const focusGeo = inventory[metadata.geoid];
-  console.log({ focusGeo });
 
   let focusSource;
   let focusDownload;
