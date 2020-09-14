@@ -53,7 +53,14 @@ const AttributeSelector = ({
   return (
     <div>
       <MapTitleControl title={titleTextCounty + ', ' + titleTextState} />
-      <MapLegend />
+      <MapLegend
+        selectedCategoricalScheme={selectedCategoricalScheme}
+        selectedNumericScheme={selectedNumericScheme}
+        selectedAttribute={selectedAttribute}
+        selectedClassification={selectedClassification}
+        zeroAsNull={zeroAsNull}
+        infoMeta={infoMeta}
+      />
 
       <MapModalToggleButton updateDialogOpen={updateDialogOpen} dialogOpen={dialogOpen} />
 

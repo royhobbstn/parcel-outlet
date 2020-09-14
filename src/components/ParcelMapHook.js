@@ -436,9 +436,9 @@ export function ParcelMap({
       const classes = infoMeta.fieldMetadata.categorical[categoryAttribute];
       const filteredClasses = classes.filter(d => d.trim() !== '' && d !== 'null');
 
-      //   zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '']);
-      //   zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], ' ']);
-      //   zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 'null']);
+      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '']);
+      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], ' ']);
+      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 'null']);
 
       const breaks = [];
       const lineBreaks = [];
@@ -455,7 +455,7 @@ export function ParcelMap({
         }
       }
 
-      breaks.push('rgba(0, 0, 0, 0)'); // case of no match
+      breaks.push('darkslategrey'); // case of no match (others)
       lineBreaks.push('darkslategrey'); // outline grey to designate parcel without value
 
       colorStyle = [
@@ -468,7 +468,7 @@ export function ParcelMap({
         'case',
         ['all', ...zeroFilters],
         ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
-        'rgba(0, 0, 0, 0)',
+        'darkslategrey',
       ];
     } else if (selectedAttribute.slice(0, 3) === 'num') {
       const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
