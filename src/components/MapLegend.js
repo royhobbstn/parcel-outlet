@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import { colortree } from '../lookups/colortree';
 import { categorytree } from '../lookups/categorytree';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import IconButton from '@material-ui/core/IconButton';
 
 export function MapLegend({
   selectedCategoricalScheme,
@@ -11,104 +14,41 @@ export function MapLegend({
   zeroAsNull,
   infoMeta,
 }) {
-  let zeroFilters = [['!=', ['feature-state', 'selectedfeature'], null]];
-  let colorStyle = 'cyan'; // string or array
-  let lineStyle = 'cyan'; // string or array
+  const [legendIsOpen, toggleLegendIsOpen] = useState(true);
 
   let filteredClasses = {};
+  let currentClassification;
+  let currentColorscheme;
 
-  if (selectedAttribute === 'default') {
-    // paints default (uses default colorStyle above)
-  } else if (selectedAttribute.slice(0, 3) === 'cat') {
+  if (selectedAttribute.slice(0, 3) === 'cat') {
     const categoryAttribute = selectedAttribute.slice(4);
     const classes = infoMeta.fieldMetadata.categorical[categoryAttribute];
     filteredClasses = classes.filter(d => d.trim() !== '' && d !== 'null');
-
-    zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '']);
-    zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], ' ']);
-    zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 'null']);
-
-    const breaks = [];
-    const lineBreaks = [];
-
-    for (let [index, value] of filteredClasses.entries()) {
-      const nextColor = categorytree[selectedCategoricalScheme].colors[index];
-      if (nextColor) {
-        breaks.push(value);
-        breaks.push(nextColor);
-        lineBreaks.push(value);
-        lineBreaks.push(nextColor);
-      } else {
-        break;
-      }
-    }
-
-    breaks.push('darkslategrey'); // case of no match (others)
-    lineBreaks.push('darkslategrey'); // outline grey to designate parcel without value
-
-    colorStyle = [
-      'case',
-      ['all', ...zeroFilters],
-      ['match', ['feature-state', 'selectedfeature'], ...breaks],
-      'rgba(0, 0, 0, 0)',
-    ];
-    lineStyle = [
-      'case',
-      ['all', ...zeroFilters],
-      ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
-      'darkslategrey',
-    ];
   } else if (selectedAttribute.slice(0, 3) === 'num') {
     const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
-    const currentClassification = availableClassifications[selectedClassification.replace('_', '')];
-    const currentColorscheme = colortree[selectedNumericScheme];
+    currentClassification = availableClassifications[selectedClassification.replace('_', '')];
+    currentColorscheme = colortree[selectedNumericScheme];
 
-    const breaks = [];
-    const lineBreaks = [];
-
-    for (let i = 0; i < currentColorscheme.colors.length; i++) {
-      breaks.push(currentColorscheme.colors[i]);
-      lineBreaks.push(currentColorscheme.colors[i]);
-      if (i < currentColorscheme.colors.length - 1) {
-        breaks.push(currentClassification[i]);
-        lineBreaks.push(currentClassification[i]);
-      }
-    }
-
-    if (zeroAsNull) {
-      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 0]);
-      zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '0']);
-    }
-
-    colorStyle = [
-      'case',
-      ['all', ...zeroFilters],
-      ['step', ['feature-state', 'selectedfeature'], ...breaks],
-      'rgba(0, 0, 0, 0)',
-    ];
-    lineStyle = [
-      'case',
-      ['all', ...zeroFilters],
-      ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
-      'rgba(0, 0, 0, 0)',
-    ];
+    // if (zeroAsNull)
   }
 
-  // if (selectedAttribute === 'default') {
-  //   return null;
-  // }
+  if (selectedAttribute === 'default') {
+    return null;
+  }
 
   return (
     <div
       className="map-title-control"
       style={{
         position: 'absolute',
-        backgroundColor: 'inherit',
+        opacity: 0.8,
+        backgroundColor: '#343332',
         zIndex: 100,
         width: 'auto',
-        height: 'auto',
+        height: legendIsOpen ? 'auto' : '50px',
+        overflow: 'hidden',
         bottom: '20px',
-        left: '20px',
+        left: '5px',
         outline: 'none',
         border: '1px solid white',
         padding: '10px 16px',
@@ -117,30 +57,44 @@ export function MapLegend({
     >
       <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
         <Grid item xs={12}>
+          <IconButton
+            style={{ position: 'absolute', top: '0px', right: '0px' }}
+            onClick={() => {
+              toggleLegendIsOpen(!legendIsOpen);
+            }}
+          >
+            {legendIsOpen ? (
+              <ExpandMore style={{ fill: 'white' }} />
+            ) : (
+              <ExpandLess style={{ fill: 'white' }} />
+            )}
+          </IconButton>
           <Typography style={{ color: 'white' }}>{selectedAttribute.slice(4)}</Typography>
         </Grid>
         <Grid item xs={12}>
           {selectedAttribute.slice(0, 3) === 'cat' ? (
             <Grid item xs={12}>
-              <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
+              <Grid container spacing={1} style={{ overflowX: 'hidden' }}>
                 {Object.keys(filteredClasses).map((index, key) => {
                   const nextColor = categorytree[selectedCategoricalScheme].colors[index];
                   if (nextColor) {
                     return (
-                      <React.Fragment>
-                        {' '}
-                        <Grid item xs={3}>
+                      <React.Fragment key={filteredClasses[key]}>
+                        <Grid item xs={1}>
                           <span
                             style={{
                               position: 'absolute',
                               width: '20px',
                               height: '15px',
                               backgroundColor: nextColor,
-                              opacity: '0.6',
+                              borderRadius: '3px',
+                              borderWidth: '1px',
+                              borderStyle: 'solid',
+                              borderColor: nextColor,
                             }}
                           ></span>
                         </Grid>
-                        <Grid item xs={9}>
+                        <Grid item xs={2}>
                           <span style={{ color: 'white' }}>{filteredClasses[key]}</span>
                         </Grid>
                       </React.Fragment>
@@ -149,23 +103,78 @@ export function MapLegend({
                     return null;
                   }
                 })}
+                {Object.keys(filteredClasses).length >=
+                categorytree[selectedCategoricalScheme].count ? (
+                  <React.Fragment>
+                    <Grid item xs={1}>
+                      <span
+                        style={{
+                          position: 'absolute',
+                          width: '20px',
+                          height: '15px',
+                          backgroundColor: 'darkslategrey',
+                          borderRadius: '3px',
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'darkslategrey',
+                        }}
+                      ></span>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <span style={{ color: 'white' }}>Other Values</span>
+                    </Grid>
+                  </React.Fragment>
+                ) : null}
               </Grid>
             </Grid>
           ) : null}
-          {/* {selectedAttribute.slice(0, 3) === 'num' ? (
-        <div>
-          <span
-            style={{
-              top: '20px',
-              left: '5px',
-              width: '20px',
-              height: '15px',
-              backgroundColor: 'cyan',
-              opacity: '0.6',
-            }}
-          ></span>
-        </div>
-      ) : null} */}
+          {selectedAttribute.slice(0, 3) === 'num' ? (
+            <Grid item xs={12}>
+              <Grid container spacing={1} style={{ overflowX: 'hidden' }}>
+                {currentColorscheme.colors.map((color, index) => {
+                  return (
+                    <React.Fragment key={color}>
+                      <Grid item xs={1}>
+                        <span
+                          style={{
+                            position: 'absolute',
+                            width: '20px',
+                            height: '15px',
+                            backgroundColor: color,
+                            borderRadius: '3px',
+                            borderWidth: '1px',
+                            borderStyle: 'solid',
+                            borderColor: color,
+                          }}
+                        ></span>
+                      </Grid>
+
+                      {index === 0 ? (
+                        <Grid item xs={2}>
+                          <span style={{ color: 'white' }}>
+                            &le; {currentClassification[index].toLocaleString()}
+                          </span>
+                        </Grid>
+                      ) : index === currentColorscheme.colors.length - 1 ? (
+                        <Grid item xs={2}>
+                          <span style={{ color: 'white' }}>
+                            &gt; {currentClassification[index - 1].toLocaleString()}
+                          </span>
+                        </Grid>
+                      ) : (
+                        <Grid item xs={2}>
+                          <span style={{ color: 'white' }}>
+                            {currentClassification[index - 1].toLocaleString()} to{' '}
+                            {currentClassification[index].toLocaleString()}
+                          </span>
+                        </Grid>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </Grid>
+            </Grid>
+          ) : null}
         </Grid>
       </Grid>
     </div>

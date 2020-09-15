@@ -6,7 +6,6 @@ export function MapTitleControl({ title }) {
     <Typography
       style={{
         position: 'absolute',
-        backgroundColor: 'white',
         zIndex: 100,
         width: 'auto',
         height: 'auto',
@@ -15,6 +14,10 @@ export function MapTitleControl({ title }) {
         outline: 'none',
         padding: '10px 16px',
         borderRadius: '5px',
+        backgroundColor: 'rgb(52, 51, 50)',
+        color: 'white',
+        border: '1px solid white',
+        opacity: 0.8,
       }}
       className="map-title-control"
     >

@@ -7,11 +7,14 @@ export function MapModalToggleButton({ updateDialogOpen, dialogOpen }) {
     <IconButton
       style={{
         position: 'absolute',
-        backgroundColor: 'white',
         zIndex: 100,
         top: '150px',
         right: '20px',
         padding: '10px',
+        backgroundColor: 'rgb(52, 51, 50)',
+        color: 'white',
+        border: '1px solid white',
+        opacity: 0.8,
       }}
       className="map-title-control"
       onClick={() => {

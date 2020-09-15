@@ -1,5 +1,6 @@
 // @ts-check
 import React, { useState } from 'react';
+import Draggable from 'react-draggable';
 
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties';
@@ -64,8 +65,9 @@ const AttributeSelector = ({
 
       <MapModalToggleButton updateDialogOpen={updateDialogOpen} dialogOpen={dialogOpen} />
 
-      <div>
+      <Draggable>
         <Dialog
+          hideBackdrop={true}
           onClose={() => {
             updateDialogOpen(false);
           }}
@@ -133,7 +135,7 @@ const AttributeSelector = ({
             ) : null}
           </DialogContent>
         </Dialog>
-      </div>
+      </Draggable>
     </div>
   );
 };
