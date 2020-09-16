@@ -12,6 +12,7 @@ export function MapAttributeSelect({
     <TextField
       style={{
         display: 'block',
+        marginTop: '20px',
         marginRight: '10px',
         marginBottom: '20px',
         width: '180px',

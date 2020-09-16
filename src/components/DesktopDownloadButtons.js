@@ -58,6 +58,8 @@ export default function DesktopDownloadButtons({
                 verticalAlign: 'middle',
                 marginBottom: '2px',
                 cursor: 'pointer',
+                backgroundColor: 'grey',
+                color: 'white',
               }}
             />
           </LightTooltip>
@@ -83,6 +85,8 @@ export default function DesktopDownloadButtons({
                       verticalAlign: 'middle',
                       marginBottom: '2px',
                       cursor: 'pointer',
+                      backgroundColor: 'grey',
+                      color: 'white',
                     }}
                   />
                 </LightTooltip>
@@ -108,6 +112,8 @@ export default function DesktopDownloadButtons({
                       verticalAlign: 'middle',
                       marginBottom: '2px',
                       cursor: 'pointer',
+                      backgroundColor: 'grey',
+                      color: 'white',
                     }}
                   />
                 </LightTooltip>
@@ -141,6 +147,8 @@ export default function DesktopDownloadButtons({
                       verticalAlign: 'middle',
                       marginBottom: '2px',
                       cursor: 'pointer',
+                      backgroundColor: 'grey',
+                      color: 'white',
                     }}
                   />
                 </LightTooltip>

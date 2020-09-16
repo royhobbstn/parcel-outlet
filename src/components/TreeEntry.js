@@ -1,7 +1,7 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import { Link } from 'react-router-dom';
-import MapIcon from '@material-ui/icons/Map';
+import PublicIcon from '@material-ui/icons/Public';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { rawBase, productBase } from '../service/env.js';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -116,7 +116,7 @@ export default function TreeEntry({
                       component={Link}
                       to={`/parcel-map?prid=${product.product_key}`}
                       size="small"
-                      label={<MapIcon style={{ verticalAlign: 'middle' }} />}
+                      label={<PublicIcon style={{ verticalAlign: 'middle' }} />}
                       style={{ marginRight: '6px' }}
                     />
                   );

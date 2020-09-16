@@ -22,10 +22,10 @@ export function ParcelMap({
 
   // attribute selector
   const [selectedCategoricalScheme, updateSelectedCategoricalScheme] = useState('dark');
-  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('viridis_11');
+  const [selectedNumericScheme, updateSelectedNumericScheme] = useState('viridis_9');
   const [selectedAttribute, updateSelectedAttribute] = useState('default');
   const selectedAttributeRef = useRef('default');
-  const [selectedClassification, updateSelectedClassification] = useState('quantile_11');
+  const [selectedClassification, updateSelectedClassification] = useState('quantile_9');
   const [advancedToggle, updateAdvancedToggle] = useState(true);
   const [zeroAsNull, updateZeroAsNull] = useState(true);
 
@@ -134,41 +134,42 @@ export function ParcelMap({
         type: 'fill',
         layout: {},
         paint: {
-          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.6, 0.2],
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.9, 0.6],
           'fill-color': 'cyan',
-          'fill-antialias': false,
+          'fill-antialias': true,
+          'fill-outline-color': 'rgb(52, 51, 50)',
         },
       });
 
-      map.addLayer({
-        id: 'parcels-line',
-        'source-layer': LAYERNAME,
-        source: 'tiles',
-        type: 'line',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round',
-        },
-        paint: {
-          'line-opacity': 0.6,
-          'line-width': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            5,
-            0,
-            7,
-            0.05,
-            10,
-            0.1,
-            12,
-            0.4,
-            16,
-            1,
-          ],
-          'line-color': 'cyan',
-        },
-      });
+      //   map.addLayer({
+      //     id: 'parcels-line',
+      //     'source-layer': LAYERNAME,
+      //     source: 'tiles',
+      //     type: 'line',
+      //     layout: {
+      //       'line-join': 'round',
+      //       'line-cap': 'round',
+      //     },
+      //     paint: {
+      //       'line-opacity': 0.9,
+      //       'line-width': [
+      //         'interpolate',
+      //         ['linear'],
+      //         ['zoom'],
+      //         5,
+      //         0,
+      //         7,
+      //         0.05,
+      //         10,
+      //         0.1,
+      //         12,
+      //         0.4,
+      //         16,
+      //         1,
+      //       ],
+      //       'line-color': 'black',
+      //     },
+      //   });
 
       map.on('moveend', async e => {
         if (selectedAttributeRef.current === 'default') {
@@ -427,7 +428,7 @@ export function ParcelMap({
 
     let zeroFilters = [['!=', ['feature-state', 'selectedfeature'], null]];
     let colorStyle = 'cyan'; // string or array
-    let lineStyle = 'cyan'; // string or array
+    // let lineStyle = 'cyan'; // string or array
 
     if (selectedAttribute === 'default') {
       // paints default (uses default colorStyle above)
@@ -464,12 +465,12 @@ export function ParcelMap({
         ['match', ['feature-state', 'selectedfeature'], ...breaks],
         'rgba(0, 0, 0, 0)',
       ];
-      lineStyle = [
-        'case',
-        ['all', ...zeroFilters],
-        ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
-        'darkslategrey',
-      ];
+      //   lineStyle = [
+      //     'case',
+      //     ['all', ...zeroFilters],
+      //     ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
+      //     'darkslategrey',
+      //   ];
     } else if (selectedAttribute.slice(0, 3) === 'num') {
       const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
       const currentClassification =
@@ -499,18 +500,18 @@ export function ParcelMap({
         ['step', ['feature-state', 'selectedfeature'], ...breaks],
         'rgba(0, 0, 0, 0)',
       ];
-      lineStyle = [
-        'case',
-        ['all', ...zeroFilters],
-        ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
-        'rgba(0, 0, 0, 0)',
-      ];
+      //   lineStyle = [
+      //     'case',
+      //     ['all', ...zeroFilters],
+      //     ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
+      //     'rgba(0, 0, 0, 0)',
+      //   ];
     } else {
       console.error('i dont know what to paint');
     }
 
     mapRef.current.setPaintProperty('parcels', 'fill-color', colorStyle);
-    mapRef.current.setPaintProperty('parcels-line', 'line-color', lineStyle);
+    // mapRef.current.setPaintProperty('parcels-line', 'line-color', 'grey');
 
     mapRef.current.fire('moveend');
   }, [

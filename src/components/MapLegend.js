@@ -91,6 +91,7 @@ export function MapLegend({
                               borderWidth: '1px',
                               borderStyle: 'solid',
                               borderColor: nextColor,
+                              opacity: 0.8,
                             }}
                           ></span>
                         </Grid>
@@ -117,6 +118,7 @@ export function MapLegend({
                           borderWidth: '1px',
                           borderStyle: 'solid',
                           borderColor: 'darkslategrey',
+                          opacity: 0.8,
                         }}
                       ></span>
                     </Grid>
@@ -145,6 +147,7 @@ export function MapLegend({
                             borderWidth: '1px',
                             borderStyle: 'solid',
                             borderColor: color,
+                            opacity: 0.8,
                           }}
                         ></span>
                       </Grid>

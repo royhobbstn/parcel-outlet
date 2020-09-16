@@ -67,6 +67,13 @@ const AttributeSelector = ({
 
       <Draggable>
         <Dialog
+          id="attributeselector"
+          PaperProps={{
+            style: {
+              backgroundColor: '#343332',
+              color: 'white',
+            },
+          }}
           hideBackdrop={true}
           onClose={() => {
             updateDialogOpen(false);
@@ -74,10 +81,10 @@ const AttributeSelector = ({
           aria-labelledby="customized-dialog-title"
           open={dialogOpen}
         >
-          <DialogTitle id="customized-dialog-title">
+          <DialogTitle id="customized-dialog-title" style={{ borderBottom: '1px solid grey' }}>
             Change Map Style
             <IconButton
-              style={{ position: 'absolute', right: '5px', top: '8px' }}
+              style={{ position: 'absolute', right: '5px', top: '8px', color: 'white' }}
               onClick={() => {
                 updateDialogOpen(false);
               }}

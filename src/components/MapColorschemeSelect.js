@@ -45,6 +45,7 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
     <TextField
       style={{
         display: 'block',
+        marginTop: '20px',
         marginRight: '10px',
         marginBottom: '20px',
         width: '180px',
@@ -99,6 +100,7 @@ function NumericSelector(schemes, selectedNumericScheme, updateSelectedNumericSc
     <TextField
       style={{
         display: 'block',
+        marginTop: '20px',
         marginRight: '10px',
         marginBottom: '20px',
         width: '180px',

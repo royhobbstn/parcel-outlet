@@ -28,7 +28,20 @@ export default function MapAttributesDialog({
   const currentFeature = currentFeatureAttributes[current];
 
   return (
-    <Dialog open={mapAttributesModalOpen} fullWidth={true} maxWidth="sm">
+    <Dialog
+      onBackdropClick={() => updateMapAttributesModalOpen(false)}
+      open={mapAttributesModalOpen}
+      fullWidth={true}
+      maxWidth="sm"
+      style={{ border: '1px solid white' }}
+      PaperProps={{
+        style: {
+          backgroundColor: '#343332',
+          color: 'white',
+        },
+      }}
+      id="mapattributesdialog"
+    >
       <MapAttributesHeader updateMapAttributesModalOpen={updateMapAttributesModalOpen} />
       {total > 1 ? (
         <FeatureScroller current={current} updateCurrent={updateCurrent} total={total} />

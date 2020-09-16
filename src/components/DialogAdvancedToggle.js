@@ -20,7 +20,7 @@ export function DialogAdvancedToggle({ advancedToggle, updateAdvancedToggle }) {
           // @ts-ignore
           updateAdvancedToggle(!advancedToggle);
         }}
-        color="primary"
+        color="secondary"
         name="advanced-toggle"
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />

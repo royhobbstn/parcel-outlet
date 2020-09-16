@@ -107,3 +107,63 @@ a:hover {
 #mobileActivatorButton {
   margin-right: 20px;
 }
+
+/* attribute table in dialog */
+
+#mapattributesdialog th {
+  background-color: grey;
+  color: white;
+  border-color: grey;
+}
+
+#mapattributesdialog td {
+  background-color: #343332;
+  color: white;
+  border-color: grey;
+}
+
+#mapattributesdialog button span.MuiIconButton-label {
+  color: white;
+}
+
+/* attribute selector */
+
+#attributeselector label {
+  color: white;
+}
+
+#attributeselector .MuiSelect-outlined {
+  color: white;
+}
+
+#attributeselector .MuiOutlinedInput-notchedOutline {
+  border-color: white;
+}
+
+#attributeselector svg {
+  color: white;
+}
+
+ul.MuiList-root.MuiMenu-list.MuiList-padding {
+  background-color: darkslategray;
+}
+
+#attributeselector div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper {
+  background-color: green;
+}
+
+#attribute-selector option {
+  background-color: darkslategray;
+}
+
+#attribute-selector optgroup {
+  background-color: darkslategray;
+}
+
+#numeric-classifications option {
+  background-color: darkslategray;
+}
+
+.appBarProducts .iconChip {
+  color: grey;
+}
