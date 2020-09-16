@@ -17,7 +17,8 @@
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "url-parse": "^1.4.7"
   },
   "devDependencies": {
     "prettier": "^2.0.5",

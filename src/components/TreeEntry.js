@@ -5,6 +5,8 @@ import PublicIcon from '@material-ui/icons/Public';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { rawBase, productBase } from '../service/env.js';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { countyLookup } from '../lookups/counties';
+import { stateLookup } from '../lookups/states';
 
 export default function TreeEntry({
   cntyplc,
@@ -110,11 +112,14 @@ export default function TreeEntry({
                     </a>
                   );
                 } else if (product.product_type === 'pbf') {
+                  const state = product.geoid.slice(0, 2);
+                  const geoname = `${countyLookup(product.geoid)} ${stateLookup(state)}`;
+                  const geonameMod = geoname.replace(/\s/g, '-');
                   return (
                     <Chip
                       key={product.product_individual_ref}
                       component={Link}
-                      to={`/parcel-map?prid=${product.product_key}`}
+                      to={`/parcel-map/${geonameMod}/${product.product_key}`}
                       size="small"
                       label={<PublicIcon style={{ verticalAlign: 'middle' }} />}
                       style={{ marginRight: '6px' }}

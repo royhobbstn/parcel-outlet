@@ -7,6 +7,8 @@ import { AttributeSelectorMemo as AttributeSelector } from './AttributeSelector'
 import { colortree } from '../lookups/colortree';
 import { categorytree } from '../lookups/categorytree';
 
+const Url = require('url-parse');
+
 const LAYERNAME = 'parcelslayer';
 
 export function ParcelMap({
@@ -56,9 +58,21 @@ export function ParcelMap({
 
     mapRef.current = map;
 
-    const productId = getUrlParameter('prid');
-    if (!productId) {
-      console.error('sorry, please provide a prid');
+    var url = new Url(window.location.href);
+    const pathname = url.pathname;
+
+    const parts = pathname.split('/');
+
+    const [blank, base, descriptiveName, productId] = parts;
+    // FYI
+    // blank = ""
+    // base = "parcel-map"
+    // descriptiveName = "whatever the geoname" - has no purpose other than SEO
+    // productId = "a2d782cf-d442fd95-c327a9de" format like downloadRef, productRef, individRef
+
+    if (blank || !base || !descriptiveName || !productId) {
+      console.error('this is not a valid page name');
+      return;
     }
 
     const info = window
