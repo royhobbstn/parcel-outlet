@@ -62,7 +62,7 @@ export default function ButtonAppBar({ feedbackModal, updateFeedbackModal }) {
           <TextField
             style={{ width: '100%' }}
             id="feedback-name-text"
-            label="Name"
+            label="Name (or Alias)"
             value={nameText}
             onChange={evt => {
               updateNameText(evt.target.value);

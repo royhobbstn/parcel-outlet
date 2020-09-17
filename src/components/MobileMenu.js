@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
+import FeedbackIcon from '@material-ui/icons/Feedback';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
@@ -49,6 +50,7 @@ export default function CustomizedMenus({
   updateStatChoice,
   updatedSelectedDownload,
   updateModalOpen,
+  updateFeedbackModal,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -112,6 +114,16 @@ export default function CustomizedMenus({
             <MapIcon />
           </ListItemIcon>
           <ListItemText primary="Coverage Map" />
+        </StyledMenuItem>
+        <StyledMenuItem
+          onClick={() => {
+            updateFeedbackModal(true);
+          }}
+        >
+          <ListItemIcon>
+            <FeedbackIcon />
+          </ListItemIcon>
+          <ListItemText primary="Feedback" />
         </StyledMenuItem>
         <StyledMenuItem
           component={Link}

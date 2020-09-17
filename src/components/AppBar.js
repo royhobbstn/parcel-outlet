@@ -62,6 +62,7 @@ export default function ButtonAppBar({
                 updateStatChoice={updateStatChoice}
                 updatedSelectedDownload={updatedSelectedDownload}
                 updateModalOpen={updateModalOpen}
+                updateFeedbackModal={updateFeedbackModal}
               />
             </div>
           ) : (

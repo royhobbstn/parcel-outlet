@@ -1,6 +1,5 @@
 // @ts-check
 import React, { useState } from 'react';
-import Draggable from 'react-draggable';
 
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties';
@@ -65,84 +64,82 @@ const AttributeSelector = ({
 
       <MapModalToggleButton updateDialogOpen={updateDialogOpen} dialogOpen={dialogOpen} />
 
-      <Draggable>
-        <Dialog
-          id="attributeselector"
-          PaperProps={{
-            style: {
-              backgroundColor: '#343332',
-              color: 'white',
-            },
-          }}
-          hideBackdrop={true}
-          onClose={() => {
-            updateDialogOpen(false);
-          }}
-          aria-labelledby="customized-dialog-title"
-          open={dialogOpen}
-        >
-          <DialogTitle id="customized-dialog-title" style={{ borderBottom: '1px solid grey' }}>
-            Change Map Style
-            <IconButton
-              style={{ position: 'absolute', right: '5px', top: '8px', color: 'white' }}
-              onClick={() => {
-                updateDialogOpen(false);
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent dividers>
+      <Dialog
+        id="attributeselector"
+        PaperProps={{
+          style: {
+            backgroundColor: '#343332',
+            color: 'white',
+          },
+        }}
+        hideBackdrop={true}
+        onClose={() => {
+          updateDialogOpen(false);
+        }}
+        aria-labelledby="customized-dialog-title"
+        open={dialogOpen}
+      >
+        <DialogTitle id="customized-dialog-title" style={{ borderBottom: '1px solid grey' }}>
+          Change Map Style
+          <IconButton
+            style={{ position: 'absolute', right: '5px', top: '8px', color: 'white' }}
+            onClick={() => {
+              updateDialogOpen(false);
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
+            <Grid item xs={6}>
+              <MapAttributeSelect
+                selectedAttribute={selectedAttribute}
+                updateSelectedAttribute={updateSelectedAttribute}
+                selectedAttributeRef={selectedAttributeRef}
+                categoricalKeys={categoricalKeys}
+                numericKeys={numericKeys}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <MapColorschemeSelect
+                selectedAttribute={selectedAttribute}
+                selectedCategoricalScheme={selectedCategoricalScheme}
+                updateSelectedCategoricalScheme={updateSelectedCategoricalScheme}
+                selectedNumericScheme={selectedNumericScheme}
+                updateSelectedNumericScheme={updateSelectedNumericScheme}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              {numericIsSelected ? (
+                <DialogAdvancedToggle
+                  advancedToggle={advancedToggle}
+                  updateAdvancedToggle={updateAdvancedToggle}
+                />
+              ) : null}
+            </Grid>
+          </Grid>
+
+          {advancedToggle && numericIsSelected ? (
             <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
               <Grid item xs={6}>
-                <MapAttributeSelect
-                  selectedAttribute={selectedAttribute}
-                  updateSelectedAttribute={updateSelectedAttribute}
-                  selectedAttributeRef={selectedAttributeRef}
-                  categoricalKeys={categoricalKeys}
-                  numericKeys={numericKeys}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <MapColorschemeSelect
-                  selectedAttribute={selectedAttribute}
-                  selectedCategoricalScheme={selectedCategoricalScheme}
-                  updateSelectedCategoricalScheme={updateSelectedCategoricalScheme}
+                <MapClassificationSelect
+                  selectedClassification={selectedClassification}
+                  updateSelectedClassification={updateSelectedClassification}
                   selectedNumericScheme={selectedNumericScheme}
                   updateSelectedNumericScheme={updateSelectedNumericScheme}
                 />
               </Grid>
-              <Grid item xs={12}>
-                {numericIsSelected ? (
-                  <DialogAdvancedToggle
-                    advancedToggle={advancedToggle}
-                    updateAdvancedToggle={updateAdvancedToggle}
-                  />
-                ) : null}
+              <Grid item xs={6}>
+                <DialogNullZeroCheckboxes
+                  zeroAsNull={zeroAsNull}
+                  updateZeroAsNull={updateZeroAsNull}
+                />
               </Grid>
             </Grid>
-
-            {advancedToggle && numericIsSelected ? (
-              <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
-                <Grid item xs={6}>
-                  <MapClassificationSelect
-                    selectedClassification={selectedClassification}
-                    updateSelectedClassification={updateSelectedClassification}
-                    selectedNumericScheme={selectedNumericScheme}
-                    updateSelectedNumericScheme={updateSelectedNumericScheme}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <DialogNullZeroCheckboxes
-                    zeroAsNull={zeroAsNull}
-                    updateZeroAsNull={updateZeroAsNull}
-                  />
-                </Grid>
-              </Grid>
-            ) : null}
-          </DialogContent>
-        </Dialog>
-      </Draggable>
+          ) : null}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

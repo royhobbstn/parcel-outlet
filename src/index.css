@@ -144,7 +144,7 @@ a:hover {
   color: white;
 }
 
-ul.MuiList-root.MuiMenu-list.MuiList-padding {
+#attributeselector ul.MuiList-root.MuiMenu-list.MuiList-padding {
   background-color: darkslategray;
 }
 
