@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,6 +12,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DesktopDownloadButtons from './DesktopDownloadButtons.js';
 import MobileMenu from './MobileMenu.js';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import FeedbackModal from './FeedbackModal';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,9 +47,11 @@ export default function ButtonAppBar({
 }) {
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:700px)');
+  const [feedbackModal, updateFeedbackModal] = useState(false);
 
   return (
     <div className={classes.root}>
+      <FeedbackModal feedbackModal={feedbackModal} updateFeedbackModal={updateFeedbackModal} />
       <AppBar position="static" className="customAppBar">
         <Toolbar>
           {!matches ? (
@@ -100,6 +104,16 @@ export default function ButtonAppBar({
                   <MapIcon />
                 </IconButton>
               </LightTooltip>
+
+              <LightTooltip title="Give Feedback" placement="bottom">
+                <IconButton
+                  className={classes.menuButton}
+                  onClick={() => updateFeedbackModal(true)}
+                >
+                  <FeedbackIcon />
+                </IconButton>
+              </LightTooltip>
+
               <LightTooltip title="About this Site" placement="bottom">
                 <IconButton component={Link} to={'/about'} className={classes.menuButton}>
                   <HelpOutline />

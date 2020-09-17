@@ -334,8 +334,6 @@ export function ParcelMap({
           duplicates[id] = true;
         });
 
-        const productId = getUrlParameter('prid');
-
         const missingClusters = Array.from(missingClustersSet);
 
         const data = {};
@@ -558,14 +556,6 @@ export function ParcelMap({
       <div ref={mapContainerRef} id="map" />
     </div>
   );
-}
-
-function getUrlParameter(name) {
-  // eslint-disable-next-line
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  var results = regex.exec(window.location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
 function populateProductDownloads(inventory, updateFocusDownload, metadata) {
