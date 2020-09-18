@@ -12,12 +12,13 @@
     "@testing-library/user-event": "^7.2.1",
     "can-ndjson-stream": "^1.0.2",
     "colormap": "^2.3.1",
+    "detect-browser": "^5.1.1",
     "mapbox-gl": "^1.11.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "url-parse": "^1.4.7"
   },
   "devDependencies": {

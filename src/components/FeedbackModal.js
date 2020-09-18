@@ -7,11 +7,53 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
+import { detect } from 'detect-browser';
 
 export default function ButtonAppBar({ feedbackModal, updateFeedbackModal }) {
   const [nameText, updateNameText] = useState('');
   const [contactText, updateContactText] = useState('');
   const [feedbackText, updateFeedbackText] = useState('');
+
+  const sendEmail = (evt, data) => {
+    let browserDetails = {};
+
+    try {
+      browserDetails = detect();
+    } catch (err) {
+      console.log('unable to detect browser');
+    }
+
+    const payload = {
+      nameText,
+      contactText,
+      feedbackText,
+      browserDetails,
+    };
+
+    const fetchUrl = `https://riohjz0knk.execute-api.us-east-2.amazonaws.com/dev/send-feedback`;
+
+    fetch(fetchUrl, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+      .then(response => response.json())
+      .then(() => {
+        alert('Successfully sent feedback.');
+      })
+      .catch(err => {
+        console.log(err);
+        alert('There was a problem sending feedback');
+      })
+      .finally(() => {
+        updateFeedbackText('');
+        updateFeedbackModal(false);
+      });
+  };
+
   return (
     <Dialog open={feedbackModal} fullWidth={true} maxWidth="md" style={{ overflow: 'hidden' }}>
       <div
@@ -102,8 +144,7 @@ export default function ButtonAppBar({ feedbackModal, updateFeedbackModal }) {
         <Button
           disabled={feedbackText === ''}
           onClick={() => {
-            updateFeedbackText('');
-            updateFeedbackModal(false);
+            sendEmail();
           }}
           color="primary"
         >
