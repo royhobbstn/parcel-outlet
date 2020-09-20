@@ -236,6 +236,10 @@ export function ParcelMap({
 
           // apply some sort of categorical style
 
+          console.log('--');
+          console.log(selectedAttribute);
+          console.log(selectedAttributeRef.current);
+          console.log('- -');
           featureDetails.forEach(data => {
             Object.keys(data).forEach(key => {
               map.setFeatureState(
@@ -245,7 +249,10 @@ export function ParcelMap({
                   id: key,
                 },
                 {
-                  selectedfeature: data[key],
+                  selectedfeature:
+                    selectedAttributeRef.current.slice(0, 3) === 'num'
+                      ? Number(data[key])
+                      : data[key],
                 },
               );
             });
