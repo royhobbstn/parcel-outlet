@@ -500,13 +500,25 @@ export function ParcelMap({
       const lineBreaks = [];
 
       for (let i = 0; i < currentColorscheme.colors.length; i++) {
+        const duplicateClassificationValue =
+          currentClassification[i] === currentClassification[i + 1];
+        const isNotLastColorValue = i < currentColorscheme.colors.length - 1;
+
+        if (duplicateClassificationValue && isNotLastColorValue) {
+          // skip multiple breaks with same value
+          // can happen when not many data values, ie 0,0,0,10,50,75...
+          continue;
+        }
+
         breaks.push(currentColorscheme.colors[i]);
         lineBreaks.push(currentColorscheme.colors[i]);
-        if (i < currentColorscheme.colors.length - 1) {
-          breaks.push(currentClassification[i]);
-          lineBreaks.push(currentClassification[i]);
+        if (isNotLastColorValue) {
+          breaks.push(currentClassification[i] + 0.0001);
+          lineBreaks.push(currentClassification[i] + 0.0001);
         }
       }
+
+      console.log(breaks);
 
       if (zeroAsNull) {
         zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 0]);

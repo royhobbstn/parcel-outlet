@@ -20,6 +20,9 @@ export function MapLegend({
   let currentClassification;
   let currentColorscheme;
 
+  let currentColors;
+  let currentClasses;
+
   if (selectedAttribute.slice(0, 3) === 'cat') {
     const categoryAttribute = selectedAttribute.slice(4);
     const classes = infoMeta.fieldMetadata.categorical[categoryAttribute];
@@ -29,7 +32,16 @@ export function MapLegend({
     currentClassification = availableClassifications[selectedClassification.replace('_', '')];
     currentColorscheme = colortree[selectedNumericScheme];
 
-    // if (zeroAsNull)
+    // deduct classification values that are duplicates
+    currentColors = [...currentColorscheme.colors];
+    currentClasses = [...currentClassification].reduce((acc, current, idx, arr) => {
+      if (arr[idx] !== arr[idx + 1]) {
+        acc.push(current);
+      } else {
+        currentColors.shift();
+      }
+      return acc;
+    }, []);
   }
 
   if (selectedAttribute === 'default') {
@@ -133,7 +145,7 @@ export function MapLegend({
           {selectedAttribute.slice(0, 3) === 'num' ? (
             <Grid item xs={12}>
               <Grid container spacing={1} style={{ overflowX: 'hidden' }}>
-                {currentColorscheme.colors.map((color, index) => {
+                {currentColors.map((color, index) => {
                   return (
                     <React.Fragment key={color}>
                       <Grid item xs={1}>
@@ -155,20 +167,20 @@ export function MapLegend({
                       {index === 0 ? (
                         <Grid item xs={2}>
                           <span style={{ color: 'white' }}>
-                            &le; {currentClassification[index].toLocaleString()}
+                            &le; {currentClasses[index].toLocaleString()}
                           </span>
                         </Grid>
-                      ) : index === currentColorscheme.colors.length - 1 ? (
+                      ) : index === currentColors.length - 1 ? (
                         <Grid item xs={2}>
                           <span style={{ color: 'white' }}>
-                            &gt; {currentClassification[index - 1].toLocaleString()}
+                            &gt; {currentClasses[index - 1].toLocaleString()}
                           </span>
                         </Grid>
                       ) : (
                         <Grid item xs={2}>
                           <span style={{ color: 'white' }}>
-                            {currentClassification[index - 1].toLocaleString()} to{' '}
-                            {currentClassification[index].toLocaleString()}
+                            {currentClasses[index - 1].toLocaleString()} to{' '}
+                            {currentClasses[index].toLocaleString()}
                           </span>
                         </Grid>
                       )}
