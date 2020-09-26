@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
-import { style } from '../style/mapStyle.js';
 import { key } from '../service/env';
 
 import { stateLookup } from '../lookups/states';
@@ -11,7 +10,7 @@ export class CoverageMap extends Component {
     mapboxgl.accessToken = key;
     window.map = new mapboxgl.Map({
       container: 'map',
-      style,
+      style: 'mapbox://styles/mapbox/bright-v9?optimize=true',
       center: [-104.9, 39.75],
       zoom: 4,
       maxZoom: 13,
@@ -39,39 +38,45 @@ export class CoverageMap extends Component {
             type: 'geojson',
             data: geo[1],
           });
-          window.map.addLayer({
-            id: 'counties',
-            type: 'fill',
-            source: 'counties',
-            layout: {},
-            paint: {
-              'fill-color': ['case', ['boolean', ['get', 'covered'], true], '#088', 'maroon'],
-              'fill-opacity': [
-                'case',
-                [
-                  'all',
-                  ['boolean', ['to-boolean', ['feature-state', 'hover']], true],
+          window.map.addLayer(
+            {
+              id: 'counties',
+              type: 'fill',
+              source: 'counties',
+              layout: {},
+              paint: {
+                'fill-color': ['case', ['boolean', ['get', 'covered'], true], '#088', 'maroon'],
+                'fill-opacity': [
+                  'case',
+                  [
+                    'all',
+                    ['boolean', ['to-boolean', ['feature-state', 'hover']], true],
+                    ['boolean', ['get', 'covered'], true],
+                  ],
+                  0.8,
                   ['boolean', ['get', 'covered'], true],
+                  0.5,
+                  ['boolean', ['to-boolean', ['feature-state', 'hover']], true],
+                  0.4,
+                  0.1,
                 ],
-                0.8,
-                ['boolean', ['get', 'covered'], true],
-                0.4,
-                ['boolean', ['to-boolean', ['feature-state', 'hover']], true],
-                0.2,
-                0.1,
-              ],
+              },
             },
-          });
-          window.map.addLayer({
-            id: 'states',
-            type: 'line',
-            source: 'states',
-            layout: {},
-            paint: {
-              'line-color': '#627BC1',
-              'line-width': 1,
+            'bridge_major_rail_hatching',
+          );
+          window.map.addLayer(
+            {
+              id: 'states',
+              type: 'line',
+              source: 'states',
+              layout: {},
+              paint: {
+                'line-color': '#627BC1',
+                'line-width': 1,
+              },
             },
-          });
+            'bridge_major_rail_hatching',
+          );
         })
         .catch(err => console.log(err));
     });
