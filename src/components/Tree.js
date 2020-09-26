@@ -77,6 +77,9 @@ function crunchInventory(inventory, searchboxText) {
 
   Object.keys(inventory)
     .filter(key => {
+      if (key === 'popStats') {
+        return false;
+      }
       if (!lowercaseSearch) {
         return true;
       }

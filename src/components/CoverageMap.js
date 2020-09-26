@@ -157,6 +157,11 @@ function enrichGeometry(geo, inventory) {
   const links = {};
 
   Object.keys(inventory).forEach(key => {
+    if (key === 'popStats') {
+      // ignore population metadata here
+      return;
+    }
+
     hash[key] = true;
 
     if (!links[key]) {

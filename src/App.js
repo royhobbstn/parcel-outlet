@@ -4,6 +4,7 @@ import About from './components/About.js';
 import { Tree } from './components/Tree.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { CoverageMap } from './components/CoverageMap';
+import CoverageStats from './components/CoverageStats';
 import { ParcelMap } from './components/ParcelMapHook';
 import StatsDialog from './components/StatsDialog';
 import MapAttributesDialog from './components/MapAttributesDialog';
@@ -99,6 +100,7 @@ function App() {
       <Switch>
         <Route path="/coverage-map">
           {coverageLabelOpen ? <CoverageLabel coverageLabelText={coverageLabelText} /> : null}
+          <CoverageStats inventory={inventory} />
           <CoverageMap
             inventory={inventory}
             updateCoverageModalOpen={updateCoverageModalOpen}

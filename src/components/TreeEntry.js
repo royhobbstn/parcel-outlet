@@ -121,7 +121,12 @@ export default function TreeEntry({
                       component={Link}
                       to={`/parcel-map/${geonameMod}/${product.product_key}`}
                       size="small"
-                      label={<PublicIcon style={{ verticalAlign: 'middle' }} />}
+                      label={
+                        <React.Fragment>
+                          <PublicIcon style={{ verticalAlign: 'middle' }} />
+                          &nbsp;Map
+                        </React.Fragment>
+                      }
                       style={{ marginRight: '6px' }}
                     />
                   );
