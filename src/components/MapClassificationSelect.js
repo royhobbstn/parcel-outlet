@@ -17,7 +17,7 @@ export function MapClassificationSelect({
         display: 'block',
         marginRight: '10px',
         marginBottom: '20px',
-        width: '180px',
+        width: '100%',
       }}
       id="numeric-classifications"
       select

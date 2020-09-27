@@ -46,9 +46,8 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
       style={{
         display: 'block',
         marginTop: '20px',
-        marginRight: '10px',
         marginBottom: '20px',
-        width: '180px',
+        width: '100%',
       }}
       id="categorical-colorschemes"
       select
@@ -62,14 +61,15 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
       variant="outlined"
     >
       <MenuItem key="dark" value="dark">
-        {categorytree.dark.colors.map((d, i) => {
+        {categorytree.dark.colors.map((c, i) => {
+          const colorWidth = 72 / categorytree.dark.colors.length + 'px';
           return (
             <span
               key={i}
               style={{
                 display: 'inline-block',
-                backgroundColor: d,
-                width: '12px',
+                backgroundColor: c,
+                width: colorWidth,
                 height: '16px',
               }}
             ></span>
@@ -77,14 +77,15 @@ function CategoricalSelector({ selectedCategoricalScheme, updateSelectedCategori
         })}
       </MenuItem>
       <MenuItem key="light" value="light">
-        {categorytree.light.colors.map((d, i) => {
+        {categorytree.light.colors.map((c, i) => {
+          const colorWidth = 72 / categorytree.light.colors.length + 'px';
           return (
             <span
               key={i}
               style={{
                 display: 'inline-block',
-                backgroundColor: d,
-                width: '12px',
+                backgroundColor: c,
+                width: colorWidth,
                 height: '16px',
               }}
             ></span>
@@ -101,9 +102,8 @@ function NumericSelector(schemes, selectedNumericScheme, updateSelectedNumericSc
       style={{
         display: 'block',
         marginTop: '20px',
-        marginRight: '10px',
         marginBottom: '20px',
-        width: '180px',
+        width: '100%',
       }}
       id="numerical-colorschemes"
       select
@@ -119,14 +119,15 @@ function NumericSelector(schemes, selectedNumericScheme, updateSelectedNumericSc
       {schemes.map(d => {
         return (
           <MenuItem key={d.id} value={d.id}>
-            {d.colors.map((d, i) => {
+            {d.colors.map((c, i) => {
+              const colorWidth = 72 / d.colors.length + 'px';
               return (
                 <span
                   key={i}
                   style={{
                     display: 'inline-block',
-                    backgroundColor: d,
-                    width: '12px',
+                    backgroundColor: c,
+                    width: colorWidth,
                     height: '16px',
                   }}
                 ></span>

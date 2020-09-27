@@ -15,7 +15,7 @@ export function MapAttributeSelect({
         marginTop: '20px',
         marginRight: '10px',
         marginBottom: '20px',
-        width: '180px',
+        width: '100%',
       }}
       id="attribute-selector"
       select

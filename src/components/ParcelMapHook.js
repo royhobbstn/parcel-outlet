@@ -141,51 +141,78 @@ export function ParcelMap({
       });
 
       // "DEFAULT STYLE"
-      map.addLayer({
-        id: 'parcels',
-        'source-layer': LAYERNAME,
-        source: 'tiles',
-        type: 'fill',
-        layout: {},
-        paint: {
-          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.9, 0.6],
-          'fill-color': 'cyan',
-          'fill-antialias': true,
-          'fill-outline-color': 'rgb(52, 51, 50)',
+      map.addLayer(
+        {
+          id: 'parcels',
+          'source-layer': LAYERNAME,
+          source: 'tiles',
+          type: 'fill',
+          layout: {},
+          paint: {
+            'fill-opacity': 0.7,
+            'fill-color': 'cyan',
+            'fill-antialias': false,
+          },
         },
-      });
+        'bridge-motorway-2',
+      );
 
-      //   map.addLayer({
-      //     id: 'parcels-line',
-      //     'source-layer': LAYERNAME,
-      //     source: 'tiles',
-      //     type: 'line',
-      //     layout: {
-      //       'line-join': 'round',
-      //       'line-cap': 'round',
-      //     },
-      //     paint: {
-      //       'line-opacity': 0.9,
-      //       'line-width': [
-      //         'interpolate',
-      //         ['linear'],
-      //         ['zoom'],
-      //         5,
-      //         0,
-      //         7,
-      //         0.05,
-      //         10,
-      //         0.1,
-      //         12,
-      //         0.4,
-      //         16,
-      //         1,
-      //       ],
-      //       'line-color': 'black',
-      //     },
-      //   });
+      map.addLayer(
+        {
+          id: 'parcels-line',
+          'source-layer': LAYERNAME,
+          source: 'tiles',
+          type: 'line',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          },
+          paint: {
+            'line-opacity': 1,
+            'line-width': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              5,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+              7,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+              10,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 1.5, 0.01],
+              12,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 2, 0.4],
+              16,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 4, 1],
+            ],
+            'line-offset': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              5,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 0.5, 0],
+              7,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 0.5, 0],
+              10,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 0.75, 0.005],
+              12,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.2],
+              16,
+              ['case', ['boolean', ['feature-state', 'hover'], false], 2, 0.5],
+            ],
+            'line-color': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              'yellow',
+              '#343332',
+            ],
+          },
+        },
+        'bridge-motorway-2',
+      );
 
       map.on('moveend', async e => {
+        let z = map.getZoom();
+        console.log({ z });
         if (selectedAttributeRef.current === 'default') {
           return;
         }
@@ -235,11 +262,6 @@ export function ParcelMap({
           });
 
           // apply some sort of categorical style
-
-          console.log('--');
-          console.log(selectedAttribute);
-          console.log(selectedAttributeRef.current);
-          console.log('- -');
           featureDetails.forEach(data => {
             Object.keys(data).forEach(key => {
               map.setFeatureState(
@@ -446,8 +468,9 @@ export function ParcelMap({
     }
 
     let zeroFilters = [['!=', ['feature-state', 'selectedfeature'], null]];
-    let colorStyle = 'cyan'; // string or array
-    // let lineStyle = 'cyan'; // string or array
+    let colorStyle = 'cyan';
+    // let lineStyle = '#343332';
+    let lineStyle = ['case', ['boolean', ['feature-state', 'hover'], false], 'yellow', '#343332'];
 
     if (selectedAttribute === 'default') {
       // paints default (uses default colorStyle above)
@@ -484,12 +507,18 @@ export function ParcelMap({
         ['match', ['feature-state', 'selectedfeature'], ...breaks],
         'rgba(0, 0, 0, 0)',
       ];
-      //   lineStyle = [
-      //     'case',
-      //     ['all', ...zeroFilters],
-      //     ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
-      //     'darkslategrey',
-      //   ];
+
+      lineStyle = [
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        'yellow',
+        [
+          'case',
+          ['all', ...zeroFilters],
+          ['match', ['feature-state', 'selectedfeature'], ...lineBreaks],
+          '#343332',
+        ],
+      ];
     } else if (selectedAttribute.slice(0, 3) === 'num') {
       const availableClassifications = infoMeta.fieldMetadata.numeric[selectedAttribute.slice(4)];
       const currentClassification =
@@ -531,18 +560,23 @@ export function ParcelMap({
         ['step', ['feature-state', 'selectedfeature'], ...breaks],
         'rgba(0, 0, 0, 0)',
       ];
-      //   lineStyle = [
-      //     'case',
-      //     ['all', ...zeroFilters],
-      //     ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
-      //     'rgba(0, 0, 0, 0)',
-      //   ];
+      lineStyle = [
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        'yellow',
+        [
+          'case',
+          ['all', ...zeroFilters],
+          ['step', ['feature-state', 'selectedfeature'], ...lineBreaks],
+          '#343332',
+        ],
+      ];
     } else {
       console.error('i dont know what to paint');
     }
 
     mapRef.current.setPaintProperty('parcels', 'fill-color', colorStyle);
-    // mapRef.current.setPaintProperty('parcels-line', 'line-color', 'grey');
+    mapRef.current.setPaintProperty('parcels-line', 'line-color', lineStyle);
 
     mapRef.current.fire('moveend');
   }, [
