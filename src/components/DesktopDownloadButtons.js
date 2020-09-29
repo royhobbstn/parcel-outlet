@@ -60,6 +60,7 @@ export default function DesktopDownloadButtons({
                 cursor: 'pointer',
                 backgroundColor: 'grey',
                 color: 'white',
+                width: '67px',
               }}
             />
           </LightTooltip>

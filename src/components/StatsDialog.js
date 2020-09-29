@@ -139,7 +139,7 @@ function StatsInfoCard({ selectedDownload, statsInfo }) {
             <TableRow>
               <TableCell>Records: {statsInfo.rowCount.toLocaleString() || '...?'}</TableCell>
               <TableCell>
-                Last Checked: {new Date(selectedDownload.last_checked).toLocaleString()}
+                {/* Last Checked: {new Date(selectedDownload.last_checked).toLocaleString()} */}
               </TableCell>
             </TableRow>
           </TableBody>
