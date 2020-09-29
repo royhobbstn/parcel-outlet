@@ -45,8 +45,6 @@ export function MapClassificationSelect({
           // get first scheme from above list of eligible schemes
           updateSelectedNumericScheme(schemes[0].id);
         }
-
-        console.log('change map classification');
       }}
       variant="outlined"
     >

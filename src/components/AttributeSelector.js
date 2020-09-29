@@ -33,6 +33,7 @@ const AttributeSelector = ({
   updateAdvancedToggle,
   zeroAsNull,
   updateZeroAsNull,
+  featureAttributes,
 }) => {
   const [dialogOpen, updateDialogOpen] = useState(false);
 
@@ -49,6 +50,8 @@ const AttributeSelector = ({
   const numericKeys = Object.keys(fieldMetadata.numeric).sort();
 
   const numericIsSelected = selectedAttribute.slice(0, 3) === 'num';
+
+  const firstRowWidth = selectedAttribute === 'default' ? 12 : 6;
 
   return (
     <div>
@@ -92,13 +95,14 @@ const AttributeSelector = ({
         </DialogTitle>
         <DialogContent dividers>
           <Grid container spacing={2} style={{ overflowX: 'hidden' }}>
-            <Grid item xs={6}>
+            <Grid item xs={firstRowWidth}>
               <MapAttributeSelect
                 selectedAttribute={selectedAttribute}
                 updateSelectedAttribute={updateSelectedAttribute}
                 selectedAttributeRef={selectedAttributeRef}
                 categoricalKeys={categoricalKeys}
                 numericKeys={numericKeys}
+                featureAttributes={featureAttributes}
               />
             </Grid>
             <Grid item xs={6}>

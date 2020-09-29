@@ -23,6 +23,10 @@ export function MapLegend({
   let currentColors;
   let currentClasses;
 
+  const backgroundHex = '#343332';
+
+  let isIntegerClassification = false;
+
   if (selectedAttribute.slice(0, 3) === 'cat') {
     const categoryAttribute = selectedAttribute.slice(4);
     const classes = infoMeta.fieldMetadata.categorical[categoryAttribute];
@@ -42,19 +46,28 @@ export function MapLegend({
       }
       return acc;
     }, []);
+
+    isIntegerClassification = currentClasses.every(d => isInteger(d));
   }
 
   if (selectedAttribute === 'default') {
     return null;
   }
 
+  const spanStyle = {
+    marginLeft: '28px',
+    color: 'white',
+    lineHeight: '15px',
+    verticalAlign: 'top',
+  };
+
   return (
     <div
       className="map-title-control"
       style={{
         position: 'absolute',
-        opacity: 0.8,
-        backgroundColor: '#343332',
+        opacity: 0.97,
+        backgroundColor: backgroundHex,
         zIndex: 100,
         width: 'auto',
         height: legendIsOpen ? 'auto' : '50px',
@@ -90,25 +103,21 @@ export function MapLegend({
                 {Object.keys(filteredClasses).map((index, key) => {
                   const nextColor = categorytree[selectedCategoricalScheme].colors[index];
                   if (nextColor) {
+                    console.log(nextColor, backgroundHex);
+                    console.log(applyTransparency(nextColor, backgroundHex, 0.8));
                     return (
                       <React.Fragment key={filteredClasses[key]}>
-                        <Grid item xs={1}>
+                        <Grid item xs={3}>
                           <span
                             style={{
                               position: 'absolute',
                               width: '20px',
                               height: '15px',
-                              backgroundColor: nextColor,
-                              borderRadius: '3px',
-                              borderWidth: '1px',
-                              borderStyle: 'solid',
-                              borderColor: nextColor,
-                              opacity: 0.8,
+                              backgroundColor: applyTransparency(nextColor, backgroundHex, 0.8),
+                              border: '1px solid ' + nextColor,
                             }}
                           ></span>
-                        </Grid>
-                        <Grid item xs={2}>
-                          <span style={{ color: 'white' }}>{filteredClasses[key]}</span>
+                          <span style={spanStyle}>{filteredClasses[key]}</span>
                         </Grid>
                       </React.Fragment>
                     );
@@ -119,23 +128,17 @@ export function MapLegend({
                 {Object.keys(filteredClasses).length >=
                 categorytree[selectedCategoricalScheme].count ? (
                   <React.Fragment>
-                    <Grid item xs={1}>
+                    <Grid item xs={3}>
                       <span
                         style={{
                           position: 'absolute',
                           width: '20px',
                           height: '15px',
-                          backgroundColor: 'darkslategrey',
-                          borderRadius: '3px',
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'darkslategrey',
-                          opacity: 0.8,
+                          backgroundColor: applyTransparency('#2f4f4f', backgroundHex, 0.8),
+                          border: '1px solid darkslategrey',
                         }}
                       ></span>
-                    </Grid>
-                    <Grid item xs={2}>
-                      <span style={{ color: 'white' }}>Other Values</span>
+                      <span style={spanStyle}>Other Values</span>
                     </Grid>
                   </React.Fragment>
                 ) : null}
@@ -148,42 +151,34 @@ export function MapLegend({
                 {currentColors.map((color, index) => {
                   return (
                     <React.Fragment key={color}>
-                      <Grid item xs={1}>
+                      <Grid item xs={3}>
                         <span
                           style={{
                             position: 'absolute',
                             width: '20px',
                             height: '15px',
-                            backgroundColor: color,
-                            borderRadius: '3px',
-                            borderWidth: '1px',
-                            borderStyle: 'solid',
-                            borderColor: color,
-                            opacity: 0.8,
+                            backgroundColor: applyTransparency(color, backgroundHex, 0.8),
+                            border: '1px solid ' + color,
                           }}
                         ></span>
-                      </Grid>
 
-                      {index === 0 ? (
-                        <Grid item xs={2}>
-                          <span style={{ color: 'white' }}>
+                        {index === 0 ? (
+                          <span style={spanStyle}>
                             &le; {currentClasses[index].toLocaleString()}
                           </span>
-                        </Grid>
-                      ) : index === currentColors.length - 1 ? (
-                        <Grid item xs={2}>
-                          <span style={{ color: 'white' }}>
+                        ) : index === currentColors.length - 1 ? (
+                          <span style={spanStyle}>
                             &gt; {currentClasses[index - 1].toLocaleString()}
                           </span>
-                        </Grid>
-                      ) : (
-                        <Grid item xs={2}>
-                          <span style={{ color: 'white' }}>
-                            {currentClasses[index - 1].toLocaleString()} to{' '}
-                            {currentClasses[index].toLocaleString()}
+                        ) : (
+                          <span style={spanStyle}>
+                            {(
+                              currentClasses[index - 1] + (isIntegerClassification ? 1 : 0.001)
+                            ).toLocaleString()}{' '}
+                            to {currentClasses[index].toLocaleString()}
                           </span>
-                        </Grid>
-                      )}
+                        )}
+                      </Grid>
                     </React.Fragment>
                   );
                 })}
@@ -194,4 +189,38 @@ export function MapLegend({
       </Grid>
     </div>
   );
+}
+
+function applyTransparency(foregroundHex, backgroundHex, opacity) {
+  const backgroundColor = toRgbArray(hexToRgb(backgroundHex));
+  const foregroundColor = toRgbArray(hexToRgb(foregroundHex));
+  const newColor = afterOpacity(foregroundColor, opacity, backgroundColor);
+  return toRgbString(newColor);
+}
+
+function afterOpacity(fg, o, bg = [255, 255, 255]) {
+  return fg.map((colFg, idx) => parseInt(o * colFg + (1 - o) * bg[idx]), 10);
+}
+
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
+function toRgbArray(obj) {
+  return [obj.r, obj.g, obj.b];
+}
+
+function toRgbString(arr) {
+  return `rgb(${arr[0]},${arr[1]},${arr[2]})`;
+}
+
+function isInteger(value) {
+  return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
 }

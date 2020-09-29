@@ -53,7 +53,7 @@ export default function DesktopDownloadButtons({
           <LightTooltip title="Download Original File" placement="bottom">
             <Chip
               size="small"
-              label="Origin"
+              label="Original"
               style={{
                 verticalAlign: 'middle',
                 marginBottom: '2px',

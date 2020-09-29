@@ -7,6 +7,7 @@ export function MapAttributeSelect({
   selectedAttributeRef,
   categoricalKeys,
   numericKeys,
+  featureAttributes,
 }) {
   return (
     <TextField
@@ -25,6 +26,7 @@ export function MapAttributeSelect({
       label="Attribute"
       value={selectedAttribute}
       onChange={evt => {
+        featureAttributes.current = {};
         // @ts-ignore
         updateSelectedAttribute(evt.target.value);
         selectedAttributeRef.current = evt.target.value;

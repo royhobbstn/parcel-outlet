@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import ndjsonStream from 'can-ndjson-stream';
 import { tileBase, key } from '../service/env';
 import { AttributeSelectorMemo as AttributeSelector } from './AttributeSelector';
+import AttributeValueDisplay from './AttributeValueDisplay';
 import { colortree } from '../lookups/colortree';
 import { categorytree } from '../lookups/categorytree';
 
@@ -40,7 +41,9 @@ export function ParcelMap({
   const parcelAttributes = useRef({});
   const [infoMeta, updateInfoMeta] = useState(null);
 
+  const featureAttributes = useRef({});
   const hoveredStateId = useRef(null);
+  const [mouseoverAttributeValue, updateMouseoverAttributeValue] = useState(null);
 
   // one time
   useEffect(() => {
@@ -211,8 +214,6 @@ export function ParcelMap({
       );
 
       map.on('moveend', async e => {
-        let z = map.getZoom();
-        console.log({ z });
         if (selectedAttributeRef.current === 'default') {
           return;
         }
@@ -261,9 +262,13 @@ export function ParcelMap({
             clustersInTransit.current[cluster] = false;
           });
 
+          const selectedAttributeIsNum = selectedAttributeRef.current.slice(0, 3) === 'num';
+
           // apply some sort of categorical style
           featureDetails.forEach(data => {
             Object.keys(data).forEach(key => {
+              const value = selectedAttributeIsNum ? Number(data[key]) : data[key];
+              featureAttributes.current[key] = value;
               map.setFeatureState(
                 {
                   source: 'tiles',
@@ -271,10 +276,7 @@ export function ParcelMap({
                   id: key,
                 },
                 {
-                  selectedfeature:
-                    selectedAttributeRef.current.slice(0, 3) === 'num'
-                      ? Number(data[key])
-                      : data[key],
+                  selectedfeature: value,
                 },
               );
             });
@@ -295,6 +297,7 @@ export function ParcelMap({
 
       map.on('mousemove', 'parcels', function (e) {
         if (!(e.features && e.features[0])) {
+          updateMouseoverAttributeValue(null);
           return;
         }
 
@@ -308,6 +311,14 @@ export function ParcelMap({
             );
           }
           hoveredStateId.current = e.features[0].properties.__po_id;
+
+          if (selectedAttributeRef !== 'default') {
+            updateMouseoverAttributeValue(
+              featureAttributes.current[e.features[0].properties.__po_id],
+            );
+          } else {
+            updateMouseoverAttributeValue(null);
+          }
 
           map.setFeatureState(
             { source: 'tiles', sourceLayer: LAYERNAME, id: hoveredStateId.current },
@@ -325,6 +336,7 @@ export function ParcelMap({
           );
         }
         hoveredStateId.current = null;
+        updateMouseoverAttributeValue(null);
       });
 
       map.on('click', 'parcels', async e => {
@@ -547,8 +559,6 @@ export function ParcelMap({
         }
       }
 
-      console.log(breaks);
-
       if (zeroAsNull) {
         zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], 0]);
         zeroFilters.push(['!=', ['feature-state', 'selectedfeature'], '0']);
@@ -590,6 +600,7 @@ export function ParcelMap({
 
   return (
     <div>
+      <AttributeValueDisplay mouseoverAttributeValue={mouseoverAttributeValue} />
       <AttributeSelector
         infoMeta={infoMeta}
         selectedCategoricalScheme={selectedCategoricalScheme}
@@ -605,6 +616,7 @@ export function ParcelMap({
         updateAdvancedToggle={updateAdvancedToggle}
         zeroAsNull={zeroAsNull}
         updateZeroAsNull={updateZeroAsNull}
+        featureAttributes={featureAttributes}
       ></AttributeSelector>
       <div ref={mapContainerRef} id="map" />
     </div>
