@@ -267,7 +267,7 @@ export function ParcelMap({
           // apply some sort of categorical style
           featureDetails.forEach(data => {
             Object.keys(data).forEach(key => {
-              const value = selectedAttributeIsNum ? Number(data[key]) : data[key];
+              const value = selectedAttributeIsNum ? Number(data[key]) : String(data[key]);
               featureAttributes.current[key] = value;
               map.setFeatureState(
                 {
