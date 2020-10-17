@@ -4,6 +4,7 @@ import { key } from '../service/env';
 
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties.js';
+import { countySubLookup } from '../lookups/countysubs.js';
 
 export class CoverageMap extends Component {
   componentDidMount() {
@@ -20,7 +21,7 @@ export class CoverageMap extends Component {
     let hoveredStateId = null;
 
     const countyJsonLoad = window
-      .fetch('/data/us_counties.geojson')
+      .fetch('/data/us_parcel_areas.geojson')
       .then(response => response.json());
     const stateJsonLoad = window.fetch('/data/us_states.geojson').then(response => response.json());
 
@@ -106,7 +107,14 @@ export class CoverageMap extends Component {
 
       const state = feature.STATEFP;
       const county = feature.COUNTYFP;
-      const titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
+      const geoid = feature.GEOID;
+      const sumlev = feature.SUMLEV;
+      let titleGeo;
+      if (sumlev === '050') {
+        titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
+      } else if (sumlev === '060') {
+        titleGeo = `${countySubLookup(geoid)}, ${stateLookup(state)}`;
+      }
       window.map.getCanvas().style.cursor = 'pointer';
       this.props.updateCoverageLabelText(titleGeo);
       this.props.updateCoverageLabelOpen(true);
@@ -119,13 +127,21 @@ export class CoverageMap extends Component {
       this.props.updateCoverageLabelOpen(false);
     });
 
-    // When the user moves their mouse over the state-fill layer, we'll update the
+    // When the user moves their mouse over the counties layer, we'll update the
     // feature state for the feature under the mouse.
     window.map.on('mousemove', 'counties', e => {
       if (e.features.length > 0) {
         const state = e.features[0].properties.STATEFP;
         const county = e.features[0].properties.COUNTYFP;
-        const titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
+        const geoid = e.features[0].properties.GEOID;
+        const sumlev = e.features[0].properties.SUMLEV;
+        let titleGeo;
+        if (sumlev === '050') {
+          titleGeo = `${countyLookup(state + county)}, ${stateLookup(state)}`;
+        } else if (sumlev === '060') {
+          titleGeo = `${countySubLookup(geoid)}, ${stateLookup(state)}`;
+        }
+
         this.props.updateCoverageLabelText(titleGeo);
 
         if (hoveredStateId) {

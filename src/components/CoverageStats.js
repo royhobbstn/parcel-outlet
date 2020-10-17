@@ -46,19 +46,19 @@ export default function CoverageStats({ inventory }) {
           </TableHead>
           <TableBody>
             <TableRow style={rowPadding}>
-              <TableCell style={cellPadding}>Counties</TableCell>
+              <TableCell style={cellPadding}>Coverage Areas</TableCell>
               <TableCell align="right" style={cellPadding}>
-                {popStats.countiesAccountedFor.toLocaleString(undefined, {
+                {popStats.areasAccountedFor.toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
               </TableCell>
               <TableCell align="right" style={cellPadding}>
-                {popStats.totalCountyCount.toLocaleString(undefined, {
+                {popStats.totalAreasCount.toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
               </TableCell>
               <TableCell align="right" style={cellPadding}>
-                {popStats.percentOfTotalCounties.toLocaleString(undefined, {
+                {popStats.percentOfTotalAreas.toLocaleString(undefined, {
                   style: 'percent',
                   minimumFractionDigits: 2,
                 })}
@@ -92,9 +92,9 @@ export default function CoverageStats({ inventory }) {
   );
 }
 
-// countiesAccountedFor: 201;
-// percentOfTotalCounties: 0.06397199236155315;
+// areasAccountedFor: 201;
+// percentOfTotalAreas: 0.06397199236155315;
 // percentOfTotalPopulation: 0.08534317179104602;
 // populationAccountedFor: 28013002;
-// totalCountyCount: 3142;
+// totalAreasCount: 3142;
 // totalPopulation: 328239523;
