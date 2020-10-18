@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { stateLookup } from '../lookups/states';
 import { countyLookup } from '../lookups/counties';
+import { countySubLookup } from '../lookups/countysubs';
 
 import { Dialog, DialogTitle, DialogContent, Grid } from '@material-ui/core';
 
@@ -41,7 +42,11 @@ const AttributeSelector = ({
     return null;
   }
 
-  const titleTextCounty = countyLookup(infoMeta.geoid);
+  const isCountySub = Boolean(infoMeta.fipsDetails.COUNTYSUBFIPS);
+
+  const titleTextCounty = isCountySub
+    ? countySubLookup(infoMeta.geoid)
+    : countyLookup(infoMeta.geoid);
   const titleTextState = stateLookup(infoMeta.geoid.slice(0, 2));
 
   const fieldMetadata = infoMeta.fieldMetadata;

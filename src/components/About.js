@@ -36,11 +36,6 @@ export default function About() {
       </p>
 
       <p>
-        It is the author's belief that since these datasets were created with tax dollars, and since
-        they contain no sensitive information, they should be publicly accessible.
-      </p>
-
-      <p>
         If you know of a dataset that you would like to see distributed by Parcel-Outlet,{' '}
         <a href="mailto:danieljtrone@gmail.com">please let me know about it.</a>
       </p>
