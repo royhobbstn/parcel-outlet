@@ -42,7 +42,7 @@ const AttributeSelector = ({
     return null;
   }
 
-  const isCountySub = Boolean(infoMeta.fipsDetails.COUNTYSUBFIPS);
+  const isCountySub = Boolean(infoMeta.fipsDetails.COUNTYSUBFIPS || infoMeta.geoid.length === 10);
 
   const titleTextCounty = isCountySub
     ? countySubLookup(infoMeta.geoid)

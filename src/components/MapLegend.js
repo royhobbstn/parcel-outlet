@@ -103,8 +103,6 @@ export function MapLegend({
                 {Object.keys(filteredClasses).map((index, key) => {
                   const nextColor = categorytree[selectedCategoricalScheme].colors[index];
                   if (nextColor) {
-                    console.log(nextColor, backgroundHex);
-                    console.log(applyTransparency(nextColor, backgroundHex, 0.8));
                     return (
                       <React.Fragment key={filteredClasses[key]}>
                         <Grid item xs={3}>

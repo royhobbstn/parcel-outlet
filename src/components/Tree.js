@@ -5,6 +5,7 @@ import TreeEntry from './TreeEntry.js';
 import { stateLookup } from '../lookups/states';
 import { MinusSquare, PlusSquare, CloseSquare } from '../style/svgComponents.js';
 import { countyLookup } from '../lookups/counties.js';
+import { countySubLookup } from '../lookups/countysubs';
 
 export function Tree({
   inventory,
@@ -83,7 +84,12 @@ function crunchInventory(inventory, searchboxText) {
       if (!lowercaseSearch) {
         return true;
       }
-      const geoname = countyLookup(key).replace('County', '').toLowerCase();
+
+      const isCountySub = Boolean(key.length === 10);
+
+      const lookupVal = isCountySub ? countySubLookup(key) : countyLookup(key);
+
+      const geoname = lookupVal.replace('County', '').toLowerCase();
       return geoname.includes(lowercaseSearch);
     })
     .forEach(key => {
