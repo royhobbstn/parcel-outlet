@@ -18,6 +18,8 @@ export function ParcelMap({
   updateFocusDownload,
   updateMapAttributesModalOpen,
   updateCurrentFeatureAttributes,
+  updateFocusCoverageGeoid,
+  updateCoverageModalMessage,
 }) {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
@@ -46,8 +48,38 @@ export function ParcelMap({
   const [mouseoverAttributeValue, updateMouseoverAttributeValue] = useState(null);
 
   // one time
+  // so hacky.  if map id was missing (tileset presumed deleted)
+  // then there is a fallback to choose another dataset with the same id
+  // this reads the url hashstring every 1 second and will reload the page if changed
+  // hashchange event doesnt work, tried that
+  useEffect(() => {
+    let productIdOriginal = '999999';
+
+    const interval = window.setInterval(() => {
+      const hashString = window.location.hash.slice(1);
+      const searchParams = new URLSearchParams(hashString);
+      const productId = searchParams.get('id');
+
+      if (productIdOriginal === '999999') {
+        // initial set
+        productIdOriginal = productId;
+      } else {
+        // compare
+        if (productId !== productIdOriginal) {
+          window.location.reload();
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  // one time
   useEffect(() => {
     updateCoverageModalOpen(false);
+    updateCoverageModalMessage('');
 
     mapboxgl.accessToken = key;
     const map = new mapboxgl.Map({
@@ -63,18 +95,27 @@ export function ParcelMap({
 
     var url = new Url(window.location.href);
     const pathname = url.pathname;
-
     const parts = pathname.split('/');
-
-    const [blank, base, descriptiveName, productId] = parts;
+    const [blank, base, descriptiveName, geoid] = parts;
     // FYI
     // blank = ""
     // base = "parcel-map"
     // descriptiveName = "whatever the geoname" - has no purpose other than SEO
-    // productId = "a2d782cf-d442fd95-c327a9de" format like downloadRef, productRef, individRef
+    // geoidHash = 08031#id=a2d782cf-d442fd95-c327a9de
+    // id format like downloadRef, productRef, individRef
 
-    if (blank || !base || !descriptiveName || !productId) {
-      console.error('this is not a valid page name');
+    const hashString = window.location.hash.slice(1);
+    const searchParams = new URLSearchParams(hashString);
+    const productId = searchParams.get('id');
+
+    if (blank || !base || !descriptiveName || !geoid) {
+      console.error('This is not a valid page name');
+      return;
+    }
+
+    if (!productId) {
+      updateFocusCoverageGeoid(geoid);
+      updateCoverageModalOpen(true);
       return;
     }
 
@@ -92,7 +133,21 @@ export function ParcelMap({
 
     map.on('load', async () => {
       //
-      const [infoMeta, geoHull, clusterHull] = await Promise.all([info, hull, clHull]);
+      let infoMeta, geoHull, clusterHull;
+
+      try {
+        [infoMeta, geoHull, clusterHull] = await Promise.all([info, hull, clHull]);
+      } catch (e) {
+        // updateFlagOnCoverageModal to indicate parcel-map loading failed.
+        updateCoverageModalMessage('Dataset was not found!  Please choose another from the list.');
+        updateFocusCoverageGeoid(geoid);
+        updateCoverageModalOpen(true);
+      }
+
+      if (!infoMeta || !geoHull || !clusterHull) {
+        console.log('Unable to load tile data.  Dataset might have been deleted.');
+        return;
+      }
 
       // set map extent here with new generated metadata values
       const boundsArray = infoMeta.generatedMetadata.bounds.split(',').map(d => Number(d));

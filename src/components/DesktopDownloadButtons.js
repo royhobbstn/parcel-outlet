@@ -50,7 +50,15 @@ export default function DesktopDownloadButtons({
         style={{ paddingLeft: '4px', paddingRight: '4px' }}
       >
         <a href={`${rawBase}/${focusDownload.raw_key}`} style={{ textDecoration: 'none' }} download>
-          <LightTooltip title="Download Original File" placement="bottom">
+          <LightTooltip
+            title={
+              <React.Fragment>
+                Download Original File.
+                <br />( may contain data from entire state )
+              </React.Fragment>
+            }
+            placement="bottom"
+          >
             <Chip
               size="small"
               label="Original"
@@ -133,12 +141,7 @@ export default function DesktopDownloadButtons({
                 download
               >
                 <LightTooltip
-                  title={
-                    <React.Fragment>
-                      Download GeoJSON File.
-                      <br />( tip: right-click, then "Save Link As..." )
-                    </React.Fragment>
-                  }
+                  title={<React.Fragment>Download GeoJSON File</React.Fragment>}
                   placement="bottom"
                 >
                   <Chip

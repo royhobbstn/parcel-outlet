@@ -16,6 +16,8 @@ export default function CoverageDialog({
   updateModalOpen,
   updateStatChoice,
   updatedSelectedDownload,
+  coverageModalMessage,
+  updateCoverageModalMessage,
 }) {
   const state = focusCoverageGeoid.slice(0, 2);
   const county = focusCoverageGeoid.slice(2);
@@ -23,8 +25,13 @@ export default function CoverageDialog({
 
   return (
     <Dialog open={coverageModalOpen} fullWidth={true} maxWidth="md">
-      <CoverageHeader updateCoverageModalOpen={updateCoverageModalOpen} titleGeo={titleGeo} />
+      <CoverageHeader
+        updateCoverageModalOpen={updateCoverageModalOpen}
+        updateCoverageModalMessage={updateCoverageModalMessage}
+        titleGeo={titleGeo}
+      />
 
+      {coverageModalMessage ? <MessageWhy coverageModalMessage={coverageModalMessage} /> : null}
       {inventory[focusCoverageGeoid] ? (
         <div style={{ padding: '20px', overflowY: 'scroll' }}>
           <TreeEntry
@@ -42,7 +49,25 @@ export default function CoverageDialog({
   );
 }
 
-function CoverageHeader({ updateCoverageModalOpen, titleGeo }) {
+function MessageWhy({ coverageModalMessage }) {
+  return (
+    <div style={{ borderBottom: '1px dotted grey' }}>
+      <h4
+        style={{
+          marginLeft: '20px',
+          display: 'inline',
+          lineHeight: '48px',
+          overflowX: 'hidden',
+          color: 'red',
+        }}
+      >
+        {coverageModalMessage}
+      </h4>
+    </div>
+  );
+}
+
+function CoverageHeader({ updateCoverageModalOpen, updateCoverageModalMessage, titleGeo }) {
   return (
     <div style={{ height: '48px', borderBottom: '1px dotted grey' }}>
       <div style={{ marginLeft: '20px', position: 'relative', top: '6px', display: 'inline' }}>
@@ -63,6 +88,7 @@ function CoverageHeader({ updateCoverageModalOpen, titleGeo }) {
         aria-label="close"
         onClick={() => {
           updateCoverageModalOpen(false);
+          updateCoverageModalMessage('');
         }}
       >
         <CloseIcon />

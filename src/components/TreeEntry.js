@@ -125,7 +125,7 @@ export default function TreeEntry({
                     <Chip
                       key={product.product_individual_ref}
                       component={Link}
-                      to={`/parcel-map/${geonameMod}/${product.product_key}`}
+                      to={`/parcel-map/${geonameMod}/${product.geoid}#id=${product.product_key}`}
                       size="small"
                       label={
                         <React.Fragment>

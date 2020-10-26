@@ -41,6 +41,7 @@ function App() {
   const [selectedDownload, updatedSelectedDownload] = useState({});
 
   const [coverageModalOpen, updateCoverageModalOpen] = useState(false);
+  const [coverageModalMessage, updateCoverageModalMessage] = useState('');
   const [focusCoverageGeoid, updateFocusCoverageGeoid] = useState('');
   const [coverageLabelOpen, updateCoverageLabelOpen] = useState(false);
   const [coverageLabelText, updateCoverageLabelText] = useState('');
@@ -83,6 +84,8 @@ function App() {
         <CoverageDialog
           coverageModalOpen={coverageModalOpen}
           updateCoverageModalOpen={updateCoverageModalOpen}
+          coverageModalMessage={coverageModalMessage}
+          updateCoverageModalMessage={updateCoverageModalMessage}
           focusCoverageGeoid={focusCoverageGeoid}
           inventory={inventory}
           updateModalOpen={updateModalOpen}
@@ -117,6 +120,8 @@ function App() {
             updateMapAttributesModalOpen={updateMapAttributesModalOpen}
             updateCurrentFeatureAttributes={updateCurrentFeatureAttributes}
             updateCoverageModalOpen={updateCoverageModalOpen}
+            updateFocusCoverageGeoid={updateFocusCoverageGeoid}
+            updateCoverageModalMessage={updateCoverageModalMessage}
           />
         </Route>
 
