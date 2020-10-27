@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function About() {
+  useEffect(() => {
+    document.title = 'Parcel Outlet - About';
+  }, []);
+
   return (
     <div
       style={{

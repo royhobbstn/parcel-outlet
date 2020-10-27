@@ -99,6 +99,8 @@ function App() {
         updateStatChoice={updateStatChoice}
         updatedSelectedDownload={updatedSelectedDownload}
         updateModalOpen={updateModalOpen}
+        updateCoverageModalOpen={updateCoverageModalOpen}
+        updateFocusCoverageGeoid={updateFocusCoverageGeoid}
       />
       <Switch>
         <Route path="/coverage-map">

@@ -14,6 +14,9 @@ import MobileMenu from './MobileMenu.js';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import FeedbackModal from './FeedbackModal';
+import StorageIcon from '@material-ui/icons/Storage';
+
+const Url = require('url-parse');
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,10 +47,21 @@ export default function ButtonAppBar({
   updateStatChoice,
   updatedSelectedDownload,
   updateModalOpen,
+  updateCoverageModalOpen,
+  updateFocusCoverageGeoid,
 }) {
   const classes = useStyles();
-  const matches = useMediaQuery('(min-width:700px)');
+  const matches = useMediaQuery('(min-width:800px)');
   const [feedbackModal, updateFeedbackModal] = useState(false);
+
+  var url = new Url(window.location.href);
+  const pathname = url.pathname;
+  const parts = pathname.split('/');
+  const basePath = parts[1] || null;
+  const coverageModalGeoid = parts[3] || null;
+
+  const isParcelMapPage =
+    basePath === 'parcel-map' && coverageModalGeoid && coverageModalGeoid.length >= 5;
 
   return (
     <div className={classes.root}>
@@ -63,6 +77,10 @@ export default function ButtonAppBar({
                 updatedSelectedDownload={updatedSelectedDownload}
                 updateModalOpen={updateModalOpen}
                 updateFeedbackModal={updateFeedbackModal}
+                isParcelMapPage={isParcelMapPage}
+                updateFocusCoverageGeoid={updateFocusCoverageGeoid}
+                updateCoverageModalOpen={updateCoverageModalOpen}
+                coverageModalGeoid={coverageModalGeoid}
               />
             </div>
           ) : (
@@ -92,6 +110,19 @@ export default function ButtonAppBar({
                   updatedSelectedDownload={updatedSelectedDownload}
                   updateModalOpen={updateModalOpen}
                 />
+              ) : null}
+              {isParcelMapPage ? (
+                <LightTooltip title="Select Dataset" placement="bottom">
+                  <IconButton
+                    className={classes.menuButton}
+                    onClick={() => {
+                      updateFocusCoverageGeoid(coverageModalGeoid);
+                      updateCoverageModalOpen(true);
+                    }}
+                  >
+                    <StorageIcon />
+                  </IconButton>
+                </LightTooltip>
               ) : null}
               <LightTooltip title="Parcel Coverage Map" placement="bottom">
                 <IconButton

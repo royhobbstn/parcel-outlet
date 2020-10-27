@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import MapIcon from '@material-ui/icons/Map';
 import HelpOutline from '@material-ui/icons/HelpOutline';
 import MobileDownloadButtons from './MobileDownloadButtons.js';
+import StorageIcon from '@material-ui/icons/Storage';
 
 const StyledMenu = withStyles({
   paper: {
@@ -51,6 +52,10 @@ export default function CustomizedMenus({
   updatedSelectedDownload,
   updateModalOpen,
   updateFeedbackModal,
+  isParcelMapPage,
+  updateFocusCoverageGeoid,
+  updateCoverageModalOpen,
+  coverageModalGeoid,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -101,6 +106,20 @@ export default function CustomizedMenus({
             updatedSelectedDownload={updatedSelectedDownload}
             updateModalOpen={updateModalOpen}
           />
+        ) : null}
+
+        {isParcelMapPage ? (
+          <StyledMenuItem
+            onClick={() => {
+              updateFocusCoverageGeoid(coverageModalGeoid);
+              updateCoverageModalOpen(true);
+            }}
+          >
+            <ListItemIcon>
+              <StorageIcon />
+            </ListItemIcon>
+            <ListItemText primary="Select Dataset" />
+          </StyledMenuItem>
         ) : null}
 
         <StyledMenuItem

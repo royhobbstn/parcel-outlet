@@ -97,6 +97,9 @@ export function ParcelMap({
     const pathname = url.pathname;
     const parts = pathname.split('/');
     const [blank, base, descriptiveName, geoid] = parts;
+
+    document.title = 'Parcel Map - ' + descriptiveName.split('-').join(' ');
+
     // FYI
     // blank = ""
     // base = "parcel-map"

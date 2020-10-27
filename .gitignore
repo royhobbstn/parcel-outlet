@@ -24,3 +24,5 @@ yarn-error.log*
 
 public/data/parcel_dataset_inventory-dev.json
 public/data/parcel_dataset_inventory.json
+
+public/sitemap.xml

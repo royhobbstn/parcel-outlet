@@ -8,6 +8,8 @@ import { countySubLookup } from '../lookups/countysubs.js';
 
 export class CoverageMap extends Component {
   componentDidMount() {
+    document.title = 'Parcel Outlet - Coverage Map';
+
     mapboxgl.accessToken = key;
     window.map = new mapboxgl.Map({
       container: 'map',
